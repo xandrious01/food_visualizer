@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { Routes, Route} from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Searchbar from './components/Searchbar';
+import Home from './pages/Home';
+import SavedFoods from './pages/SavedFoods';
+import Compare from './pages/Compare';
+import Food from './pages/Food';
+import BrowseFoods from './pages/BrowseFoods';
+import Search from './pages/Search';
+
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="nav-div col-3">
+        <Navbar />
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/myfoods" element={<SavedFoods />} />
+        <Route path="/foods/browse" element={<BrowseFoods />} />
+        <Route path="/foods/:foodId" element={<Food />} />
+        <Route path="/compare" element={<Compare />} />
+      </Routes>
     </div>
   );
 }
