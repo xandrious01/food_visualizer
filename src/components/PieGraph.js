@@ -22,7 +22,7 @@ const PieGraph = ({foodNutrients}) => {
         innerRadius={70}
         outerRadius={90}
         fill="#82ca9d"
-        label={{ value: 'name', position: 'inside' }}
+        label={{ value: 'value', position: 'inside' }}
       />
     </PieChart>
   );

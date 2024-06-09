@@ -3,8 +3,7 @@ import { requestFoodById } from "../ApiCalls";
 import PieGraph from "./PieGraph";
 
 
-const DisplayFood = () => {
-    let foodId = 169911;
+const DisplayFood = ({ foodId }) => {
     const [foodInfo, setFoodInfo] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isReady, setIsReady] = useState(false);
@@ -12,7 +11,10 @@ const DisplayFood = () => {
     const [foodNutrients, setFoodNutrients] = useState({});
 
     useEffect(() => {
-        getFoodInfo();
+        if (foodId) {
+            getFoodInfo();
+
+        }
 
         if (isLoading === false) {
 
@@ -92,10 +94,10 @@ const DisplayFood = () => {
 
     if (isLoading === true || isReady === false) {
         return <h1>I am Loading</h1>
-    } else if (isReady === true){
+    } else if (isReady === true) {
         return (
             <div>
-                <PieGraph foodNutrients={foodNutrients}/>
+                <PieGraph foodNutrients={foodNutrients} />
             </div>
         )
     }
