@@ -28,7 +28,7 @@ const router = createBrowserRouter(
           />
         </Route>
         <Route path="food" element={<DisplayFoodLayout />}>
-          <Route path=":fdcId" elemnt={<DisplayFood />} />
+          <Route path=":fdcId" element={<DisplayFood />} />
         </Route>
       </Route >
     </Route>

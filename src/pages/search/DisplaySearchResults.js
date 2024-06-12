@@ -38,10 +38,11 @@ const DisplaySearchResults = () => {
                 <ListGroup>
                 {searchResults.map(i => {
                     const {description, brandName, foodCategory, fdcId} = i;
-                    return (<ListGroupItem
+                    return (
+                    <ListGroupItem
                         key={fdcId}
                     >
-                        <Link to='/food'>
+                        <Link to={`/food/${fdcId}`}>
                            {description} 
                         </Link>
                     
