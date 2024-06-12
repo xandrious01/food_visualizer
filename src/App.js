@@ -15,7 +15,6 @@ import DisplayFood from './pages/food/DisplayFood';
 
 
 import './App.css';
-import { searchResultsLoader } from './loaders';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
