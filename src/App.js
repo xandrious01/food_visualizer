@@ -1,31 +1,43 @@
-import { Routes, Route} from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Searchbar from './components/Searchbar';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider
+} from 'react-router-dom'
+
+import RootLayout from './layouts/RootLayout';
 import Home from './pages/Home';
-import SavedFoods from './pages/SavedFoods';
-import Compare from './pages/Compare';
-import Food from './pages/Food';
-import BrowseFoods from './pages/BrowseFoods';
-import Search from './pages/Search';
+import SearchLayout from './layouts/SearchLayout';
+import DisplaySearchResults from './pages/search/DisplaySearchResults';
+import DisplayFoodLayout from './layouts/DisplayFoodLayout';
+import DisplayFood from './pages/food/DisplayFood';
+
 
 
 import './App.css';
+import { searchResultsLoader } from './loaders';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/" element={<RootLayout />} >
+        <Route index element={<Home />} />
+        <Route path="search" element={<SearchLayout />}>
+          <Route path=":query" 
+          element={<DisplaySearchResults />}
+          />
+        </Route>
+        <Route path="food" element={<DisplayFoodLayout />}>
+          <Route path=":fdcId" elemnt={<DisplayFood />} />
+        </Route>
+      </Route >
+    </Route>
+  )
+)
 
 function App() {
   return (
-    <div className="container">
-      <div className="nav-div col-3">
-        <Navbar />
-      </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/myfoods" element={<SavedFoods />} />
-        <Route path="/foods/browse" element={<BrowseFoods />} />
-        <Route path="/foods/:foodId" element={<Food />} />
-        <Route path="/compare" element={<Compare />} />
-      </Routes>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 

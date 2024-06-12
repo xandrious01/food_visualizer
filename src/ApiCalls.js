@@ -20,7 +20,8 @@ export async function requestFoodByQuery(query){
         url: 'https://api.nal.usda.gov/fdc/v1/foods/search',
         params: {
             api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
-            "query": `+${query}`,
+            query: `+${query}`,
+            requireAllWords: true
         }
     });
     console.log(response)
