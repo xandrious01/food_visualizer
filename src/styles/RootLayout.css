@@ -1,0 +1,24 @@
+
+#root{
+    padding: none;
+    height: 100vh;
+    width: 100vw;
+    margin: none;
+}
+
+.navBtn {
+   text-decoration: none; 
+   width: 100%;
+}
+
+.addCompareBtn{
+    margin-left: auto;
+}
+
+.compareBtnDiv{
+    display: block;
+}
+
+h1{
+    color: orange;
+}

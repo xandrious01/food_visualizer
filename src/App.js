@@ -11,7 +11,12 @@ import SearchLayout from './layouts/SearchLayout';
 import DisplaySearchResults from './pages/search/DisplaySearchResults';
 import DisplayFoodLayout from './layouts/DisplayFoodLayout';
 import DisplayFood from './pages/food/DisplayFood';
+import CompareFoodsLayout from './layouts/CompareFoodsLayout';
+import SavedFoodsLayout from './layouts/SavedFoodsLayout';
+import SavedFoods from './pages/SavedFoods';
 
+
+import './styles/RootLayout.css'
 
 
 import './App.css';
@@ -28,6 +33,11 @@ const router = createBrowserRouter(
         </Route>
         <Route path="food" element={<DisplayFoodLayout />}>
           <Route path=":fdcId" element={<DisplayFood />} />
+        </Route>
+        <Route path="myfoods" element={<SavedFoodsLayout />}>
+          <Route path=":fdcId" element={<DisplayFood />} />
+        </Route>
+        <Route path="compare" element={<CompareFoodsLayout />}>
         </Route>
       </Route >
     </Route>

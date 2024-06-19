@@ -1,40 +1,80 @@
-import {  Button, Container, Nav, NavItem } from "reactstrap";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Button, Row, Col, Container, Nav, NavItem } from "reactstrap";
+import React, { useState } from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
+import { CompareFoodsContext } from "../contexts";
+import '../styles/RootLayout.css'
+import '../App.css';
 
 
 const RootLayout = () => {
-    return (
-        <Container>
-            <header>
-                <h1>Welcome to the homepage</h1>
-            </header>
-            <Nav vertical>
-                <NavItem>
-                    <NavLink to="/">
-                            Home
+    const [foodsToCompare, setFoodsToCompare] = useState([]);
+    const {fdcId} = useParams();
 
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink to="search">
-                            Search
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink to="/">
-                            My Foods
-                    </NavLink>
-                </NavItem>
-                <NavItem>
-                    <NavLink to="/">
-                            Browse Foods
-                    </NavLink>
-                </NavItem>
-            </Nav>
-            <main>
-                <Outlet />
-            </main>
-        </Container>
+    return (
+        <CompareFoodsContext.Provider value={{ foodsToCompare, setFoodsToCompare }}>
+            <Container fluid className="root" id='root'>
+                <header>
+
+                    <h1>Nutrient Visualizer</h1>
+
+                </header>
+                <Row>
+                    <div className='compareBtnDiv'>
+            
+                        <Button onClick={()=>{
+                            if(foodsToCompare.length <= 4 && !foodsToCompare.includes(fdcId)){
+                                return setFoodsToCompare(foodsToCompare => foodsToCompare.push(fdcId))
+                            }
+                            console.log(foodsToCompare)
+                            return foodsToCompare
+                        }}
+                            className="addCompareBtn"
+                            style={fdcId ? {display: 'block'} : {display : 'none'}}
+                            id="addCompareBtn"
+                            type="button">
+                            + Add to Comparison
+                        </Button>
+
+                    </div>
+                    
+                    <Col className="col-xs-1 col-2">
+                        <div className="nav-div">
+                            <Link to="/">
+                                <Button className="navBtn" >
+                                    Home
+                                </Button>
+                            </Link>
+
+                            <Link to="search">
+                                <Button className="navBtn" >
+                                    Search
+                                </Button>
+                            </Link>
+
+                            <Link to="/">
+                                <Button className="navBtn" >
+                                    My Foods
+                                </Button>
+                            </Link>
+
+                            <Link to="compare">
+                                <Button className="navBtn" >
+                                    Food Comparison
+                                </Button>
+                            </Link>
+                        </div>
+                    </Col>
+
+                    <Col className='col-xs-8 col-10 main'>
+                        <main>
+                            <Outlet />
+                        </main>
+                    </Col>
+                </Row>
+
+            </Container>
+        </CompareFoodsContext.Provider>
+
     )
 }
 

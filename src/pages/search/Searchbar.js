@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FormGroup, Input, Button } from "reactstrap";
 import { Form, useNavigate, redirect, useSearchParams } from "react-router-dom";
 import { requestFoodByQuery } from "../../ApiCalls";
+import '../../styles/Search.css'
+
 
 
 const Searchbar = () => {

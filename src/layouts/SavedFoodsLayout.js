@@ -1,20 +1,18 @@
 import { useState } from "react";
 import { Container } from "reactstrap";
 import Searchbar from "../pages/search/Searchbar";
+import DisplaySearchResults from "../pages/search/DisplaySearchResults";
 import { Outlet, useParams } from "react-router-dom";
-import '../styles/Search.css';
 
-const SearchLayout = () => {
-    const [searchResults, setSearchResults] = useState(null);
-    const query = useParams();
+const SavedFoodsLayout = () => {
 
     return (
         <div>
-            <Searchbar />
+            <h1>My Foods</h1>
             <Outlet />
         </div>
     )
 
 }
 
-export default SearchLayout;
+export default SavedFoodsLayout;

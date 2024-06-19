@@ -1,0 +1,10 @@
+.home-div{
+    margin: 0 auto;
+    padding-left: 20px;
+    width: 100%;
+    justify-content: left;
+}
+
+p {
+    padding: 20px;
+}

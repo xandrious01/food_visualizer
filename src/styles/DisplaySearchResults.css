@@ -1,0 +1,24 @@
+.displaySearchResultsParent {
+    height: 100%;
+}
+
+.pageInfo{
+    display: inline-block;
+}
+.paginationBtn{
+    display: inline-block;
+    
+}
+
+.nextPage{
+    align-self: end;
+}
+.prevPage{
+    align-self: start;
+}
+
+.resultsContainer{
+    overflow-y: scroll;
+    min-height: auto;
+    width: 100%;
+}

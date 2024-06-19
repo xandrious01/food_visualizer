@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 export async function requestFoodById(fdcId){
@@ -14,17 +13,22 @@ export async function requestFoodById(fdcId){
 }
 
 
-export async function requestFoodByQuery(query){
+export async function requestFoodByQuery(query, pageNum){
+    pageNum ? pageNum = pageNum : pageNum = 1;
+    const params = {
+            api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
+            query: `+${query}`,
+            requireAllWords: true,
+            pageSize: 50,
+            pageNumber : pageNum
+        } 
+    console.log(params)
+
     const response = await axios({
         method: 'get',
         url: 'https://api.nal.usda.gov/fdc/v1/foods/search',
-        params: {
-            api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
-            query: `+${query}`,
-            requireAllWords: true
-        }
+        params : params
     });
-    console.log(response)
     return response;
 }
 
