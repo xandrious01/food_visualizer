@@ -1,0 +1,27 @@
+.displaySearchResultsParent {
+    height: 100%;
+}
+
+.pageInfo{
+    display: inline-block;
+}
+.paginationBtn{
+    display: inline-block;
+    
+}
+
+.nextPage{
+    align-self: end;
+}
+.prevPage{
+    align-self: start;
+}
+
+.resultsContainer{
+    width: auto;
+    height: 1000px;
+    border: 1px solid #ccc;
+    overflow: auto; /* This will add scroll bars when content overflows */
+    padding: 10px;
+    box-sizing: border-box;
+}

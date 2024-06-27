@@ -1,15 +1,24 @@
 import { Col, Row, Button } from "reactstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, Outlet } from "react-router-dom";
 import { requestFoodById } from "../ApiCalls";
 import '../styles/DisplayFood.css'
+import { CompareFoodsContext } from "../contexts";
+import NutrientDisplayButtons from "../pages/food/NutrientDIsplayButtons";
+
 
 
 const DisplayFoodLayout = () => {
     const { fdcId } = useParams();
+
     const [isLoading, setIsLoading] = useState(true);
     const [foodData, setFoodData] = useState([]);
+    const [displayState, setDisplayState] = useState("DISPLAY_MACROS")
     const navigate = useNavigate();
+
+    const { foodsToCompare, addFoodToCompare } = useContext(CompareFoodsContext);
+
+    const {description} = foodData;
 
     useEffect(() => {
         async function requestFoodData(fdcId) {
@@ -26,24 +35,33 @@ const DisplayFoodLayout = () => {
         setIsLoading(false);
     }, [])
 
-    function pullAdditionalDetails() {
-        if (foodData.foodNutrients) {
-            const energy = foodData.foodNutrients.filter(i => {
-                return i.nutrient.name === 'Energy' && i.nutrient.unitName === 'kcal'
-            })
-            // return energy[0].amount;
+    const handleSave = () => {
+        if (!localStorage.getItem("savedFoods")) {
+            const saved = [fdcId];
+            console.log(saved)
+            localStorage.setItem("savedFoods", JSON.stringify(saved))
+        } else {
+            const saved = JSON.parse(localStorage.getItem("savedFoods"));
+            !(saved.includes(fdcId)) ? saved.push(fdcId) : console.log("food already saved");
+            localStorage.setItem("savedFoods", JSON.stringify(saved))
+        }
+        return console.log(JSON.parse(localStorage.getItem("savedFoods")))
+    }
+
+    const handleAddComparison = (fdcId, description) => {
+        console.log('hi')
+        if (foodsToCompare.length < 4) {
+            if (!(Object.keys(foodsToCompare).includes(fdcId))) {
+                console.log("added")
+                return addFoodToCompare({fdcId : description})
+            } else {
+                console.log("food already added")
+            }
+        } else {
+            console.log("Maximum number of foods added. Please remove a food to continue")
         }
     }
 
-    const energyVal = pullAdditionalDetails();
-
-    const handleSave = () => {
-        console.log('hi')
-        const savedFoods = localStorage.getItem('savedFoods') !== null ? JSON.parse(localStorage.getItem('savedFoods')) : new Set([fdcId]);
-
-        console.log(savedFoods)
-        return localStorage.setItem('savedFoods', JSON.stringify(savedFoods))
-    }
 
     if (isLoading) {
         return (
@@ -54,29 +72,48 @@ const DisplayFoodLayout = () => {
 
     } else if (foodData && !isLoading) {
         return (
-            <Row className="displayFoodLayoutMain">
 
-                <Col className='col-2'>
-                    <p>{foodData.description}</p>
-                    <p>FdcId: {fdcId}</p>
-                    <p>Energy per 100g: {energyVal}kcals</p>
-                    
-                    <Button onClick={handleSave}>
-                        Save Food
-                    </Button>
+            <div>
+                <Row className="displayFoodLayoutMain">
 
-                    <Button
-                        onClick={() => navigate(-1)}>
-                        Back to Search Results
-                    </Button>
+                    <Col>
+                        <p>{foodData.description}</p>
+                        <p>FdcId: {fdcId}</p>
+                        <p>Energy per 100g: {1}kcals</p>
 
-                </Col>
+                        <Button onClick={handleSave}>
+                            Save Food
+                        </Button>
 
-                <Col className="col-8">
-                    <Outlet context={{foodData}} />
-                </Col>
-            </Row>
+                        <Button
+                            onClick={() => navigate(-1)}>
+                            Back to Search Results
+                        </Button>
 
+                    </Col>
+                    <Col className='col-2 nutrientInfoDisplayCol'>
+
+                    </Col>
+                    <Col className='col-7 p-2 chartDisplayCol'>
+
+                        <Outlet context={{ foodData, displayState }}  />
+                     
+                    <NutrientDisplayButtons 
+                    displayState={displayState} 
+                    setDisplayState={setDisplayState} 
+                    />
+               
+                    </Col>
+
+                    <Col>
+                        <Button onClick={handleAddComparison}>
+                            + Add to Comparison
+                        </Button>
+                    </Col>
+
+                </Row>
+
+            </div>
         )
     }
 };

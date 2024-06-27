@@ -1,54 +1,68 @@
-import { Button, Container, List, ListGroup, ListGroupItem } from "reactstrap";
+import {
+    Button,
+    ListGroupItem,
+    ListGroupItemHeading,
+    ListGroupItemText,
+    Label,
+    Form,
+    Input, Col, Row,
+} from "reactstrap";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { requestFoodByQuery } from "../../ApiCalls";
 import '../../styles/Search.css'
 
 
 
 const DisplaySearchResults = () => {
-    const { query } = useParams();
+    const { query, pageNum } = useParams();
+
     const [searchResults, setSearchResults] = useState([]);
-    const [res, setRes] = useState([]);
     const [resultsInfo, setResultsInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [pageNum, setPageNum] = useState(1);
+    const [pageInput, setPageInput] = useState({ pageNum: '' });
+    const [pageInputError, setPageInputError] = useState(false)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function requestSearchResults(query, pageNum) {
             try {
-                const response = await requestFoodByQuery(query);
+                const response = await requestFoodByQuery(query, pageNum);
                 if (response) {
-                    setRes(response);
-                    getResultsInfo();
+                    const { totalHits, totalPages, currentPage } = response.data;
+                    setResultsInfo({ totalHits, totalPages, currentPage });
                     return setSearchResults(response.data.foods);
                 }
             } catch (err) {
                 console.log(err)
             }
         }
-        requestSearchResults(query);
+        requestSearchResults(query, pageNum);
         setIsLoading(false);
 
-    }, [pageNum])
+    }, [query, pageInput, pageNum])
 
-    function getResultsInfo() {
-        if (res.data) {
-            const { totalHits, totalPages, currentPage } = res.data;
-            console.log({ totalHits, totalPages, currentPage });
-            return setResultsInfo({ totalHits, totalPages, currentPage });
+    const handlePrev = () => navigate(`/search/${query}/page/${pageNum * 1 - 1}`)
+
+
+    const handleNext = () => navigate(`/search/${query}/page/${pageNum * 1 + 1}`)
+
+
+    const handlePageInputChange = e => {
+        const { value } = e.target;
+        setPageInput(pageInput => ({ pageNum: value }))
+    }
+
+    const handlePageSubmit = e => {
+        e.preventDefault();
+        const { pageNum } = pageInput;
+        if (pageNum > 0 && pageNum <= resultsInfo.totalPages) {
+            navigate(`/search/${query}/page/${pageInput.pageNum}`);
+        } else {
+            setPageInputError(true)
         }
     }
-
-    function handleNext() {
-        return setPageNum(2)
-    }
-
-    function handlePrev() {
-        return setPageNum(pageNum => pageNum--)
-    }
-
-
 
 
     if (isLoading) {
@@ -58,37 +72,64 @@ const DisplaySearchResults = () => {
             </div>
         )
     }
-    else if (searchResults && resultsInfo && !isLoading) {
+    else if (searchResults && !isLoading) {
 
         return (
             <div className="displaySearchResultsParent">
-                <div>
-                    <p>Total Hits: {resultsInfo.totalHits}</p>
 
-                    <Button
-                        className="paginationBtn 
-                    prevPage
-                    {resultsInfo.currentPage === 1 ? disabled : ''}
-                    "
-                        onClick={handlePrev}
-                    >Previous Page</Button>
 
-                    <p className='pageInfo'>
-                        Displaying Page {resultsInfo.currentPage} of {resultsInfo.totalPages}
-                    </p>
+                <p>Total Hits: {resultsInfo.totalHits}</p>
+                <Row>
 
-                    <Button
-                        onClick={handleNext}
+                    <Col className="d-flex flex-row align-items-start">
+                        <Button
+                            className={pageNum === 1 ? 'disabled' : ''}
+                            onClick={handlePrev}
+                        >Previous Page</Button>
+                    </Col>
 
-                        className="paginationBtn 
-                    nextPage
-                    {resultsInfo.currentPage === resultsInfo.totalPages ? disabled : ''}"
-                    >Next Page</Button>
-                </div>
+                    <Col className="d-flex flex-column">
+                        <p className='pageInfo'>
+                            Displaying Page {resultsInfo.currentPage} of {resultsInfo.totalPages}
+                        </p>
+                     
+                            <Form onSubmit={handlePageSubmit}>
+                                <div className='d-inline-flex'>
+                                    <Label htmlFor="pageNumInput" >
+                                        Jump to page:
+                                    </Label>
+                                </div>
+
+                                <div className='d-inline-flex'>
+                                    <Input
+                                        id="pageNum"
+                                        name="pageNum"
+                                        placeholder=""
+                                        type="number"
+                                        value={pageInput.pageNum}
+                                        onChange={handlePageInputChange}
+                                    />
+                                </div>
+                                <div className='d-inline-flex'>
+                                    <Button
+                                        type="submit">Go</Button>
+                                </div>
+                            </Form>
+
+                 
+                    </Col>
+
+                    <Col className="d-flex flex-row-reverse align-items-start">
+                        <Button
+                            onClick={handleNext}
+
+                            className={pageNum === resultsInfo.totalPages ? 'disabled' : ''}
+                        >Next Page</Button>
+                    </Col>
+
+                </Row>
 
                 <div className='resultsContainer'>
-                    <ListGroup>
-
                         {searchResults.map(i => {
                             const { description, brandName, foodCategory, dataType, fdcId } = i;
 
@@ -97,17 +138,21 @@ const DisplaySearchResults = () => {
                                     key={fdcId}
                                 >
                                     <Link to={`/food/${fdcId}`}>
-                                        {description}
-                                        fdcId: {fdcId}
-                                        Category: {foodCategory}
-                                        dataType: {dataType === 'branded' ? brandName : 'Non-branded/other'}
-                                        Additional Description: {i.additionalDescription ? i.additionalDescription : ''}
+                                        <ListGroupItemHeading>
+                                            {description}
+                                        </ListGroupItemHeading>
+                                        <ListGroupItemText>
+                                            fdcId: {fdcId}
+                                            
+                                            Category: {foodCategory}
+
+                                            Data Type: {dataType}
+                                            {i.additionalDescription ? i.additionalDescription : ''}
+                                        </ListGroupItemText>
                                     </Link>
 
-                                </ListGroupItem>)
+                                    </ListGroupItem>)
                         })}
-                    </ListGroup>
-
                 </div>
 
             </div>

@@ -1,34 +1,55 @@
 import { useState, useContext, useEffect } from "react";
 import { CompareFoodsContext } from "../contexts";
 import { requestFoodById } from "../ApiCalls";
-import { Row, Col } from "reactstrap";
-import DisplayFood from "../pages/food/DisplayFood";
+import { Row, Col, Button } from "reactstrap";
+import CompareFoods from "../pages/food/CompareFoods";
+import NutrientDisplayButtons from "../pages/food/NutrientDIsplayButtons";
+
 
 const CompareFoodsLayout = () => {
-    const {foodsToCompare, handleAddCompare} = useContext(CompareFoodsContext);
+    const { foodsToCompare, removeFoodFromComparison } = useContext(CompareFoodsContext);
+    const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
+    const [foodData, setFoodData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // useEffect(() => {
-    //     async function requestFoodData(fdcId) {
-    //         try {
-    //             const response = await requestFoodById(fdcId);
-    //             if (response) return setFoodData(response.data);
-    //         } catch (err) {
-    //             console.log(err)
-    //         }
-    //     }
-    //     requestFoodData(fdcId);
-    //     setIsLoading(false)
-    // }, [])
+    // console.log(foodsToCompare)
+    function createInitialFoodDataState() {
+        console.log(foodsToCompare)
+
+    }
+
+    useEffect(() => {
+        createInitialFoodDataState();
+        async function requestFoodData(fdcId) {
+            try {
+                const response = await requestFoodById(fdcId);
+                if (response) {
+                    return response
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        setFoodData(foodsToCompare.map(i => requestFoodData(i * 1)))
+        setIsLoading(false);
+        console.log(foodData)
+    }, [foodsToCompare])
 
     return (
         <div>
             <h1>Compare Foods</h1>
-            <Row>
-                <Col>
-                </Col>
-                <Col>
-                </Col>
-            </Row>
+            {foodsToCompare.map(i => {
+                return (
+                    <div key={i.fdcId}>
+                        {i.description}
+                    </div>
+                )
+            })}
+
+            <NutrientDisplayButtons
+                displayState={displayState}
+                setDisplayState={setDisplayState}
+            />
         </div>
 
 

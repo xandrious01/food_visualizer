@@ -6,19 +6,49 @@
     margin: none;
 }
 
+.parentRow{
+    width: 100vw;
+    height: 100vh;
+    background-color: #EDE9D0;
+}
+
+.navBtnsCol{
+    padding: none;
+    margin: none;
+}
+
+.navBtnsDiv{
+    margin-top: 10vh;
+    padding: none;
+    border: none;
+    width: 100%;
+    background-color: none;
+}
+
 .navBtn {
    text-decoration: none; 
    width: 100%;
+   color: white;
+   background-color: #FF713D;
+    margin: 5px;
 }
 
-.addCompareBtn{
-    margin-left: auto;
-}
-
-.compareBtnDiv{
-    display: block;
-}
 
 h1{
-    color: orange;
+    color: #DD5826;
 }
+
+.headerCol {
+    width: 70%;
+    background-color: #DD5826;
+
+}
+
+.foodCompareDisplay {
+
+}
+
+.colMain {
+
+}
+

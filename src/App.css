@@ -1,12 +1,6 @@
 
-body {
-  font-family: "Poppins";
-  background-color: rgba(0,0,0,0.2);
-}
-
 * {
-  color: white;
-  background-color: rgba(0,0,0,0.2);
+  background-color: #EDE9D0;
   font-family: "Rethink Sans", sans-serif;
 }
 

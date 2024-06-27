@@ -47,8 +47,7 @@ export function formatCarbsOrLipids(foodData, nutrientList) {
     return data;
 }
 
-
-export function formatOtherNutrients(foodData, nutrientList) {
+export function formatAminos(foodData, nutrientList) {
     const { foodNutrients } = foodData;
     let nutrientsInfo = [];
 
@@ -71,11 +70,43 @@ export function formatOtherNutrients(foodData, nutrientList) {
         if (unitName === 'µg') {
             return { name, y: i.amount * 0.001 }
         }
+    });
+
+    return data;
+}
+
+
+export function formatOtherNutrients(foodData, nutrientList) {
+    const { foodNutrients } = foodData;
+    let nutrientsInfo = [];
+
+    if (foodNutrients) {
+        for (let i of foodNutrients) {
+            let { nutrient, amount } = i;
+            let { id, name, unitName } = nutrient;
+            if (nutrientList.includes(name) && amount > 0) {
+                nutrientsInfo.push({ id, name, amount, unitName });
+            }
+        }
+    }
+    const data = nutrientsInfo.map(i => {
+        const { name, amount, unitName } = i;
+        if (unitName === 'mg') return { name, y: amount };
+        if (unitName === 'g') {
+            return { name, y: i.amount * 1000 }
+        };
+        if (unitName === 'µg') {
+            return { name, y: i.amount * 0.001 }
+        }
         if (unitName === 'IU') {
             let converted = convertIntUnitsMg(i.name, i.amount);
             return converted;
         }
+        
     });
+
+    console.log(data)
+    const categories = nutrientsInfo.map(i => i.name);
 
     function convertIntUnitsMg(name, amount) {
         if (name.includes('Vitamin E')) {
@@ -88,8 +119,9 @@ export function formatOtherNutrients(foodData, nutrientList) {
             return { name: 'Retinal Activity Equivalent Vitamin A', y: amount * 0.0003 }
         }
     }
-
-    return data;
+    console.log(data)
+    console.log(categories)
+    return {data, categories};
 }
 
 

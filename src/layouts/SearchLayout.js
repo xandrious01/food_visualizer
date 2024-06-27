@@ -5,8 +5,8 @@ import { Outlet, useParams } from "react-router-dom";
 import '../styles/Search.css';
 
 const SearchLayout = () => {
-    const [searchResults, setSearchResults] = useState(null);
-    const query = useParams();
+    // const [searchResults, setSearchResults] = useState(null);
+    // const {query, pageNum} = useParams();
 
     return (
         <div>

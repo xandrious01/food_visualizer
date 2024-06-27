@@ -1,0 +1,28 @@
+.custom-button {
+  background-color: #DD5826;
+  color: white;
+  border-radius: 10px;
+  border: 2px solid #FF713D;
+  text-decoration: none;
+  width: 100%;
+  color: white;
+  background-color: #FF713D;
+  height: 80px;
+  font-size: 1.2rem;
+  
+
+  &:hover {
+    background-color: #FF7F4F;
+    border: 2px solid #FF713D;
+
+  }
+}
+
+.customLink{
+  width: 100%;
+  background-color: none;
+  border: none;
+  margin: none;
+  padding: none;
+  
+}
