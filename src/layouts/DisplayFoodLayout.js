@@ -33,7 +33,7 @@ const DisplayFoodLayout = () => {
         }
         requestFoodData(fdcId);
         setIsLoading(false);
-    }, [])
+    }, [displayState])
 
     const handleSave = () => {
         if (!localStorage.getItem("savedFoods")) {
@@ -48,12 +48,12 @@ const DisplayFoodLayout = () => {
         return console.log(JSON.parse(localStorage.getItem("savedFoods")))
     }
 
-    const handleAddComparison = (fdcId, description) => {
+    const handleAddComparison = () => {
         console.log('hi')
         if (foodsToCompare.length < 4) {
             if (!(Object.keys(foodsToCompare).includes(fdcId))) {
-                console.log("added")
-                return addFoodToCompare({fdcId : description})
+                console.log(fdcId, description)
+                return addFoodToCompare(fdcId, description)
             } else {
                 console.log("food already added")
             }
@@ -77,7 +77,7 @@ const DisplayFoodLayout = () => {
                 <Row className="displayFoodLayoutMain">
 
                     <Col>
-                        <p>{foodData.description}</p>
+                        <p>{description}</p>
                         <p>FdcId: {fdcId}</p>
                         <p>Energy per 100g: {1}kcals</p>
 

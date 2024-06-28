@@ -51,17 +51,18 @@ const DisplaySearchResults = () => {
 
     const handlePageInputChange = e => {
         const { value } = e.target;
-        setPageInput(pageInput => ({ pageNum: value }))
+        setPageInput(pageInput => {
+            return (value <= 0) ? {pageNum : 1} : (value > resultsInfo.totalPages) ? {pageNum : resultsInfo.totalPages} :  { pageNum: value }
+        })
     }
 
-    const handlePageSubmit = e => {
+
+    const handlePageSubmit = e => { 
         e.preventDefault();
         const { pageNum } = pageInput;
-        if (pageNum > 0 && pageNum <= resultsInfo.totalPages) {
-            navigate(`/search/${query}/page/${pageInput.pageNum}`);
-        } else {
-            setPageInputError(true)
-        }
+        console.log(pageNum)
+            navigate(`/search/${query}/page/${parseInt(pageNum)}`);
+    
     }
 
 

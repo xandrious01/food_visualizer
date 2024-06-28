@@ -5,9 +5,10 @@ import { requestFoodsByIds } from "../../ApiCalls";
 
 const SavedFoods = () => {
     const savedFoodsFdcIds = localStorage.getItem("savedFoods") ? JSON.parse(localStorage.getItem("savedFoods")) : new Array();
-
+    console.log(savedFoodsFdcIds)
     const [foodsInfo, setFoodsInfo] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [update, setUpdate] = useState(false);
 
 
     useEffect(() => {
@@ -25,14 +26,16 @@ const SavedFoods = () => {
             console.log(foodsInfo)
         }
         
-    }, [])
+    }, [update])
 
     const handleRemove = (e) => {
-        const id = e.target.id.slice(6)
+        const id = e.target.id.slice(6);
+        console.log('hi')
         const savedFoods = JSON.parse(localStorage.getItem("savedFoods"));
         const updatedSavedFoods = savedFoods.filter(i => i !== id);
         localStorage.setItem("savedFoods", JSON.stringify(updatedSavedFoods));
-        return setFoodsInfo(foodsInfo.filter(i => i.fdcId !== id));
+        setFoodsInfo(foodsInfo.filter(i => i.fdcId !== id));
+        return setUpdate(!update)
     }
 
 

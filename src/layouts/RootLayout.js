@@ -25,12 +25,13 @@ const RootLayout = () => {
         }
     }
 
-    const addFoodToCompare = ({fdcId, description}) => {
+    const addFoodToCompare = (fdcId, description) => {
+        console.log('adding food')
         console.log({fdcId : description})
-        setFoodsToCompare(foodsToCompare => [...foodsToCompare, {fdcId: description}]);
-        console.log(foodsToCompare)
+        setFoodsToCompare(foodsToCompare => [...foodsToCompare, {fdcId, description}]);
+        
     }
-
+    console.log(foodsToCompare)
     const removeFoodFromComparison = (fdcId) => {
         setFoodsToCompare(foodsToCompare.filter(i => i.fdcId != fdcId));
     }

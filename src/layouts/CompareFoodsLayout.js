@@ -39,8 +39,9 @@ const CompareFoodsLayout = () => {
         <div>
             <h1>Compare Foods</h1>
             {foodsToCompare.map(i => {
+                console.log(i)
                 return (
-                    <div key={i.fdcId}>
+                    <div key={foodsToCompare.indexOf(i)}>
                         {i.description}
                     </div>
                 )
