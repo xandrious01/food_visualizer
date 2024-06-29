@@ -30,13 +30,12 @@ export async function requestFoodByQuery(query, pageNum){
 }
 
 
-export async function requestFoodsByIds(arrayFdcIds){
-    const array = arrayFdcIds.join(',');
-    console.log(array)
+export async function requestFoodsByIds(joinedFdcIds){
     const params = {
         api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
-        fdcIds : array  
+        fdcIds : joinedFdcIds 
     }
+    console.log(params)
 
     const response = await axios({
         method: 'get',

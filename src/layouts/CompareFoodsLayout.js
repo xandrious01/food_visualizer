@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { CompareFoodsContext } from "../contexts";
-import { requestFoodById } from "../ApiCalls";
+import { requestFoodsByIds } from "../ApiCalls";
 import { Row, Col, Button } from "reactstrap";
 import CompareFoods from "../pages/food/CompareFoods";
 import NutrientDisplayButtons from "../pages/food/NutrientDIsplayButtons";
@@ -9,33 +9,27 @@ import NutrientDisplayButtons from "../pages/food/NutrientDIsplayButtons";
 const CompareFoodsLayout = () => {
     const { foodsToCompare, removeFoodFromComparison } = useContext(CompareFoodsContext);
     const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
-    const [foodData, setFoodData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    // console.log(foodsToCompare)
-    const initialFoodDataState = () => {
-        const initialState = foodsToCompare.map(i => {
-            const {fdcId} = i;
-            return {fdcId : []}
-        });
-    }
+
+    const [foodData, setFoodData] = useState([]);
 
     useEffect(() => {
-        initialFoodDataState();
-        console.log(initialFoodDataState)
-        async function requestFoodData(fdcId) {
-            try {
-                const response = await requestFoodById(fdcId);
-                if (response) {
-                    return response
-                }
-            } catch (err) {
-                console.log(err)
+    async function requestFoodData() {
+        try {
+            const joindedfdcIds = (foodsToCompare.map(i => i.fdcId)).join(',');
+            console.log(joindedfdcIds)
+            const response = await requestFoodsByIds(joindedfdcIds);
+            if (response) {
+                setFoodData(response.data);
             }
+        } catch (err) {
+            console.log(err)
         }
-        setFoodData(foodsToCompare.map(i => requestFoodData(parseInt(i))))
-        setIsLoading(false);
-        // console.log(foodData)
+    }
+    requestFoodData();
+    console.log(foodData)
+    setIsLoading(false);
     }, [])
 
     const handleRemoveFromComparison = (e) => {
@@ -47,7 +41,7 @@ const CompareFoodsLayout = () => {
         <div>
             <h1>Compare Foods</h1>
             {foodsToCompare.map(i => {
-               
+
                 return (
                     <div key={foodsToCompare.indexOf(i)}
                         id={i.fdcId}>

@@ -22,6 +22,7 @@ const DisplayFoodLayout = () => {
 
     useEffect(() => {
         async function requestFoodData(fdcId) {
+            console.log(typeof fdcId)
             try {
                 const response = await requestFoodById(fdcId);
                 if (response) {
@@ -49,6 +50,7 @@ const DisplayFoodLayout = () => {
     }
 
     const handleAddComparison = () => {
+        console.log("added to comparison")
         return addFoodToCompare(fdcId, description)
     }
 
