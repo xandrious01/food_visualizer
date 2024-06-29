@@ -11,16 +11,18 @@ const CompareFoodsLayout = () => {
     const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
     const [foodData, setFoodData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [update, setUpdate] = useState(false);
 
     // console.log(foodsToCompare)
-    function createInitialFoodDataState() {
-        console.log(foodsToCompare)
-
+    const initialFoodDataState = () => {
+        const initialState = foodsToCompare.map(i => {
+            const {fdcId} = i;
+            return {fdcId : []}
+        });
     }
 
     useEffect(() => {
-        createInitialFoodDataState();
+        initialFoodDataState();
+        console.log(initialFoodDataState)
         async function requestFoodData(fdcId) {
             try {
                 const response = await requestFoodById(fdcId);

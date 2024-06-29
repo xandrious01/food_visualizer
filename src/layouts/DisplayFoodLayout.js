@@ -18,7 +18,7 @@ const DisplayFoodLayout = () => {
 
     const { foodsToCompare, addFoodToCompare } = useContext(CompareFoodsContext);
 
-    const {description} = foodData;
+    const { description } = foodData;
 
     useEffect(() => {
         async function requestFoodData(fdcId) {
@@ -49,13 +49,7 @@ const DisplayFoodLayout = () => {
     }
 
     const handleAddComparison = () => {
-        console.log('hi')
-        if (foodsToCompare.length < 4) {
-            console.log('hi')
-            addFoodToCompare(fdcId, description)
-        } else {
-            console.log("Maximum number of foods added. Please remove a food to continue")
-        }
+        return addFoodToCompare(fdcId, description)
     }
 
 
@@ -92,13 +86,13 @@ const DisplayFoodLayout = () => {
                     </Col>
                     <Col className='col-7 p-2 chartDisplayCol'>
 
-                        <Outlet context={{ foodData, displayState }}  />
-                     
-                    <NutrientDisplayButtons 
-                    displayState={displayState} 
-                    setDisplayState={setDisplayState} 
-                    />
-               
+                        <Outlet context={{ foodData, displayState }} />
+
+                        <NutrientDisplayButtons
+                            displayState={displayState}
+                            setDisplayState={setDisplayState}
+                        />
+
                     </Col>
 
                     <Col>

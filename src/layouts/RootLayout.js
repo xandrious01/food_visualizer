@@ -8,33 +8,35 @@ import { CompareFoodsContext } from "../contexts";
 
 
 const RootLayout = () => {
-    const [foodsToCompare, setFoodsToCompare] = useState([]);
+    
+    const checkLocalCompareFoods = () => {
+        const foodsToCompare = JSON.parse(localStorage.getItem("foodsToCompare"));
+        return foodsToCompare !== null ? foodsToCompare : [];
+    }
 
+    const [foodsToCompare, setFoodsToCompare] = useState(checkLocalCompareFoods);
 
     useEffect(() => {
-        checkLocalStorageForFoodsToCompare();
-    }, [])
+        updateCompareFoodsInLocal();
+    }, [foodsToCompare])
 
 
-    function checkLocalStorageForFoodsToCompare() {
-        if (localStorage.getItem("foodsToCompare")) {
-            const foods = JSON.parse(localStorage.getItem("foodsToCompare"));
-            setFoodsToCompare(foods);
-        } else {
-            setFoodsToCompare([]);
-        }
+    function updateCompareFoodsInLocal() {
+        return localStorage.setItem("foodsToCompare", JSON.stringify(foodsToCompare))
     }
 
     const addFoodToCompare = (fdcId, description) => {
-        console.log('adding food')
-        console.log({fdcId : description})
-        setFoodsToCompare(foodsToCompare => [...foodsToCompare, {fdcId, description}]);
-        
+        if (foodsToCompare.every(i => i.fdcId !== fdcId)) {
+            if (foodsToCompare.length < 4) {
+                setFoodsToCompare(foodsToCompare => [...foodsToCompare, { fdcId, description }]);
+            } else {
+                console.log("maximum number of foods added")
+            }
+        }
     }
 
     const removeFoodFromComparison = (fdcId) => {
         setFoodsToCompare(foodsToCompare => foodsToCompare.filter(i => i.fdcId !== fdcId))
-        console.log(foodsToCompare)
     }
 
 
@@ -46,7 +48,7 @@ const RootLayout = () => {
                 <Row className='parentRow'>
 
                     <Col className="col-xs-1 col-2 navBtnsCol">
-                    
+
                         <div className="nav-div d-flex flex-column navBtnsDiv">
                             <Link to="/"
                                 className='customLink'>
@@ -82,7 +84,7 @@ const RootLayout = () => {
                         </header>
 
                         <Row className='foodCompareDisplay'>
-                           <p>Foods to Compare:</p> 
+                            <p>Foods to Compare:</p>
                         </Row>
                         <Col className='w-full colMain'>
                             <main>
