@@ -52,17 +52,16 @@ const DisplaySearchResults = () => {
     const handlePageInputChange = e => {
         const { value } = e.target;
         setPageInput(pageInput => {
-            return (value <= 0) ? {pageNum : 1} : (value > resultsInfo.totalPages) ? {pageNum : resultsInfo.totalPages} :  { pageNum: value }
+            return (value <= 0) ? { pageNum: 1 } : (value > resultsInfo.totalPages) ? { pageNum: resultsInfo.totalPages } : { pageNum: value }
         })
     }
 
 
-    const handlePageSubmit = e => { 
+    const handlePageSubmit = e => {
         e.preventDefault();
         const { pageNum } = pageInput;
-        console.log(pageNum)
-            navigate(`/search/${query}/page/${parseInt(pageNum)}`);
-    
+        navigate(`/search/${query}/page/${parseInt(pageNum)}`);
+
     }
 
 
@@ -93,31 +92,31 @@ const DisplaySearchResults = () => {
                         <p className='pageInfo'>
                             Displaying Page {resultsInfo.currentPage} of {resultsInfo.totalPages}
                         </p>
-                     
-                            <Form onSubmit={handlePageSubmit}>
-                                <div className='d-inline-flex'>
-                                    <Label htmlFor="pageNumInput" >
-                                        Jump to page:
-                                    </Label>
-                                </div>
 
-                                <div className='d-inline-flex'>
-                                    <Input
-                                        id="pageNum"
-                                        name="pageNum"
-                                        placeholder=""
-                                        type="number"
-                                        value={pageInput.pageNum}
-                                        onChange={handlePageInputChange}
-                                    />
-                                </div>
-                                <div className='d-inline-flex'>
-                                    <Button
-                                        type="submit">Go</Button>
-                                </div>
-                            </Form>
+                        <Form onSubmit={handlePageSubmit}>
+                            <div className='d-inline-flex'>
+                                <Label htmlFor="pageNumInput" >
+                                    Jump to page:
+                                </Label>
+                            </div>
 
-                 
+                            <div className='d-inline-flex'>
+                                <Input
+                                    id="pageNum"
+                                    name="pageNum"
+                                    placeholder=""
+                                    type="number"
+                                    value={pageInput.pageNum}
+                                    onChange={handlePageInputChange}
+                                />
+                            </div>
+                            <div className='d-inline-flex'>
+                                <Button
+                                    type="submit">Go</Button>
+                            </div>
+                        </Form>
+
+
                     </Col>
 
                     <Col className="d-flex flex-row-reverse align-items-start">
@@ -131,29 +130,29 @@ const DisplaySearchResults = () => {
                 </Row>
 
                 <div className='resultsContainer'>
-                        {searchResults.map(i => {
-                            const { description, brandName, foodCategory, dataType, fdcId } = i;
+                    {searchResults.map(i => {
+                        const { description, brandName, foodCategory, dataType, fdcId } = i;
 
-                            return (
-                                <ListGroupItem
-                                    key={fdcId}
-                                >
-                                    <Link to={`/food/${fdcId}`}>
-                                        <ListGroupItemHeading>
-                                            {description}
-                                        </ListGroupItemHeading>
-                                        <ListGroupItemText>
-                                            fdcId: {fdcId}
-                                            
-                                            Category: {foodCategory}
+                        return (
+                            <ListGroupItem
+                                key={fdcId}
+                            >
+                                <Link to={`/food/${fdcId}`}>
+                                    <ListGroupItemHeading>
+                                        {description}
+                                    </ListGroupItemHeading>
+                                    <ListGroupItemText>
+                                        fdcId: {fdcId}
 
-                                            Data Type: {dataType}
-                                            {i.additionalDescription ? i.additionalDescription : ''}
-                                        </ListGroupItemText>
-                                    </Link>
+                                        Category: {foodCategory}
 
-                                    </ListGroupItem>)
-                        })}
+                                        Data Type: {dataType}
+                                        {i.additionalDescription ? i.additionalDescription : ''}
+                                    </ListGroupItemText>
+                                </Link>
+
+                            </ListGroupItem>)
+                    })}
                 </div>
 
             </div>

@@ -51,12 +51,8 @@ const DisplayFoodLayout = () => {
     const handleAddComparison = () => {
         console.log('hi')
         if (foodsToCompare.length < 4) {
-            if (!(Object.keys(foodsToCompare).includes(fdcId))) {
-                console.log(fdcId, description)
-                return addFoodToCompare(fdcId, description)
-            } else {
-                console.log("food already added")
-            }
+            console.log('hi')
+            addFoodToCompare(fdcId, description)
         } else {
             console.log("Maximum number of foods added. Please remove a food to continue")
         }

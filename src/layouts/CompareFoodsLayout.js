@@ -11,6 +11,7 @@ const CompareFoodsLayout = () => {
     const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
     const [foodData, setFoodData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [update, setUpdate] = useState(false);
 
     // console.log(foodsToCompare)
     function createInitialFoodDataState() {
@@ -30,19 +31,28 @@ const CompareFoodsLayout = () => {
                 console.log(err)
             }
         }
-        setFoodData(foodsToCompare.map(i => requestFoodData(i * 1)))
+        setFoodData(foodsToCompare.map(i => requestFoodData(parseInt(i))))
         setIsLoading(false);
-        console.log(foodData)
-    }, [foodsToCompare])
+        // console.log(foodData)
+    }, [])
+
+    const handleRemoveFromComparison = (e) => {
+        const fdcId = e.target.parentNode.id;
+        return removeFoodFromComparison(fdcId)
+    }
 
     return (
         <div>
             <h1>Compare Foods</h1>
             {foodsToCompare.map(i => {
-                console.log(i)
+               
                 return (
-                    <div key={foodsToCompare.indexOf(i)}>
+                    <div key={foodsToCompare.indexOf(i)}
+                        id={i.fdcId}>
                         {i.description}
+                        <Button onClick={handleRemoveFromComparison}>
+                            Remove
+                        </Button>
                     </div>
                 )
             })}

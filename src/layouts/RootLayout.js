@@ -31,9 +31,10 @@ const RootLayout = () => {
         setFoodsToCompare(foodsToCompare => [...foodsToCompare, {fdcId, description}]);
         
     }
-    console.log(foodsToCompare)
+
     const removeFoodFromComparison = (fdcId) => {
-        setFoodsToCompare(foodsToCompare.filter(i => i.fdcId != fdcId));
+        setFoodsToCompare(foodsToCompare => foodsToCompare.filter(i => i.fdcId !== fdcId))
+        console.log(foodsToCompare)
     }
 
 
