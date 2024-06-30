@@ -8,7 +8,6 @@ import '../../styles/DisplayFood.css';
 
 
 const DisplayFood = () => {
-
     const { foodData, displayState } = useOutletContext();
     const { description } = foodData;
     const [isReady, setIsReady] = useState(false);

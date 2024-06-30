@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { CompareFoodsContext } from "../contexts";
 import { requestFoodsByIds } from "../ApiCalls";
 import { Row, Col, Button } from "reactstrap";
-import CompareFoods from "../pages/food/CompareFoods";
+import CompareFoodDisplay from "../pages/food/CompareFoods";
 import NutrientDisplayButtons from "../pages/food/NutrientDIsplayButtons";
 
 
@@ -18,7 +18,6 @@ const CompareFoodsLayout = () => {
     async function requestFoodData() {
         try {
             const joindedfdcIds = (foodsToCompare.map(i => i.fdcId)).join(',');
-            console.log(joindedfdcIds)
             const response = await requestFoodsByIds(joindedfdcIds);
             if (response) {
                 setFoodData(response.data);
@@ -28,7 +27,6 @@ const CompareFoodsLayout = () => {
         }
     }
     requestFoodData();
-    console.log(foodData)
     setIsLoading(false);
     }, [])
 
@@ -40,16 +38,13 @@ const CompareFoodsLayout = () => {
     return (
         <div>
             <h1>Compare Foods</h1>
-            {foodsToCompare.map(i => {
+            {foodData.map(i => {
 
                 return (
-                    <div key={foodsToCompare.indexOf(i)}
-                        id={i.fdcId}>
-                        {i.description}
-                        <Button onClick={handleRemoveFromComparison}>
-                            Remove
-                        </Button>
-                    </div>
+                    <CompareFoodDisplay 
+                    foodData={i} 
+                    displayState={displayState} 
+                    />
                 )
             })}
 
