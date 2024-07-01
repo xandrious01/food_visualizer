@@ -1,5 +1,24 @@
+.searchParentDiv{
+ background-color: blue;
+ padding: none;
+ box-sizing: border-box;
+}
+
+.searchbar {
+
+}
+
+.searchInput{
+
+}
+
+.searchSubmit{
+
+}
+
 .displaySearchResultsParent {
-    height: 100%;
+    background-color: pink;
+    padding: none;
 }
 
 .pageInfo{
@@ -8,6 +27,22 @@
 .paginationBtn{
     display: inline-block;
     
+}
+
+.searchInfo{
+
+}
+
+.pageInfo{
+
+}
+
+.pageInput{
+
+}
+
+.pageInputSubmit{
+
 }
 
 .nextPage{
@@ -19,9 +54,20 @@
 
 .resultsContainer{
     width: auto;
-    height: 1000px;
+    height: 900px;
     border: 1px solid #ccc;
-    overflow: auto; /* This will add scroll bars when content overflows */
-    padding: 10px;
-    box-sizing: border-box;
+    overflow: auto;
+    
+} 
+
+.searchResultsListGroupItem{
+    
+}
+
+.searchResultsListHeading{
+
+}
+
+.searchResultsListText{
+
 }

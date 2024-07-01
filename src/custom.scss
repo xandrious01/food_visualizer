@@ -26,3 +26,27 @@
   padding: none;
   
 }
+
+.customSearchLink{
+  text-decoration: none;
+  color: black;
+  line-height: normal;
+  padding: 5px;
+
+  &:hover {
+    color: white;
+    border: 2px solid #FF713D;
+
+  }
+}
+
+.customHeading{
+  font-size: 1rem;
+  padding-left: 5px;
+}
+
+.customText{
+  font-size: .8rem;
+  padding-left: 15px;
+  padding-bottom: 5px;
+}

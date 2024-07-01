@@ -35,10 +35,14 @@ const Searchbar = () => {
                         name="query"
                         value={formData.query}
                         onChange={handleChange}
+                        className="searchInput"
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Button type="submit">Search</Button>
+                    <Button
+                        className="searchSubmit"
+                        type="submit">
+                        Search</Button>
                 </FormGroup>
             </Form>
         </div>

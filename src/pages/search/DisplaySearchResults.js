@@ -14,6 +14,7 @@ import '../../styles/Search.css'
 
 
 
+
 const DisplaySearchResults = () => {
     const { query, pageNum } = useParams();
 
@@ -21,7 +22,7 @@ const DisplaySearchResults = () => {
     const [resultsInfo, setResultsInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [pageInput, setPageInput] = useState({ pageNum: '' });
-    const [pageInputError, setPageInputError] = useState(false)
+    const [reloadResults, setReloadResults] = useState(false);
 
     const navigate = useNavigate();
 
@@ -38,21 +39,24 @@ const DisplaySearchResults = () => {
                 console.log(err)
             }
         }
-        requestSearchResults(query, pageNum);
+    
+        requestSearchResults(query, parseInt(pageNum));
+        setReloadResults(false);
         setIsLoading(false);
 
-    }, [query, pageInput, pageNum])
+    }, [reloadResults])
 
-    const handlePrev = () => navigate(`/search/${query}/page/${pageNum * 1 - 1}`)
+    const handlePrev = () => navigate(`/search/${query}/page/${parseInt(pageNum) - 1}`)
 
 
-    const handleNext = () => navigate(`/search/${query}/page/${pageNum * 1 + 1}`)
+    const handleNext = () => navigate(`/search/${query}/page/${parseInt(pageNum) + 1}`)
 
 
     const handlePageInputChange = e => {
         const { value } = e.target;
         setPageInput(pageInput => {
-            return (value <= 0) ? { pageNum: 1 } : (value > resultsInfo.totalPages) ? { pageNum: resultsInfo.totalPages } : { pageNum: value }
+            return (value <= 0 && value !== '') ? { pageNum: 1 } : (value > resultsInfo.totalPages) ? { pageNum: resultsInfo.totalPages } : { pageNum: value }
+        
         })
     }
 
@@ -61,9 +65,10 @@ const DisplaySearchResults = () => {
         e.preventDefault();
         const { pageNum } = pageInput;
         navigate(`/search/${query}/page/${parseInt(pageNum)}`);
+        setReloadResults(true);
 
     }
-
+    console.log(searchResults)
 
     if (isLoading) {
         return (
@@ -78,12 +83,16 @@ const DisplaySearchResults = () => {
             <div className="displaySearchResultsParent">
 
 
-                <p>Total Hits: {resultsInfo.totalHits}</p>
+                <p
+                    className="searchInfo">
+                    Total Hits: {resultsInfo.totalHits}
+                </p>
+
                 <Row>
 
                     <Col className="d-flex flex-row align-items-start">
                         <Button
-                            className={pageNum === 1 ? 'disabled' : ''}
+                            className={pageNum === 1 ? 'disabled paginationBtn' : 'paginationBtn'}
                             onClick={handlePrev}
                         >Previous Page</Button>
                     </Col>
@@ -108,10 +117,12 @@ const DisplaySearchResults = () => {
                                     type="number"
                                     value={pageInput.pageNum}
                                     onChange={handlePageInputChange}
+                                    className="pageInput"
                                 />
                             </div>
                             <div className='d-inline-flex'>
                                 <Button
+                                    className="pageInputSubmit"
                                     type="submit">Go</Button>
                             </div>
                         </Form>
@@ -123,7 +134,7 @@ const DisplaySearchResults = () => {
                         <Button
                             onClick={handleNext}
 
-                            className={pageNum === resultsInfo.totalPages ? 'disabled' : ''}
+                            className={pageNum === resultsInfo.totalPages ? 'paginationBtn disabled' : 'paginationBtn'}
                         >Next Page</Button>
                     </Col>
 
@@ -136,19 +147,22 @@ const DisplaySearchResults = () => {
                         return (
                             <ListGroupItem
                                 key={fdcId}
+                                className="searchResultsListGroupItem"
                             >
-                                <Link to={`/food/${fdcId}`}>
-                                    <ListGroupItemHeading>
+                                <Link to={`/food/${fdcId}`}
+                                    className="customSearchLink">
+                                    <ListGroupItemHeading
+                                        className="searchResultsListHeading customHeading">
                                         {description}
                                     </ListGroupItemHeading>
-                                    <ListGroupItemText>
-                                        fdcId: {fdcId}
+                                    <div className="searchResultsListText customText">
+                                        <div>fdcId: {fdcId}</div>
 
-                                        Category: {foodCategory}
+                                        <div>Category: {foodCategory}</div>
 
-                                        Data Type: {dataType}
-                                        {i.additionalDescription ? i.additionalDescription : ''}
-                                    </ListGroupItemText>
+                                        <div>Data Type: {dataType}
+                                        {i.addiListGroupItemTexttionalDescription ? i.additionalDescription : ''}</div>
+                                    </div>
                                 </Link>
 
                             </ListGroupItem>)

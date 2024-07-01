@@ -9,7 +9,7 @@ const SearchLayout = () => {
     // const {query, pageNum} = useParams();
 
     return (
-        <div>
+        <div className="searchParentDiv">
             <Searchbar />
             <Outlet />
         </div>
