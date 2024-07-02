@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { ListGroupItemHeading, ListGroupItem, ListGroupItemText, Col, Button} from "reactstrap";
+import { ListGroupItemHeading, ListGroupItem, ListGroupItemText, Col, Button } from "reactstrap";
 import { useParams, Link } from "react-router-dom";
 import { requestFoodsByIds } from "../../ApiCalls";
+import '../../styles/SavedFoods.css'
 
 const SavedFoods = () => {
     const savedFoodsFdcIds = localStorage.getItem("savedFoods") ? JSON.parse(localStorage.getItem("savedFoods")) : new Array();
@@ -16,16 +17,16 @@ const SavedFoods = () => {
             try {
                 const response = await requestFoodsByIds(savedFoodsFdcIds);
                 return setFoodsInfo(response.data)
-            } catch(err){
+            } catch (err) {
                 console.log(err)
             }
         }
-        if(savedFoodsFdcIds.length > 0){
+        if (savedFoodsFdcIds.length > 0) {
             getSavedFoodsInfo();
             setIsLoading(false);
             console.log(foodsInfo)
         }
-        
+
     }, [update])
 
     const handleRemove = (e) => {
@@ -46,39 +47,42 @@ const SavedFoods = () => {
                 <p>You haven't saved any foods yet.</p>
             </div>
         )
-    } else if (foodsInfo && !isLoading){
+    } else if (foodsInfo && !isLoading) {
         return (
             <div className='savedFoodsContainer'>
-                        {foodsInfo.map(i => {
-                            const { description, dataType, fdcId } = i;
+                {foodsInfo.map(i => {
+                    const { description, dataType, fdcId } = i;
 
-                            return (
+                    return (
 
-                                <ListGroupItem
-                                    key={fdcId}
-                                >
-                                    <Link to={`/food/${fdcId}`}>
-                                        <ListGroupItemHeading>
-                                            {description}
-                                        </ListGroupItemHeading>
-                                        <ListGroupItemText>
-                                            fdcId: {fdcId}
-                                            Data Type: {dataType}
-                                            
-                                            {i.additionalDescription ? i.additionalDescription : ''}
-                                        </ListGroupItemText>
-                                    </Link>
-                                    <div>
-                                        <Button 
-                                        id={`remove${fdcId}`}
-                                        onClick={handleRemove}>
-                                            Remove
-                                        </Button>
-                                    </div>
-                                    </ListGroupItem>
-                                    )
-                        })}
-                </div>
+                        <ListGroupItem
+                            key={fdcId}
+                            className="savedFoodsListGroupItem"
+                        >
+                            <Link to={`/food/${fdcId}`}
+                                className="customSearchLink"
+                            >
+                                <ListGroupItemHeading
+                                    className="savedFoodsListHeading customHeading">
+                                    {description}
+                                </ListGroupItemHeading>
+                                <div className="savedFoodsListText customText">
+                                    <div>fdcId: {fdcId}</div>
+                                    <div>Data Type: {dataType}</div>
+                                    <div>{i.additionalDescription ? i.additionalDescription : ''}</div>
+                                </div>
+                            </Link>
+                            <div>
+                                <Button
+                                    id={`remove${fdcId}`}
+                                    onClick={handleRemove}>
+                                    Remove
+                                </Button>
+                            </div>
+                        </ListGroupItem>
+                    )
+                })}
+            </div>
         )
     }
 

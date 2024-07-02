@@ -4,7 +4,7 @@ import { useParams, useNavigate, Outlet } from "react-router-dom";
 import { requestFoodById } from "../ApiCalls";
 import '../styles/DisplayFood.css'
 import { CompareFoodsContext } from "../contexts";
-import NutrientDisplayButtons from "../pages/food/NutrientDIsplayButtons";
+import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
 
 
 

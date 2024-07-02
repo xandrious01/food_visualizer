@@ -3,7 +3,8 @@ import { CompareFoodsContext } from "../contexts";
 import { requestFoodsByIds } from "../ApiCalls";
 import { Row, Col, Button } from "reactstrap";
 import CompareFoodDisplay from "../pages/food/CompareFoods";
-import NutrientDisplayButtons from "../pages/food/NutrientDIsplayButtons";
+import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
+import '../styles/CompareFoods.css';
 
 
 const CompareFoodsLayout = () => {
@@ -36,15 +37,17 @@ const CompareFoodsLayout = () => {
     }
 
     return (
-        <div>
+        <div className="compareFoodsParentDiv">
             <h1>Compare Foods</h1>
             {foodData.map(i => {
 
                 return (
+                    <div className="compareFoodIndDiv">
                     <CompareFoodDisplay 
                     foodData={i} 
                     displayState={displayState} 
                     />
+                    </div>
                 )
             })}
 

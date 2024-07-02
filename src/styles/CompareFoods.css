@@ -1,0 +1,12 @@
+.compareFoodsParentDiv{
+    overflow-y: hidden;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+}
+
+.compareFoodIndDiv{
+    width: 40vw;
+    border: 5px solid red;
+}

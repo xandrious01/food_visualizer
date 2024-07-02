@@ -4,7 +4,8 @@ import Highcharts, { chart } from 'highcharts';
 import { Button, Row, Col } from "reactstrap";
 import HighchartsReact from 'highcharts-react-official';
 import { vitamins, fibersAndSugars, minerals, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos } from "../../formattingFunctions";
-import '../../styles/DisplayFood.css';
+import '../../styles/CompareFoods.css';
+
 
 
 const CompareFoods = ({ foodData, displayState }) => {
@@ -107,13 +108,11 @@ const CompareFoods = ({ foodData, displayState }) => {
         )
     } else if (isReady) {
         return (
-            <div className="chartDiv">
                 <HighchartsReact
                     highcharts={Highcharts}
                     options={chartOptions}
                     containerProps={{ style: { height: "100%" } }}
                 />
-            </div>
 
         )
     }
