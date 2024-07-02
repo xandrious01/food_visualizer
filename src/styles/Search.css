@@ -1,73 +1,91 @@
-.searchParentDiv{
- background-color: blue;
- padding: none;
- box-sizing: border-box;
+.searchParentDiv {
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
 }
 
 .searchbar {
-
+    height: 50px;
 }
 
-.searchInput{
-
+.searchbarInput {
+    width: 800px;
 }
 
-.searchSubmit{
-
+.searchSubmit {
+    display: inline-block;
 }
 
 .displaySearchResultsParent {
-    background-color: pink;
+
     padding: none;
 }
 
-.pageInfo{
+.pageInfoCol{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pageInfo {
     display: inline-block;
 }
-.paginationBtn{
+
+.pageFormDiv{
+    width: 18vw;
+    padding: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.pageForm{
+    display: inline-flex;
+    width: 40vw;
+    align-items: center;
+   
+}
+.pageFormItem{
+    margin: 5px;
+}
+
+.paginationBtn {
     display: inline-block;
-    
-}
-
-.searchInfo{
 
 }
 
-.pageInfo{
+.searchInfo {
+    margin-left: none;
+    padding: 10px;
 
 }
 
-.pageInput{
+.pageInfo {}
 
+.pageInput {
+    width: 150px;
 }
 
-.pageInputSubmit{
+.pageInputSubmit {}
 
-}
-
-.nextPage{
+.nextPage {
     align-self: end;
 }
-.prevPage{
+
+.prevPage {
     align-self: start;
 }
 
-.resultsContainer{
+.resultsContainer {
     width: auto;
     height: 900px;
     border: 1px solid #ccc;
     overflow: auto;
-    
-} 
-
-.searchResultsListGroupItem{
-    
-}
-
-.searchResultsListHeading{
 
 }
 
-.searchResultsListText{
+.searchResultsListGroupItem {}
 
-}
+.searchResultsListHeading {}
+
+.searchResultsListText {}

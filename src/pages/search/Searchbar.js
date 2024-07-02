@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { FormGroup, Input, Button } from "reactstrap";
-import { Form, useNavigate, redirect, useSearchParams } from "react-router-dom";
-import { requestFoodByQuery } from "../../ApiCalls";
+import { FormGroup, Input, Button, Row, Col } from "reactstrap";
+import { Form, useNavigate } from "react-router-dom";
 import '../../styles/Search.css'
 
 
@@ -24,9 +23,14 @@ const Searchbar = () => {
     }
 
     return (
-        <div className='searchbar'>
-            <Form id="search-form" role="search" onSubmit={handleSubmit}>
-                <FormGroup>
+
+        <Form id="search-form"
+            className="customSearchForm"
+            role="search"
+            onSubmit={handleSubmit}>
+            <Row>
+                <Col>
+
                     <Input
                         id="query"
                         aria-label="Search for a food"
@@ -35,17 +39,21 @@ const Searchbar = () => {
                         name="query"
                         value={formData.query}
                         onChange={handleChange}
-                        className="searchInput"
+                        className="searchbarInput customInput"
                     />
-                </FormGroup>
-                <FormGroup>
+                </Col>
+                <Col>
+
                     <Button
-                        className="searchSubmit"
+                        className="searchSubmit customSearchButton"
                         type="submit">
                         Search</Button>
-                </FormGroup>
-            </Form>
-        </div>
+
+                </Col>
+
+            </Row>
+        </Form>
+
     )
 };
 

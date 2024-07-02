@@ -9,7 +9,7 @@
   background-color: #FF713D;
   height: 80px;
   font-size: 1.2rem;
-  
+
 
   &:hover {
     background-color: #FF7F4F;
@@ -18,16 +18,16 @@
   }
 }
 
-.customLink{
+.customLink {
   width: 100%;
   background-color: none;
   border: none;
   margin: none;
   padding: none;
-  
+
 }
 
-.customSearchLink{
+.customSearchLink {
   text-decoration: none;
   color: black;
   line-height: normal;
@@ -40,13 +40,31 @@
   }
 }
 
-.customHeading{
+.customHeading {
   font-size: 1rem;
   padding-left: 5px;
 }
 
-.customText{
+.customText {
   font-size: .8rem;
   padding-left: 15px;
   padding-bottom: 5px;
+}
+
+.customSearchForm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: none;
+  padding: none;
+  height: 10px;
+
+}
+
+.customInput {}
+
+.customSearchButton {
+  margin-left: none;
+  height: 2.4rem;
+  width: 150px;
 }

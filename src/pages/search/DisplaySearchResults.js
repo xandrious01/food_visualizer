@@ -39,24 +39,30 @@ const DisplaySearchResults = () => {
                 console.log(err)
             }
         }
-    
+
         requestSearchResults(query, parseInt(pageNum));
         setReloadResults(false);
         setIsLoading(false);
 
     }, [reloadResults])
 
-    const handlePrev = () => navigate(`/search/${query}/page/${parseInt(pageNum) - 1}`)
+    const handlePrev = () => {
+        navigate(`/search/${query}/page/${parseInt(pageNum) - 1}`)
+        return setReloadResults(true)
+    }
 
 
-    const handleNext = () => navigate(`/search/${query}/page/${parseInt(pageNum) + 1}`)
+    const handleNext = () => {
+        navigate(`/search/${query}/page/${parseInt(pageNum) + 1}`)
+        return setReloadResults(true)
+    }
 
 
     const handlePageInputChange = e => {
         const { value } = e.target;
         setPageInput(pageInput => {
             return (value <= 0 && value !== '') ? { pageNum: 1 } : (value > resultsInfo.totalPages) ? { pageNum: resultsInfo.totalPages } : { pageNum: value }
-        
+
         })
     }
 
@@ -83,10 +89,12 @@ const DisplaySearchResults = () => {
             <div className="displaySearchResultsParent">
 
 
-                <p
+                <div
                     className="searchInfo">
-                    Total Hits: {resultsInfo.totalHits}
-                </p>
+                    <p>
+                        Total Hits: {resultsInfo.totalHits}
+                    </p>
+                </div>
 
                 <Row>
 
@@ -97,35 +105,39 @@ const DisplaySearchResults = () => {
                         >Previous Page</Button>
                     </Col>
 
-                    <Col className="d-flex flex-column">
+                    <Col className="pageInfoCol">
                         <p className='pageInfo'>
                             Displaying Page {resultsInfo.currentPage} of {resultsInfo.totalPages}
                         </p>
+                        <Row className="pageFormDiv">
+                            <Form 
+                            onSubmit={handlePageSubmit}
+                            className='pageForm'
+                            >
+                                <Col className='pageFormItem'>
+                                    <Label htmlFor="pageNumInput" >
+                                        Jump to page:
+                                    </Label>
+                                </Col>
 
-                        <Form onSubmit={handlePageSubmit}>
-                            <div className='d-inline-flex'>
-                                <Label htmlFor="pageNumInput" >
-                                    Jump to page:
-                                </Label>
-                            </div>
-
-                            <div className='d-inline-flex'>
-                                <Input
-                                    id="pageNum"
-                                    name="pageNum"
-                                    placeholder=""
-                                    type="number"
-                                    value={pageInput.pageNum}
-                                    onChange={handlePageInputChange}
-                                    className="pageInput"
-                                />
-                            </div>
-                            <div className='d-inline-flex'>
-                                <Button
-                                    className="pageInputSubmit"
-                                    type="submit">Go</Button>
-                            </div>
-                        </Form>
+                                <Col className='pageFormItem'>
+                                    <Input
+                                        id="pageNum"
+                                        name="pageNum"
+                                        placeholder=""
+                                        type="number"
+                                        value={pageInput.pageNum}
+                                        onChange={handlePageInputChange}
+                                        className="pageInput"
+                                    />
+                                </Col>
+                                <Col className='pageFormItem'>
+                                    <Button
+                                        className="pageInputSubmit"
+                                        type="submit">Go</Button>
+                                </Col>
+                            </Form>
+                        </Row>
 
 
                     </Col>
@@ -161,7 +173,7 @@ const DisplaySearchResults = () => {
                                         <div>Category: {foodCategory}</div>
 
                                         <div>Data Type: {dataType}
-                                        {i.addiListGroupItemTexttionalDescription ? i.additionalDescription : ''}</div>
+                                            {i.addiListGroupItemTexttionalDescription ? i.additionalDescription : ''}</div>
                                     </div>
                                 </Link>
 
