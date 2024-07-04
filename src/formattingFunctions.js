@@ -3,7 +3,7 @@ export function formatMacroNutrients(foodData) {
     let nutrientsInfo = [];
     let data = [];
 
-    const macrosList = ['Water', 'Ash', 'Protein', 'Total lipid (fat)', 'Carbohydrate, by difference', 'Fiber, total dietary'];
+    const macrosList = ['Water', 'Ash', 'Protein', 'Total lipid (fat)', 'Carbohydrate, by difference', 'Fiber, total dietary', 'Sugars, Total', 'Total Sugars', 'Sugars, added']
 
     if (foodNutrients) {
         for (let i of foodNutrients) {
@@ -18,6 +18,8 @@ export function formatMacroNutrients(foodData) {
     }
     return data;
 }
+
+
 
 export function formatCarbsOrLipids(foodData, nutrientList) {
     const { foodNutrients } = foodData;
@@ -46,6 +48,8 @@ export function formatCarbsOrLipids(foodData, nutrientList) {
 
     return data;
 }
+
+
 
 export function formatAminos(foodData, nutrientList) {
     const { foodNutrients } = foodData;
@@ -102,10 +106,10 @@ export function formatOtherNutrients(foodData, nutrientList) {
             let converted = convertIntUnitsMg(i.name, i.amount);
             return converted;
         }
-        
+
     });
 
-    console.log(data)
+
     const categories = nutrientsInfo.map(i => i.name);
 
     function convertIntUnitsMg(name, amount) {
@@ -119,12 +123,39 @@ export function formatOtherNutrients(foodData, nutrientList) {
             return { name: 'Retinal Activity Equivalent Vitamin A', y: amount * 0.0003 }
         }
     }
-    console.log(data)
-    console.log(categories)
-    return {data, categories};
+
+
+    return { data, categories };
 }
 
 
+export function formatNutrientsForColumnChart(foodData, nutrientList) {
+    if (foodData) {
+        const categories = foodData.map(i => i.description);
+
+        const series = [...nutrientList];
+        for (let i = 0; i < series.length; i++) {
+            let nutrientName = series[i];
+            const data = foodData.map(j => {
+                const { foodNutrients } = j;
+                const targetNutrient = foodNutrients.filter(k => {
+                    if (k.nutrient.name === nutrientName) {
+                        return k.amount;
+                    }
+                })
+                if (targetNutrient) {
+                    return targetNutrient[0].amount;
+                } else if (targetNutrient === undefined) {
+                    return 0;
+                }
+            })
+            // console.log(data);
+            return series[i] = { nutrientName: data }
+        }
+        console.log(series);
+        return { categories, series }
+    }
+}
 
 
 export const macros = ['Water', 'Ash', 'Protein', 'Total lipid (fat)', 'Carbohydrate, by difference', 'Fiber, total dietary', 'Sugars, Total', 'Total Sugars', 'Sugars, added']
@@ -194,18 +225,14 @@ export const vitamins = [
 ]
 
 export const fibersAndSugars = [
-    'Carbohydrate, by difference',
-    'Carbohydrate, by summation',
-    'Fiber, total dietary',
+
     'Fiber, soluble',
     'Fiber, insoluble',
-    'Total dietary fiber (AOAC 2011.25)',
+
     'High Molecular Weight Dietary Fiber (HMWDF)',
     'Low Molecular Weight Dietary Fiber (LMWDF)',
     'Beta-glucan',
-    'Sugars, Total',
-    'Total Sugars',
-    'Sugars, added',
+
     'Sucrose',
     'Glucose',
     'Fructose',
@@ -298,7 +325,6 @@ export const otherNutrients = [
 ]
 
 export const lipids = [
-    'Fatty acids, total saturated',
     'SFA 4:0',
     'SFA 5:0',
     'SFA 6:0',
@@ -319,7 +345,6 @@ export const lipids = [
     'SFA 22:0',
     'SFA 23:0',
     'SFA 24:0',
-    'Fatty acids, total monounsaturated',
     'MUFA 12:1',
     'MUFA 14:1',
     'MUFA 14:1 c',
@@ -338,7 +363,6 @@ export const lipids = [
     'MUFA 22:1 n-9',
     'MUFA 22:1 n-11',
     'MUFA 24:1 c',
-    'Fatty acids, total polyunsaturated',
     'PUFA 18:2',
     'PUFA 18:2 c',
     'PUFA 18:2 n-6 c,c',

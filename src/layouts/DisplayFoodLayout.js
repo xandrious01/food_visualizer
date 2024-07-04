@@ -5,6 +5,7 @@ import { requestFoodById } from "../ApiCalls";
 import '../styles/DisplayFood.css'
 import { CompareFoodsContext } from "../contexts";
 import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
+import DisplayFoodNutritionFacts from "../pages/food/DisplayFoodNutritionFacts";
 
 
 
@@ -16,13 +17,13 @@ const DisplayFoodLayout = () => {
     const [displayState, setDisplayState] = useState("DISPLAY_MACROS")
     const navigate = useNavigate();
 
-    const { foodsToCompare, addFoodToCompare } = useContext(CompareFoodsContext);
+    const { addFoodToCompare } = useContext(CompareFoodsContext);
 
     const { description } = foodData;
 
     useEffect(() => {
         async function requestFoodData(fdcId) {
-            console.log(typeof fdcId)
+
             try {
                 const response = await requestFoodById(fdcId);
                 if (response) {
@@ -34,7 +35,7 @@ const DisplayFoodLayout = () => {
         }
         requestFoodData(fdcId);
         setIsLoading(false);
-    }, [displayState])
+    }, [])
 
     const handleSave = () => {
         if (!localStorage.getItem("savedFoods")) {
@@ -54,7 +55,7 @@ const DisplayFoodLayout = () => {
         return addFoodToCompare(fdcId, description)
     }
 
-
+    
     if (isLoading) {
         return (
             <div>
@@ -62,29 +63,49 @@ const DisplayFoodLayout = () => {
             </div>
         )
 
-    } else if (foodData && !isLoading) {
+    } else if (!isLoading) {
+        // {console.log(foodData)}
         return (
 
             <div>
                 <Row className="displayFoodLayoutMain">
+                    <Row>
+                        <Col className='col-4'>
+                            <p className="displayFoodDescription" >
+                                {description}
+                            </p>
+                        </Col>
 
-                    <Col>
-                        <p>{description}</p>
+                    </Row>
+
+                    <Col
+                        className="col-2 flex-column">
+
                         <p>FdcId: {fdcId}</p>
-                        <p>Energy per 100g: {1}kcals</p>
-
-                        <Button onClick={handleSave}>
-                            Save Food
-                        </Button>
+                        <p>Data Type: {foodData.dataType}</p>
+                        <p>Food Category: {(foodData.foodCategory ? foodData.foodCategory.description : '')}</p>
+                        <p>BrandName: {(foodData.brandName ? foodData.brandName : '')}</p>
+                        <p>Ingredients : {foodData.ingredients ? foodData.ingredients : ''}</p>
 
                         <Button
+                            className="customDisplayFoodButton"
                             onClick={() => navigate(-1)}>
                             Back to Search Results
                         </Button>
 
                     </Col>
-                    <Col className='col-2 nutrientInfoDisplayCol'>
 
+                    <Col
+                        className='col-2 flex-column nutrientInfoDisplayCol'>
+                        <DisplayFoodNutritionFacts
+                            foodData={foodData}
+                            displayState={displayState} />
+
+                        <Button
+                            className="customDisplayFoodButton"
+                            onClick={handleSave}>
+                            Save Food
+                        </Button>
                     </Col>
                     <Col className='col-7 p-2 chartDisplayCol'>
 

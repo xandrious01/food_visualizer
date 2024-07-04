@@ -1,18 +1,20 @@
 import axios from "axios";
 
 export async function requestFoodById(fdcId){
+    console.log("requestingFoodById")
     const response = await axios({
         method: 'get',
         url: `https://api.nal.usda.gov/fdc/v1/food/${fdcId}`,
         params: {
             api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk'
         } 
-    });
+    })
     return response;
 }
 
 
 export async function requestFoodByQuery(query, pageNum){
+    console.log('requestingFoodByQuery')
     const params = {
             api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
             query: `+${query}`,
@@ -31,11 +33,11 @@ export async function requestFoodByQuery(query, pageNum){
 
 
 export async function requestFoodsByIds(joinedFdcIds){
+    console.log('requestingFoodsByIds')
     const params = {
         api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
         fdcIds : joinedFdcIds 
     }
-    console.log(params)
 
     const response = await axios({
         method: 'get',

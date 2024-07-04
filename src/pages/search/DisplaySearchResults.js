@@ -60,7 +60,7 @@ const DisplaySearchResults = () => {
 
     const handlePageInputChange = e => {
         const { value } = e.target;
-        setPageInput(pageInput => {
+        setPageInput(pageNum => {
             return (value <= 0 && value !== '') ? { pageNum: 1 } : (value > resultsInfo.totalPages) ? { pageNum: resultsInfo.totalPages } : { pageNum: value }
 
         })
@@ -72,9 +72,8 @@ const DisplaySearchResults = () => {
         const { pageNum } = pageInput;
         navigate(`/search/${query}/page/${parseInt(pageNum)}`);
         setReloadResults(true);
-
+        setPageInput({ pageNum: '' })
     }
-    console.log(searchResults)
 
     if (isLoading) {
         return (

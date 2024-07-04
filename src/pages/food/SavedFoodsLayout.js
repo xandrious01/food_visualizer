@@ -15,7 +15,8 @@ const SavedFoods = () => {
     useEffect(() => {
         async function getSavedFoodsInfo() {
             try {
-                const response = await requestFoodsByIds(savedFoodsFdcIds);
+                const joinedfdcIds = savedFoodsFdcIds.join(',');
+                const response = await requestFoodsByIds(joinedfdcIds);
                 return setFoodsInfo(response.data)
             } catch (err) {
                 console.log(err)
@@ -50,6 +51,7 @@ const SavedFoods = () => {
     } else if (foodsInfo && !isLoading) {
         return (
             <div className='savedFoodsContainer'>
+                {console.log(foodsInfo)}
                 {foodsInfo.map(i => {
                     const { description, dataType, fdcId } = i;
 

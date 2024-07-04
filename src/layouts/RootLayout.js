@@ -39,8 +39,6 @@ const RootLayout = () => {
         setFoodsToCompare(foodsToCompare => foodsToCompare.filter(i => i.fdcId !== fdcId))
     }
 
-
-
     return (
         <CompareFoodsContext.Provider value={{ foodsToCompare, addFoodToCompare, removeFoodFromComparison }}>
             <Container fluid className="root" id='root'>

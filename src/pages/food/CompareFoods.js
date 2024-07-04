@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import Highcharts, { chart } from 'highcharts';
 import { Button, Row, Col } from "reactstrap";
 import HighchartsReact from 'highcharts-react-official';
-import { vitamins, fibersAndSugars, minerals, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos } from "../../formattingFunctions";
+import { vitamins, fibersAndSugars, minerals, macros, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos, formatNutrientsForColumnChart } from "../../formattingFunctions";
 import '../../styles/CompareFoods.css';
 
 
@@ -16,9 +16,9 @@ const CompareFoods = ({ foodData, displayState }) => {
     const [tableName, setTableName] = useState('');
 
 
-
+    
     useEffect(() => {
-        console.log(foodData)
+    
         if (displayState === 'DISPLAY_MACROS') {
             let macrosData = formatMacroNutrients(foodData);
             setTableName(`Macronutrients per 100g of ${description}`);
@@ -68,15 +68,22 @@ const CompareFoods = ({ foodData, displayState }) => {
             setIsReady(true);
         }
 
-    }, [tableName, displayState, isReady])
 
+    }, [displayState, tableName, isReady])
+
+
+    console.log(foodData)
     function createChartOptionsPieChart(tableName, dataName, data) {
         const options = {
             chart: {
                 type: 'pie',
                 backgroundColor: '#FFF2E6'
-            }
-        };
+            },
+            yAxis: {
+                title: {
+                  text: ''
+                }
+        }};
         options.title = { text: `${tableName}` };
         options.series = [{ name: `${dataName}`, data: [...data] }];
         return options;

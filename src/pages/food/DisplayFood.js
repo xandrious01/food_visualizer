@@ -72,6 +72,11 @@ const DisplayFood = () => {
             chart: {
                 type: 'pie',
                 backgroundColor: '#FFF2E6'
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
             }
         };
         options.title = { text: `${tableName}` };

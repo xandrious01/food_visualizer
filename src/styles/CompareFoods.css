@@ -1,9 +1,7 @@
 .compareFoodsParentDiv{
     overflow-y: hidden;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: start;
+    height: 85vh;
 }
 
 .compareFoodIndDiv{
