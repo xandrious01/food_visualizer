@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Button } from "reactstrap";
+import { Col, Button } from "reactstrap";
 
 const NutrientDisplayButtons = ({setDisplayState}) => {
     return (
-        <div className='toggleDataBtnsDiv d-flex'>
+        <Col className='toggleDataBtnsDiv col-2 d-flex-vertical'>
                         <Button
-                            className='setDisplayBtn'
+                            className='setDisplayBtn customNutrientButton'
                             onClick={() => {
                                 return setDisplayState('DISPLAY_MACROS')
                             }}>
@@ -13,7 +13,7 @@ const NutrientDisplayButtons = ({setDisplayState}) => {
                         </Button>
 
                         <Button
-                            className='setDisplayBtn'
+                            className='setDisplayBtn customNutrientButton'
                             onClick={() => {
                                 return setDisplayState('DISPLAY_VITAMINS')
                             }}>
@@ -21,7 +21,7 @@ const NutrientDisplayButtons = ({setDisplayState}) => {
                         </Button>
 
                         <Button
-                            className='setDisplayBtn'
+                            className='setDisplayBtn customNutrientButton'
                             onClick={() => {
                                 return setDisplayState('DISPLAY_SUGARS')
                             }}>
@@ -29,34 +29,34 @@ const NutrientDisplayButtons = ({setDisplayState}) => {
                         </Button>
 
                         <Button
-                            className='setDisplayBtn'
+                            className='setDisplayBtn customNutrientButton'
                             onClick={() => {
                                 return setDisplayState('DISPLAY_AMINOS')
                             }}>
                             Aminos
                         </Button>
                         <Button
-                            className='setDisplayBtn'
+                            className='setDisplayBtn customNutrientButton'
                             onClick={() => {
                                 return setDisplayState('DISPLAY_LIPIDS')
                             }}>
                             Lipids
                         </Button>
                         <Button
-                            className='setDisplayBtn'
+                            className='setDisplayBtn customNutrientButton'
                             onClick={() => {
                                 return setDisplayState('DISPLAY_MINERALS')
                             }}>
                             Minerals
                         </Button>
                         <Button
-                            className='setDisplayBtn'
+                            className='setDisplayBtn customNutrientButton'
                             onClick={() => {
                                 return setDisplayState('DISPLAY_OTHER')
                             }}>
                             Other Nutrients
                         </Button>
-                    </div>
+                    </Col>
     )
 }
 

@@ -55,7 +55,7 @@ const DisplayFoodLayout = () => {
         return addFoodToCompare(fdcId, description)
     }
 
-    
+
     if (isLoading) {
         return (
             <div>
@@ -77,7 +77,7 @@ const DisplayFoodLayout = () => {
                         </Col>
 
                     </Row>
-
+                    <Row>
                     <Col
                         className="col-2 flex-column">
 
@@ -107,22 +107,19 @@ const DisplayFoodLayout = () => {
                             Save Food
                         </Button>
                     </Col>
-                    <Col className='col-7 p-2 chartDisplayCol'>
+                    <Col className='col-6 p-1 chartDisplayCol'>
 
                         <Outlet context={{ foodData, displayState }} />
 
-                        <NutrientDisplayButtons
-                            displayState={displayState}
-                            setDisplayState={setDisplayState}
-                        />
 
                     </Col>
-
-                    <Col>
-                        <Button onClick={handleAddComparison}>
-                            + Add to Comparison
-                        </Button>
-                    </Col>
+                    
+                    <NutrientDisplayButtons
+                        displayState={displayState}
+                        setDisplayState={setDisplayState}
+                    />
+                    </Row>
+                    
 
                 </Row>
 

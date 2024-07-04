@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FormGroup, Input, Button, Row, Col } from "reactstrap";
 import { Form, useNavigate } from "react-router-dom";
+import { TriggerReloadContext } from "../../contexts";
 import '../../styles/Search.css'
 
 
 
+
 const Searchbar = () => {
+    const { reloadOnSearch, setReloadOnSearch } = useContext(TriggerReloadContext);
     const INITIAL_STATE = { query: '' };
     const [formData, setFormData] = useState(INITIAL_STATE);
     const navigate = useNavigate();
@@ -18,8 +21,12 @@ const Searchbar = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        navigate(`/search/${formData.query}/page/${pageNum}`);
-        setFormData(INITIAL_STATE);
+        if (formData.query !== '') {
+            console.log(formData.query)
+            navigate(`/search/${formData.query}/page/${pageNum}`);
+            setFormData(INITIAL_STATE);
+            setReloadOnSearch(true);
+        }
     }
 
     return (

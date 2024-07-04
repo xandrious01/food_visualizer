@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Container } from "reactstrap";
 import Searchbar from "../pages/search/Searchbar";
 import { Outlet, useParams } from "react-router-dom";
 import '../styles/Search.css';
+import { TriggerReloadContext } from "../contexts";
 
 const SearchLayout = () => {
-    // const [searchResults, setSearchResults] = useState(null);
-    // const {query, pageNum} = useParams();
+    const {reloadOnSearch, setReloadOnSearch} = useContext(TriggerReloadContext);
 
     return (
         <div className="searchParentDiv">

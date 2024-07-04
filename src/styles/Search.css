@@ -17,7 +17,8 @@
 }
 
 .displaySearchResultsParent {
-
+    margin: 3%;
+    height: 80%;
     padding: none;
 }
 
@@ -78,9 +79,9 @@
 
 .resultsContainer {
     width: auto;
-    height: 900px;
+    height: 65vh;
     border: 1px solid #ccc;
-    overflow: auto;
+    overflow-y: auto;
 
 }
 
@@ -89,3 +90,11 @@
 .searchResultsListHeading {}
 
 .searchResultsListText {}
+
+.searchNoResultsText{
+
+}
+
+.hidden {
+    display: none;
+}

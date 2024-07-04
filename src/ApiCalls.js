@@ -4,9 +4,9 @@ export async function requestFoodById(fdcId){
     console.log("requestingFoodById")
     const response = await axios({
         method: 'get',
-        url: `https://api.nal.usda.gov/fdc/v1/food/${fdcId}`,
+        url: `${process.env.REACT_APP_BASE_URL}/fdc/v1/food/${fdcId}`,
         params: {
-            api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk'
+            api_key: process.env.REACT_APP_API_KEY
         } 
     })
     return response;
@@ -16,16 +16,17 @@ export async function requestFoodById(fdcId){
 export async function requestFoodByQuery(query, pageNum){
     console.log('requestingFoodByQuery')
     const params = {
-            api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
+            api_key: process.env.REACT_APP_API_KEY,
             query: `+${query}`,
             requireAllWords: true,
             pageSize: 50,
             pageNumber : pageNum
         }
+        console.log(params)
 
     const response = await axios({
         method: 'get',
-        url: 'https://api.nal.usda.gov/fdc/v1/foods/search',
+        url: `${process.env.REACT_APP_BASE_URL}/fdc/v1/foods/search`,
         params : params
     });
     return response;
@@ -35,13 +36,13 @@ export async function requestFoodByQuery(query, pageNum){
 export async function requestFoodsByIds(joinedFdcIds){
     console.log('requestingFoodsByIds')
     const params = {
-        api_key: 'EqFrUQrqBk2gGfiagQYalMZdUCqUOzadhAZeywKk',
+        api_key: process.env.REACT_APP_API_KEY,
         fdcIds : joinedFdcIds 
     }
 
     const response = await axios({
         method: 'get',
-        url: `https://api.nal.usda.gov/fdc/v1/foods`,
+        url: `${process.env.REACT_APP_BASE_URL}/fdc/v1/foods`,
         params: params
     });
     return response;

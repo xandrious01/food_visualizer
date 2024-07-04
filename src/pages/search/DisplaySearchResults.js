@@ -7,9 +7,10 @@ import {
     Form,
     Input, Col, Row,
 } from "reactstrap";
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { Link, useNavigate, useParams, useOutletContext } from "react-router-dom";
 import { requestFoodByQuery } from "../../ApiCalls";
+import { TriggerReloadContext } from "../../contexts";
 import '../../styles/Search.css'
 
 
@@ -17,51 +18,60 @@ import '../../styles/Search.css'
 
 const DisplaySearchResults = () => {
     const { query, pageNum } = useParams();
+    const {reloadOnSearch, setReloadOnSearch} = useContext(TriggerReloadContext);
 
     const [searchResults, setSearchResults] = useState([]);
     const [resultsInfo, setResultsInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [pageInput, setPageInput] = useState({ pageNum: '' });
-    const [reloadResults, setReloadResults] = useState(false);
+    const [error, setError] = useState(false);
 
     const navigate = useNavigate();
+   
+
 
     useEffect(() => {
         async function requestSearchResults(query, pageNum) {
             try {
                 const response = await requestFoodByQuery(query, pageNum);
+                console.log(response)
                 if (response) {
                     const { totalHits, totalPages, currentPage } = response.data;
                     setResultsInfo({ totalHits, totalPages, currentPage });
+                    setError(false);
                     return setSearchResults(response.data.foods);
                 }
             } catch (err) {
-                console.log(err)
+                setError(true);
             }
         }
 
         requestSearchResults(query, parseInt(pageNum));
-        setReloadResults(false);
+        setReloadOnSearch(false);
         setIsLoading(false);
 
-    }, [reloadResults])
+    }, [reloadOnSearch])
+
+    const maxPages = 200;
+    const availablePagesToDisplay = resultsInfo.totalPages <= 200 ? resultsInfo.totalPages : 200;
 
     const handlePrev = () => {
         navigate(`/search/${query}/page/${parseInt(pageNum) - 1}`)
-        return setReloadResults(true)
+        return setReloadOnSearch(true)
     }
 
 
     const handleNext = () => {
         navigate(`/search/${query}/page/${parseInt(pageNum) + 1}`)
-        return setReloadResults(true)
+        return setReloadOnSearch(true)
     }
 
 
     const handlePageInputChange = e => {
         const { value } = e.target;
+        const maxPages = resultsInfo.totalPages <= 200 ? resultsInfo.totalPages : 200;
         setPageInput(pageNum => {
-            return (value <= 0 && value !== '') ? { pageNum: 1 } : (value > resultsInfo.totalPages) ? { pageNum: resultsInfo.totalPages } : { pageNum: value }
+            return (value <= 0 && value !== '') ? { pageNum: 1 } : (value > maxPages) ? { pageNum: maxPages } : { pageNum: value }
 
         })
     }
@@ -71,7 +81,8 @@ const DisplaySearchResults = () => {
         e.preventDefault();
         const { pageNum } = pageInput;
         navigate(`/search/${query}/page/${parseInt(pageNum)}`);
-        setReloadResults(true);
+        console.log("submitting")
+        // setReloadOnSearch(true);
         setPageInput({ pageNum: '' })
     }
 
@@ -82,7 +93,16 @@ const DisplaySearchResults = () => {
             </div>
         )
     }
-    else if (searchResults && !isLoading) {
+
+    if (!isLoading && resultsInfo.totalHits === 0) {
+        return (
+            <div className="displaySearchResultsParent">
+                <p className="searchNoResultsText">
+                    No results found. Please check your spelling, or try another term.
+                </p>
+            </div>
+        )
+    } else if (searchResults && !isLoading) {
 
         return (
             <div className="displaySearchResultsParent">
@@ -106,12 +126,13 @@ const DisplaySearchResults = () => {
 
                     <Col className="pageInfoCol">
                         <p className='pageInfo'>
-                            Displaying Page {resultsInfo.currentPage} of {resultsInfo.totalPages}
+                            Displaying Page {resultsInfo.currentPage} of {availablePagesToDisplay}
                         </p>
-                        <Row className="pageFormDiv">
-                            <Form 
-                            onSubmit={handlePageSubmit}
-                            className='pageForm'
+
+                        <Row className={resultsInfo.totalPages > 3 ? "pageFormDiv" : "hidden"}>
+                            <Form
+                                onSubmit={handlePageSubmit}
+                                className='pageForm'
                             >
                                 <Col className='pageFormItem'>
                                     <Label htmlFor="pageNumInput" >
