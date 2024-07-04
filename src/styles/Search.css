@@ -6,10 +6,13 @@
 
 .searchbar {
     height: 50px;
+    margin: 10px;
+    width: 100%;
+    
 }
 
 .searchbarInput {
-    width: 800px;
+
 }
 
 .searchSubmit {

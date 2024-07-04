@@ -17,7 +17,7 @@ const RootLayout = () => {
     }
 
     const [foodsToCompare, setFoodsToCompare] = useState(checkLocalCompareFoods);
-    
+
     const [reloadOnSearch, setReloadOnSearch] = useState(false);
 
     useEffect(() => {
@@ -81,9 +81,15 @@ const RootLayout = () => {
                         </Col>
 
                         <Col className='headerCol'>
-                            <Row className="header">
-                                    <Col><h1>Nutrient Visualizer</h1></Col>
-                                    <Col><Searchbar /></Col>
+                            <Row className="headerRow">
+                                <div className="headerTextDiv">
+                                    <h1 className="headerText">
+                                        Nutrient Visualizer
+                                    </h1>
+                                </div>
+                                <div className="headerSearchbarDiv">
+                                    <Searchbar />
+                                </div>
                             </Row>
                             <Row className='foodCompareDisplay'>
                                 <p>Foods to Compare:</p>

@@ -35,7 +35,7 @@ const Searchbar = () => {
             className="customSearchForm"
             role="search"
             onSubmit={handleSubmit}>
-            <Row>
+            <Row className="searchbar">
                 <Col>
 
                     <Input

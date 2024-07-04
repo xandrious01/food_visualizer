@@ -6,6 +6,27 @@
     margin: none;
 }
 
+.headerRow {
+    margin: 2% 1% 2% 1%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.headerTextDiv{
+    width: 60%;
+}
+
+.headerSearchbarDiv{
+    width: 40%;
+}
+
+.headerText{
+
+}
+
 .parentRow{
     width: 100vw;
     height: 100vh;
@@ -39,7 +60,8 @@ h1{
 }
 
 .headerCol {
-    width: 70%;
+    border: 5px solid red;
+    width: 100%;
     background-color: #DD5826;
 
 }

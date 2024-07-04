@@ -65,11 +65,13 @@
   justify-content: flex-start;
   margin: none;
   padding: none;
-  height: 10px;
-
+  height: 12px;
+  width: 100%;
 }
 
-.customInput {}
+.customInput {
+  font-size: 1.1rem;
+}
 
 .customSearchButton {
   margin-left: none;
