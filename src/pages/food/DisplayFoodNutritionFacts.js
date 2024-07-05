@@ -14,7 +14,7 @@ const DisplayFoodNutritionFacts = ({ foodData }) => {
             }
         })
 
-        console.log(nutritionFactsObj)
+        
         const foundSugarKey = (Object.keys(nutritionFactsObj)).filter(i => i.toLowerCase().includes('sugar'));
         const foundCarbKey = (Object.keys(nutritionFactsObj)).filter(i => i.toLowerCase().includes('carbohydrate'));
         const foundFiberKey = (Object.keys(nutritionFactsObj)).filter(i => i.toLowerCase().includes('fiber'));

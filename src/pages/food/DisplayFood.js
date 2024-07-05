@@ -8,19 +8,31 @@ import '../../styles/DisplayFood.css';
 
 
 const DisplayFood = () => {
-    const { foodData, displayState } = useOutletContext();
-    const { description } = foodData;
-    const [chartOptions, setChartOptions] = useState({});
-    const [isReady, setIsReady] = useState(false);
 
     let tableName = '';
+    let options;
+    const { foodData, displayState } = useOutletContext();
+    const { description } = foodData;
+    const [chartOptions, setChartOptions] = useState(options);
+    const [isReady, setIsReady] = useState(false);
 
+
+    console.log(displayState, foodData)
     useEffect(() => {
+        if (foodData.foodNutrients) {
+            readDisplayStateAndSetOptions();
+        }
+        
+    }, [displayState, foodData])
 
+    function readDisplayStateAndSetOptions() {
         if (displayState === 'DISPLAY_MACROS') {
             let macrosData = formatMacroNutrients(foodData);
             tableName = `Macronutrients per 100g of ${description}`;
-            setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", macrosData));
+            console.log(tableName)
+            options = createChartOptionsPieChart(tableName, "Amount(g)", macrosData);
+            setChartOptions(options)
+            setIsReady(true)
         }
 
         if (displayState === 'DISPLAY_VITAMINS') {
@@ -58,11 +70,10 @@ const DisplayFood = () => {
             tableName = `Other Nutrient Content per 100g of ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", otherNutrientsData));
         }
-
-
-    }, [displayState])
+    }
 
     function createChartOptionsPieChart(tableName, dataName, data) {
+        console.log(tableName)
         const options = {
             chart: {
                 type: 'pie',
@@ -76,7 +87,6 @@ const DisplayFood = () => {
         };
         options.title = { text: `${tableName}` };
         options.series = [{ name: `${dataName}`, data: [...data] }];
-        setIsReady(true);
         return options;
     }
 
@@ -95,12 +105,15 @@ const DisplayFood = () => {
             }
         }
         options.series = [{ name: `${dataName}`, data: [...data] }];
-        setIsReady(true);
         return options;
     }
-
-    console.log(chartOptions)
-    if ( isReady) {
+    if(!isReady){
+        return (
+            <div>
+                Loading, please wait
+            </div>
+        )
+    } else if (isReady) {
         return (
             <div className="chartDiv">
                 <HighchartsReact
