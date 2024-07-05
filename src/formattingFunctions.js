@@ -45,7 +45,7 @@ export function formatCarbsOrLipids(foodData, nutrientList) {
             return { name, y: i.amount * 0.000001 }
         }
     });
-
+    console.log(data)
     return data;
 }
 
@@ -130,7 +130,7 @@ export function formatOtherNutrients(foodData, nutrientList) {
         }
     }
 
-    
+    console.log(data)
     return { data, categories };
 }
 
@@ -229,7 +229,6 @@ export const vitamins = [
 ]
 
 export const fibersAndSugars = [
-
     'Fiber, soluble',
     'Fiber, insoluble',
     'Fiber, total dietary', 
@@ -278,7 +277,6 @@ export const minerals = [
 ]
 
 export const aminos = [
-    'Protein',
     'Ergothioneine',
     'Tryptophan',
     'Threonine',

@@ -9,70 +9,67 @@ import '../../styles/CompareFoods.css';
 
 
 const CompareFoods = ({ foodData, displayState }) => {
-
+    let tableName = '';
+    let options;
     const { description } = foodData;
     const [isReady, setIsReady] = useState(false);
     const [chartOptions, setChartOptions] = useState({});
-    const [tableName, setTableName] = useState('');
 
 
-    
+
     useEffect(() => {
-    
+        if (foodData.foodNutrients) {
+            readDisplayStateAndSetOptions();
+        }
+    }, [displayState, foodData])
+
+
+    function readDisplayStateAndSetOptions() {
         if (displayState === 'DISPLAY_MACROS') {
             let macrosData = formatMacroNutrients(foodData);
-            setTableName(`Macronutrients per 100g of ${description}`);
-            setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", macrosData));
-            setIsReady(true);
+            tableName = `Macronutrients per 100g of ${description}`;
+            options = createChartOptionsPieChart(tableName, "Amount(g)", macrosData);
+            setChartOptions(options)
+            setIsReady(true)
         }
 
         if (displayState === 'DISPLAY_VITAMINS') {
             let vitaminsData = formatOtherNutrients(foodData, vitamins);
-            setTableName(`Vitamin Content per 100g of ${description}`);
+            tableName = `Vitamin Content per 100g of ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", vitaminsData));
-            setIsReady(true);
         }
 
         if (displayState === 'DISPLAY_AMINOS') {
             let aminosData = formatAminos(foodData, aminos);
-            setTableName(`Amino Acids Content per 100g of ${description}`);
+            tableName = `Amino Acids Content per 100g of ${description}`;
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(mg)", aminosData));
-            setIsReady(true);
         }
 
         if (displayState === 'DISPLAY_SUGARS') {
             let sugarsData = formatCarbsOrLipids(foodData, fibersAndSugars);
-            setTableName(`Carbohydrate Content per 100g of ${description}`);
+            tableName = `Carbohydrate Content per 100g of ${description}`
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", sugarsData));
-            setIsReady(true);
         }
 
         if (displayState === 'DISPLAY_LIPIDS') {
             let lipidsData = formatCarbsOrLipids(foodData, lipids);
-            setTableName(`Lipids and Fat Content per 100g of ${description}`);
+            tableName = `Lipids and Fat Content per 100g of ${description}`;
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", lipidsData));
-            setIsReady(true);
         }
 
         if (displayState === 'DISPLAY_MINERALS') {
             let mineralsData = formatOtherNutrients(foodData, minerals);
-            setTableName(`Minerals and Metalloids Content per 100g of ${description}`);
+            tableName = `Minerals and Metalloids Content per 100g of ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", mineralsData));
-            setIsReady(true);
         }
 
         if (displayState === 'DISPLAY_OTHER') {
             let otherNutrientsData = formatOtherNutrients(foodData, otherNutrients);
-            setTableName(`Other Nutrient Content per 100g of ${description}`);
+            tableName = `Other Nutrient Content per 100g of ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", otherNutrientsData));
-            setIsReady(true);
         }
+    }
 
-
-    }, [displayState, tableName, isReady])
-
-
-    console.log(foodData)
     function createChartOptionsPieChart(tableName, dataName, data) {
         const options = {
             chart: {
@@ -81,9 +78,10 @@ const CompareFoods = ({ foodData, displayState }) => {
             },
             yAxis: {
                 title: {
-                  text: ''
+                    text: ''
                 }
-        }};
+            }
+        };
         options.title = { text: `${tableName}` };
         options.series = [{ name: `${dataName}`, data: [...data] }];
         return options;
@@ -115,11 +113,11 @@ const CompareFoods = ({ foodData, displayState }) => {
         )
     } else if (isReady) {
         return (
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={chartOptions}
-                    containerProps={{ style: { height: "100%" } }}
-                />
+            <HighchartsReact
+                highcharts={Highcharts}
+                options={chartOptions}
+                containerProps={{ style: { height: "100%" } }}
+            />
 
         )
     }

@@ -59,12 +59,12 @@ const DisplayFoodLayout = () => {
     if (isLoading) {
         return (
             <div>
-                I am Loading
+                Loading, please wait
             </div>
         )
 
     } else if (!isLoading) {
-        // {console.log(foodData)}
+       
         return (
 
             <div>
