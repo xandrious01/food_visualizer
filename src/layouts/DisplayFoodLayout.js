@@ -70,11 +70,13 @@ const DisplayFoodLayout = () => {
             <div>
                 <Row className="displayFoodLayoutMain">
                     <Row>
-                        <Col className='col-4'>
+                       
                             <p className="displayFoodDescription" >
                                 {description}
                             </p>
-                        </Col>
+                            <Button onClick={handleAddComparison}>
+                                +Add to Comparison
+                            </Button>
 
                     </Row>
                     <Row>

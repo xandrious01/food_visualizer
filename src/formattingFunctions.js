@@ -84,17 +84,22 @@ export function formatOtherNutrients(foodData, nutrientList) {
     const { foodNutrients } = foodData;
     let nutrientsInfo = [];
 
+
     if (foodNutrients) {
+
         for (let i of foodNutrients) {
             let { nutrient, amount } = i;
             let { id, name, unitName } = nutrient;
-            if (nutrientList.includes(name) && amount > 0) {
+            if (nutrientList.includes(name)) {
                 nutrientsInfo.push({ id, name, amount, unitName });
             }
         }
     }
+
+    
     const data = nutrientsInfo.map(i => {
         const { name, amount, unitName } = i;
+        
         if (unitName === 'mg') return { name, y: amount };
         if (unitName === 'g') {
             return { name, y: i.amount * 1000 }
@@ -108,10 +113,11 @@ export function formatOtherNutrients(foodData, nutrientList) {
         }
 
     });
+   
 
 
     const categories = nutrientsInfo.map(i => i.name);
-
+    
     function convertIntUnitsMg(name, amount) {
         if (name.includes('Vitamin E')) {
             return { name: 'd-alpha tocopherol (Vitamin E)', y: amount * 0.67 }
@@ -124,7 +130,7 @@ export function formatOtherNutrients(foodData, nutrientList) {
         }
     }
 
-
+    
     return { data, categories };
 }
 
@@ -133,27 +139,25 @@ export function formatNutrientsForColumnChart(foodData, nutrientList) {
     if (foodData) {
         const categories = foodData.map(i => i.description);
 
-        const series = [...nutrientList];
-        for (let i = 0; i < series.length; i++) {
-            let nutrientName = series[i];
-            const data = foodData.map(j => {
-                const { foodNutrients } = j;
-                const targetNutrient = foodNutrients.filter(k => {
-                    if (k.nutrient.name === nutrientName) {
-                        return k.amount;
+        const series = nutrientList.map(targetNutrient => {
+            let name = targetNutrient;
+            let data = foodData.map(singleFoodData => {
+                const {foodNutrients} = singleFoodData;
+                let singleFoodAmount = foodNutrients.filter(i => {
+                    if(i.nutrient.name === name){
+                        
+                        return i.amount
                     }
                 })
-                if (targetNutrient) {
-                    return targetNutrient[0].amount;
-                } else if (targetNutrient === undefined) {
+                if(singleFoodAmount) {
+                    return singleFoodAmount[0];
+                } else {
                     return 0;
                 }
             })
-            // console.log(data);
-            return series[i] = { nutrientName: data }
-        }
-        console.log(series);
-        return { categories, series }
+            return {name, data}
+        })
+        
     }
 }
 
@@ -228,11 +232,14 @@ export const fibersAndSugars = [
 
     'Fiber, soluble',
     'Fiber, insoluble',
-
+    'Fiber, total dietary', 
+    'Sugars, Total',
+    'Sugars, total including NLEA',
+    'Total Sugars', 
+    'Sugars, added',
     'High Molecular Weight Dietary Fiber (HMWDF)',
     'Low Molecular Weight Dietary Fiber (LMWDF)',
     'Beta-glucan',
-
     'Sucrose',
     'Glucose',
     'Fructose',
@@ -271,6 +278,7 @@ export const minerals = [
 ]
 
 export const aminos = [
+    'Protein',
     'Ergothioneine',
     'Tryptophan',
     'Threonine',

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export async function requestFoodById(fdcId){
-    console.log("requestingFoodById")
     const response = await axios({
         method: 'get',
         url: `${process.env.REACT_APP_BASE_URL}/fdc/v1/food/${fdcId}`,
@@ -14,15 +13,15 @@ export async function requestFoodById(fdcId){
 
 
 export async function requestFoodByQuery(query, pageNum){
-    console.log('requestingFoodByQuery')
+    
     const params = {
             api_key: process.env.REACT_APP_API_KEY,
             query: `+${query}`,
             requireAllWords: true,
             pageSize: 50,
-            pageNumber : pageNum
+            pageNumber : pageNum,
+            dataType: 'Survey (FNDDS)'
         }
-        console.log(params)
 
     const response = await axios({
         method: 'get',
