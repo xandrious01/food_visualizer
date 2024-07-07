@@ -4,6 +4,10 @@
     height: 85vh;
 }
 
+.compareFoodsRow{
+    height: 60vh;
+}
+
 .compareFoodIndDiv{
     width: 40vw;
     border: 5px solid red;

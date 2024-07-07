@@ -45,7 +45,7 @@ const CompareFoodsLayout = () => {
                 <Row><h1>Compare Foods</h1>
                  
                  </Row>
-                <Row>
+                <Row className="compareFoodsRow">
                     {foodData.map(i => {
 
                         return (

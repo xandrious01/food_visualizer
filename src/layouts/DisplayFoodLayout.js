@@ -64,64 +64,72 @@ const DisplayFoodLayout = () => {
         )
 
     } else if (!isLoading) {
-       
+
         return (
 
             <div>
                 <Row className="displayFoodLayoutMain">
                     <Row>
-                       
+                        <div className="compareBtnDiv d-flex">
                             <p className="displayFoodDescription" >
                                 {description}
                             </p>
-                            <Button onClick={handleAddComparison}>
+                            <Button
+                                id="addCompareBtn"
+                                className="custom-button"
+                                onClick={handleAddComparison}
+                            >
                                 +Add to Comparison
                             </Button>
+                        </div>
+
 
                     </Row>
                     <Row>
-                    <Col
-                        className="col-2 flex-column">
+                        <Col
+                            className="col-2 flex-column foodInfoDisplayCol">
 
-                        <p>FdcId: {fdcId}</p>
-                        <p>Data Type: {foodData.dataType}</p>
-                        <p>Food Category: {(foodData.foodCategory ? foodData.foodCategory.description : '')}</p>
-                        <p>BrandName: {(foodData.brandName ? foodData.brandName : '')}</p>
-                        <p>Ingredients : {foodData.ingredients ? foodData.ingredients : ''}</p>
+                            <p className="displayFoodInfo">FdcId: {fdcId}</p>
+                            <p className="displayFoodInfo">Data Type: {foodData.dataType}</p>
+                            <p className="displayFoodInfo">Food Category: {(foodData.foodCategory ? foodData.foodCategory.description : '')}</p>
+                            <p className="displayFoodInfo">BrandName: {(foodData.brandName ? foodData.brandName : '')}</p>
+                            <p className="displayFoodInfo">Ingredients : {foodData.ingredients ? foodData.ingredients : ''}</p>
 
-                        <Button
-                            className="customDisplayFoodButton"
-                            onClick={() => navigate(-1)}>
-                            Back to Search Results
-                        </Button>
+                            <Button
+                                id="backBtn"
+                                className="customDisplayFoodButton"
+                                onClick={() => navigate(-1)}>
+                                Back to Search Results
+                            </Button>
 
-                    </Col>
+                        </Col>
 
-                    <Col
-                        className='col-2 flex-column nutrientInfoDisplayCol'>
-                        <DisplayFoodNutritionFacts
-                            foodData={foodData}
-                            displayState={displayState} />
+                        <Col
+                            className='col-2 flex-column nutritionInfoDisplayCol'>
+                            <DisplayFoodNutritionFacts
+                                foodData={foodData}
+                                displayState={displayState} />
 
-                        <Button
-                            className="customDisplayFoodButton"
-                            onClick={handleSave}>
-                            Save Food
-                        </Button>
-                    </Col>
-                    <Col className='col-6 p-1 chartDisplayCol'>
+                            <Button
+                                id="saveBtn"
+                                className="customDisplayFoodButton"
+                                onClick={handleSave}>
+                                Save Food
+                            </Button>
+                        </Col>
+                        <Col className='col-6 p-1 chartDisplayCol'>
 
-                        <Outlet context={{ foodData, displayState }} />
+                            <Outlet context={{ foodData, displayState }} />
 
 
-                    </Col>
-                    
-                    <NutrientDisplayButtons
-                        displayState={displayState}
-                        setDisplayState={setDisplayState}
-                    />
+                        </Col>
+
+                        <NutrientDisplayButtons
+                            displayState={displayState}
+                            setDisplayState={setDisplayState}
+                        />
                     </Row>
-                    
+
 
                 </Row>
 

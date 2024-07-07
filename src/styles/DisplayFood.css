@@ -2,13 +2,21 @@
     height: 80vh;
 }
 
+.displayFoodLayoutMain{
+    
+    padding: 10px;
+}
+
 .chartDiv{
     width: 100%;
     height: 100%;
 }
 
 .toggleDataBtnsDiv{
-    justify-content: space-around;
+   align-items: flex-start;
+}
+.setDisplayBtn{
+    display: block;
 }
 
 .chartDisplayCol{
@@ -19,6 +27,76 @@
     height: 90%;
 }
 
-.nutrientInfoDisplayCol{
+.nutritionInfoDisplayCol{
     
+}
+
+.foodInfoDisplayCol{
+
+}
+
+.nutritionFactsDiv{
+
+}
+
+.compareBtnDiv{
+    justify-content: space-between;
+}
+
+#addCompareBtn{
+    width: 10vw;
+}
+
+#saveBtn{
+    
+}
+#backBtn{
+
+}
+
+.displayFoodDescription{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+.displayFoodInfo{
+
+}
+
+
+
+
+
+.nutritionFactsDisplayText{
+    margin: .5rem 3rem 0 0;
+}
+
+.energy{
+
+}
+.carbs{
+
+}
+.sugars{
+
+}
+.fiber{
+
+}
+.protein{
+    
+}
+.totalFats{
+
+}
+
+.fats{
+
+}
+.caffeine{
+
+}
+.alcohol{
+
 }

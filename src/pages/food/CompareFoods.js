@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Highcharts, { chart } from 'highcharts';
 import { Button, Row, Col } from "reactstrap";
 import HighchartsReact from 'highcharts-react-official';
@@ -107,13 +107,21 @@ const CompareFoods = ({ foodData, displayState }) => {
         return options;
     }
 
-    if(!isReady){
+    const handleNavigateViewFood = () => {
+
+    }
+
+    const handleRemoveComparedFood = () => {
+
+    }
+
+    if (!isReady) {
         return (
             <div>
                 Loading, please wait
             </div>
         )
-    } else if (isReady && noData){
+    } else if (isReady && noData) {
         return (
             <div>
                 <p>
@@ -124,6 +132,16 @@ const CompareFoods = ({ foodData, displayState }) => {
     } else if (isReady && !noData) {
         return (
             <div className="chartDiv">
+                <div className="viewRemoveBtnsDiv">
+                    <Button>
+                        <Link to=''>
+                            <i class="fa-solid fa-eye"></i>
+                        </Link>
+                    </Button>
+                    <Button onClick={handleRemoveComparedFood}>
+                        <i class="fa-solid fa-trash"></i>
+                    </Button>
+                </div>
                 <HighchartsReact
                     highcharts={Highcharts}
                     options={chartOptions}
@@ -131,7 +149,7 @@ const CompareFoods = ({ foodData, displayState }) => {
                 />
             </div>
         )
-    } 
+    }
 };
 
 

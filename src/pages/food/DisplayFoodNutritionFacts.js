@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import '../../styles/DisplayFood.css';
 
 const DisplayFoodNutritionFacts = ({ foodData }) => {
 

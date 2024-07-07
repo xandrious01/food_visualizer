@@ -3,7 +3,7 @@ import { Col, Button } from "reactstrap";
 
 const NutrientDisplayButtons = ({setDisplayState}) => {
     return (
-        <Col className='toggleDataBtnsDiv col-2 d-flex-vertical'>
+        <Col className='toggleDataBtnsDiv col-2 flex-column'>
                         <Button
                             className='setDisplayBtn customNutrientButton'
                             onClick={() => {

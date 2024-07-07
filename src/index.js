@@ -5,6 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './custom.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+
 
 
 

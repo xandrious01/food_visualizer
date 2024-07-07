@@ -6,6 +6,7 @@ import '../styles/RootLayout.css'
 import '../App.css';
 
 import { CompareFoodsContext, TriggerReloadContext } from "../contexts";
+import FoodComparisonList from "../pages/food/FoodComparisonList";
 
 
 
@@ -92,7 +93,8 @@ const RootLayout = () => {
                                 </div>
                             </Row>
                             <Row className='foodCompareDisplay'>
-                                <p>Foods to Compare:</p>
+                                <p>Comparison List:</p>
+                                <FoodComparisonList removeFoodFromComparison={removeFoodFromComparison} />
                             </Row>
 
                             <Col className='w-full colMain'>

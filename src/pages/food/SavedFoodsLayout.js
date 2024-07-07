@@ -32,7 +32,7 @@ const SavedFoods = () => {
 
     const handleRemove = (e) => {
         const id = e.target.id.slice(6);
-        console.log('hi')
+        
         const savedFoods = JSON.parse(localStorage.getItem("savedFoods"));
         const updatedSavedFoods = savedFoods.filter(i => i !== id);
         localStorage.setItem("savedFoods", JSON.stringify(updatedSavedFoods));
@@ -51,7 +51,7 @@ const SavedFoods = () => {
     } else if (foodsInfo && !isLoading) {
         return (
             <div className='savedFoodsContainer'>
-                {console.log(foodsInfo)}
+                
                 {foodsInfo.map(i => {
                     const { description, dataType, fdcId } = i;
 

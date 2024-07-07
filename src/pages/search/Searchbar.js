@@ -22,7 +22,6 @@ const Searchbar = () => {
     const handleSubmit = e => {
         e.preventDefault();
         if (formData.query !== '') {
-            console.log(formData.query)
             navigate(`/search/${formData.query}/page/${pageNum}`);
             setFormData(INITIAL_STATE);
             setReloadOnSearch(true);
