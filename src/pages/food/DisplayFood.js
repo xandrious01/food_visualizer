@@ -116,7 +116,7 @@ const DisplayFood = () => {
         options.series = [{ name: `${dataName}`, data: [...data] }];
         return options;
     }
-    console.log(noData)
+    
     if(!isReady){
         return (
             <div>

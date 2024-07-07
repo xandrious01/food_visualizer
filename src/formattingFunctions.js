@@ -136,26 +136,29 @@ export function formatOtherNutrients(foodData, nutrientList) {
 
 
 export function formatNutrientsForColumnChart(foodData, nutrientList) {
+
+    let alteredList = [...nutrientList];
+    alteredList.splice(6, 2);
+    alteredList.push('sugar')
+  
     if (foodData) {
         const categories = foodData.map(i => i.description);
 
-        const series = nutrientList.map(targetNutrient => {
-            let name = targetNutrient;
+        const series = alteredList.map(targetNutrient => {
             let data = foodData.map(singleFoodData => {
                 const {foodNutrients} = singleFoodData;
                 let singleFoodAmount = foodNutrients.filter(i => {
-                    if(i.nutrient.name === name){
-                        
-                        return i.amount
-                    }
+                    const {nutrient} = i;
+                   const {amount} = i;
+                  if(nutrient.name === targetNutrient){
+                    console.log(i);
+                    return i;
+                  } 
                 })
-                if(singleFoodAmount) {
-                    return singleFoodAmount[0];
-                } else {
-                    return 0;
-                }
+                console.log(singleFoodAmount)
             })
-            return {name, data}
+            // console.log(data)
+            // return {name, data}
         })
         
     }

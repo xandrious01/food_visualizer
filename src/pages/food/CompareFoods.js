@@ -14,12 +14,15 @@ const CompareFoods = ({ foodData, displayState }) => {
     const { description } = foodData;
     const [isReady, setIsReady] = useState(false);
     const [chartOptions, setChartOptions] = useState({});
+    const [noData, setNoData] = useState(false);
+
 
 
 
     useEffect(() => {
         if (foodData.foodNutrients) {
             readDisplayStateAndSetOptions();
+            setIsReady(true)
         }
     }, [displayState, foodData])
 
@@ -30,7 +33,6 @@ const CompareFoods = ({ foodData, displayState }) => {
             tableName = `Macronutrients per 100g of ${description}`;
             options = createChartOptionsPieChart(tableName, "Amount(g)", macrosData);
             setChartOptions(options)
-            setIsReady(true)
         }
 
         if (displayState === 'DISPLAY_VITAMINS') {
@@ -105,22 +107,31 @@ const CompareFoods = ({ foodData, displayState }) => {
         return options;
     }
 
-    if (!isReady) {
+    if(!isReady){
         return (
             <div>
-                Please Wait
+                Loading, please wait
             </div>
         )
-    } else if (isReady) {
+    } else if (isReady && noData){
         return (
-            <HighchartsReact
-                highcharts={Highcharts}
-                options={chartOptions}
-                containerProps={{ style: { height: "100%" } }}
-            />
-
+            <div>
+                <p>
+                    No data available for this dataset.
+                </p>
+            </div>
         )
-    }
+    } else if (isReady && !noData) {
+        return (
+            <div className="chartDiv">
+                <HighchartsReact
+                    highcharts={Highcharts}
+                    options={chartOptions}
+                    containerProps={{ style: { height: "100%" } }}
+                />
+            </div>
+        )
+    } 
 };
 
 

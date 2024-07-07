@@ -16,7 +16,6 @@ const CompareFoodsLayout = () => {
 
 
     const [foodData, setFoodData] = useState([]);
-    const [chartType, setChartType] = useState("pie");
 
     useEffect(() => {
         async function requestFoodData() {
@@ -39,18 +38,12 @@ const CompareFoodsLayout = () => {
         return removeFoodFromComparison(fdcId)
     }
 
-    const handleSetChartType = () => {
-        return chartType === "pie" ? setChartType("column") : setChartType("pie");
-    }
 
-    if (chartType === "pie") {
         return (
 
             <div className="compareFoodsParentDiv">
                 <Row><h1>Compare Foods</h1>
-                 <Button onClick={handleSetChartType}>
-                    Toggle Display
-                 </Button>
+                 
                  </Row>
                 <Row>
                     {foodData.map(i => {
@@ -74,23 +67,8 @@ const CompareFoodsLayout = () => {
 
 
         )
-    }
-    if (chartType === "column") {
-        return (
-            <div className="compareFoodsParentDiv">
-                <Row><h1>Compare Foods</h1>
-                <Button onClick={handleSetChartType}>
-                    Toggle Display
-                 </Button>
-                </Row>
-                <Row>
-                    <CompileCompareFoods foodData={foodData} />
-                </Row>
-
-            </div>
-
-        )
-    }
+    
+    
 
 }
 
