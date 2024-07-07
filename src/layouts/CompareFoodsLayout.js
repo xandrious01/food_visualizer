@@ -3,9 +3,7 @@ import { CompareFoodsContext } from "../contexts";
 import { requestFoodsByIds } from "../ApiCalls";
 import { Row, Col, Button } from "reactstrap";
 import CompareFoodDisplay from "../pages/food/CompareFoods";
-import CompileCompareFoods from "../pages/food/CompileCompareFoods";
 import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
-import { formatNutrientsForColumnChart } from "../formattingFunctions";
 import '../styles/CompareFoods.css';
 
 
@@ -38,18 +36,20 @@ const CompareFoodsLayout = () => {
         return removeFoodFromComparison(fdcId)
     }
 
-
+    if (foodsToCompare.length > 0 && foodData.length > 0) {
         return (
 
             <div className="compareFoodsParentDiv">
                 <Row><h1>Compare Foods</h1>
-                 
-                 </Row>
+
+                </Row>
                 <Row className="compareFoodsRow">
                     {foodData.map(i => {
 
                         return (
-                            <div className="compareFoodIndDiv"
+                            <div
+                                className="compareFoodIndDiv"
+                                id={`compareDiv-${i.fdcId}`}
                                 key={`compareDiv-${i.fdcId}`}>
                                 <CompareFoodDisplay
                                     foodData={i}
@@ -65,10 +65,22 @@ const CompareFoodsLayout = () => {
                 />
             </div>
 
-
         )
-    
-    
+    } else if (foodsToCompare.length === 0) {
+        return (
+            <div className="compareFoodsParentDiv">
+                <Row><h1>Compare Foods</h1>
+
+                </Row>
+                <Row>
+                    <p> You haven't added any foods to compare yet.</p>
+                </Row>
+            </div>
+        )
+    }
+
+
+
 
 }
 

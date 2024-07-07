@@ -6,7 +6,6 @@ import '../../styles/SavedFoods.css'
 
 const SavedFoods = () => {
     const savedFoodsFdcIds = localStorage.getItem("savedFoods") ? JSON.parse(localStorage.getItem("savedFoods")) : new Array();
-    console.log(savedFoodsFdcIds)
     const [foodsInfo, setFoodsInfo] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [update, setUpdate] = useState(false);
@@ -51,7 +50,7 @@ const SavedFoods = () => {
     } else if (foodsInfo && !isLoading) {
         return (
             <div className='savedFoodsContainer'>
-                
+                {console.log(foodsInfo)}
                 {foodsInfo.map(i => {
                     const { description, dataType, fdcId } = i;
 

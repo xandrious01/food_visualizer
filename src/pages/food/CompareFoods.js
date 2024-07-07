@@ -8,14 +8,13 @@ import '../../styles/CompareFoods.css';
 
 
 
-const CompareFoods = ({ foodData, displayState }) => {
+const CompareFoodDisplay = ({ foodData, displayState }) => {
     let tableName = '';
     let options;
     const { description } = foodData;
     const [isReady, setIsReady] = useState(false);
     const [chartOptions, setChartOptions] = useState({});
     const [noData, setNoData] = useState(false);
-
 
 
 
@@ -108,11 +107,13 @@ const CompareFoods = ({ foodData, displayState }) => {
     }
 
     const handleNavigateViewFood = () => {
-
+        // const fdcId = e.target.parentNode.id;
+        // return navigate
     }
 
-    const handleRemoveComparedFood = () => {
-
+    const handleRemove = (e) => {
+        // const fdcId = e.target.parentNode.id;
+        // return removeFoodFromComparison(fdcId)
     }
 
     if (!isReady) {
@@ -131,15 +132,16 @@ const CompareFoods = ({ foodData, displayState }) => {
         )
     } else if (isReady && !noData) {
         return (
-            <div className="chartDiv">
+            <div className="chartDiv"
+                id={`indCompareChartDiv-${foodData.fdcId}`}>
                 <div className="viewRemoveBtnsDiv">
-                    <Button>
-                        <Link to=''>
-                            <i class="fa-solid fa-eye"></i>
-                        </Link>
-                    </Button>
-                    <Button onClick={handleRemoveComparedFood}>
-                        <i class="fa-solid fa-trash"></i>
+
+                    <Link to=''>
+                        <i class="fa-solid fa-eye"></i>
+                    </Link>
+
+                    <Button onClick={handleRemove}>
+                        <i class="fa-solid fa-xmark"></i>
                     </Button>
                 </div>
                 <HighchartsReact
@@ -153,7 +155,7 @@ const CompareFoods = ({ foodData, displayState }) => {
 };
 
 
-export default CompareFoods;
+export default CompareFoodDisplay;
 
 
 
