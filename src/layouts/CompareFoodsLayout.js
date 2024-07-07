@@ -31,10 +31,6 @@ const CompareFoodsLayout = () => {
         setIsLoading(false);
     }, [foodsToCompare])
 
-    const handleRemoveFromComparison = (e) => {
-        const fdcId = e.target.parentNode.id;
-        return removeFoodFromComparison(fdcId)
-    }
 
     if (foodsToCompare.length > 0 && foodData.length > 0) {
         return (

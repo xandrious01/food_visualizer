@@ -1,14 +1,65 @@
 .compareFoodsParentDiv{
+    overflow-x: hidden;
     overflow-y: hidden;
     width: 100%;
-    height: 85vh;
+    height: 100%;
+    display: inline-grid;
+    gap: 10px;
 }
 
 .compareFoodsRow{
-    height: 60vh;
+    height: 50vh;
+    width: 100%;
 }
 
 .compareFoodIndDiv{
-    width: 40vw;
+    width: 50%;
+    height: 50%;
     border: 5px solid red;
+    display: flex;
 }
+
+.compareListItem{
+    border: 2px solid red;
+    margin: 5px;
+    padding: 10px;
+    width: 20%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.chartDiv {
+    position: relative;
+    box-sizing: border-box;
+    padding: none;
+    margin: none;
+}
+
+.viewRemoveBtnsDiv{
+    position: relative;
+    left: 94%;
+    top: 9%;
+    z-index: 1;
+    width: 130px;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.chartItem{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+    color: rgba(.2, .2, .2, .2);
+    background-color: none;
+
+}
+
+.chartItem:hover{
+    color: rgba(.4, .4, .4, .4);
+
+}
+

@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Highcharts, { chart } from 'highcharts';
 import { Button, Row, Col } from "reactstrap";
 import HighchartsReact from 'highcharts-react-official';
-import { vitamins, fibersAndSugars, minerals, macros, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos, formatNutrientsForColumnChart } from "../../formattingFunctions";
+import { vitamins, fibersAndSugars, minerals, macros, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos } from "../../formattingFunctions";
+import { CompareFoodsContext } from "../../contexts";
 import '../../styles/CompareFoods.css';
 
 
@@ -15,6 +16,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
     const [isReady, setIsReady] = useState(false);
     const [chartOptions, setChartOptions] = useState({});
     const [noData, setNoData] = useState(false);
+    const { removeFoodFromComparison } = useContext(CompareFoodsContext);
 
 
 
@@ -112,8 +114,8 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
     }
 
     const handleRemove = (e) => {
-        // const fdcId = e.target.parentNode.id;
-        // return removeFoodFromComparison(fdcId)
+        const fdcId = e.target.id.slice(-7);
+        return removeFoodFromComparison(fdcId);
     }
 
     if (!isReady) {
@@ -136,13 +138,15 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                 id={`indCompareChartDiv-${foodData.fdcId}`}>
                 <div className="viewRemoveBtnsDiv">
 
-                    <Link to=''>
+                    <Link to={'/food/' + `${foodData.fdcId}`}
+                        className="chartItem">
                         <i class="fa-solid fa-eye"></i>
                     </Link>
 
-                    <Button onClick={handleRemove}>
-                        <i class="fa-solid fa-xmark"></i>
-                    </Button>
+                    <Button
+                        className='customCompareListRemoveBtn chartItem'
+                        id={'comparePageRemBtn' + `${foodData.fdcId}`}
+                        onClick={handleRemove}>X</Button>
                 </div>
                 <HighchartsReact
                     highcharts={Highcharts}

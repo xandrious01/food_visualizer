@@ -92,9 +92,13 @@ const RootLayout = () => {
                                     <Searchbar />
                                 </div>
                             </Row>
-                            <Row className='foodCompareDisplay'>
-                                <p>Comparison List:</p>
-                                <FoodComparisonList removeFoodFromComparison={removeFoodFromComparison} />
+                            <Row className='foodCompareListDisplay d-flex'>
+                                <div className='comparisonList comparisonListTextDiv'>
+                                    <p>Comparison List:</p>
+                                </div>
+                                <div className='comparisonList comparisonListItemsDiv'>
+                                    <FoodComparisonList removeFoodFromComparison={removeFoodFromComparison} />
+                                </div>
                             </Row>
 
                             <Col className='w-full colMain'>
