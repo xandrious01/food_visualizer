@@ -6,6 +6,7 @@ import '../styles/DisplayFood.css'
 import { CompareFoodsContext } from "../contexts";
 import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
 import DisplayFoodNutritionFacts from "../pages/food/DisplayFoodNutritionFacts";
+import DisplayFoodInfo from "../pages/food/DisplayFoodInfo";
 
 
 
@@ -67,8 +68,8 @@ const DisplayFoodLayout = () => {
 
         return (
 
-            <div>
-                <Row className="displayFoodLayoutMain">
+            <div className="displayFoodLayoutMain">
+                <Row>
                     <Row>
                         <div className="compareBtnDiv d-flex">
                             <p className="displayFoodDescription" >
@@ -83,55 +84,51 @@ const DisplayFoodLayout = () => {
                             </Button>
                         </div>
 
-
-                    </Row>
-                    <Row>
-                        <Col
-                            className="col-2 flex-column foodInfoDisplayCol">
-
-                            <p className="displayFoodInfo">FdcId: {fdcId}</p>
-                            <p className="displayFoodInfo">Data Type: {foodData.dataType}</p>
-                            <p className="displayFoodInfo">Food Category: {(foodData.foodCategory ? foodData.foodCategory.description : '')}</p>
-                            <p className="displayFoodInfo">BrandName: {(foodData.brandName ? foodData.brandName : '')}</p>
-                            <p className="displayFoodInfo">Ingredients : {foodData.ingredients ? foodData.ingredients : ''}</p>
-
-                            <Button
-                                id="backBtn"
-                                className="customDisplayFoodButton"
-                                onClick={() => navigate(-1)}>
-                                Back to Search Results
-                            </Button>
-
-                        </Col>
-
-                        <Col
-                            className='col-2 flex-column nutritionInfoDisplayCol'>
-                            <DisplayFoodNutritionFacts
-                                foodData={foodData}
-                                displayState={displayState} />
-
-                            <Button
-                                id="saveBtn"
-                                className="customDisplayFoodButton"
-                                onClick={handleSave}>
-                                Save Food
-                            </Button>
-                        </Col>
-                        <Col className='col-6 p-1 chartDisplayCol'>
-
-                            <Outlet context={{ foodData, displayState }} />
-
-
-                        </Col>
-
-                        <NutrientDisplayButtons
-                            displayState={displayState}
-                            setDisplayState={setDisplayState}
-                        />
                     </Row>
 
+                    <Col
+                        className="col-2 flex-column foodInfoDisplayCol">
+
+                        <DisplayFoodInfo foodData={foodData} />
+
+                    </Col>
+
+                    <Col
+                        className='col-2 flex-column nutritionInfoDisplayCol'>
+
+                        <DisplayFoodNutritionFacts
+                            foodData={foodData}
+                            displayState={displayState} />
+
+
+                    </Col>
+                    <Col className='col-6 p-1 chartDisplayCol'>
+
+                        <Outlet context={{ foodData, displayState }} />
+
+
+                    </Col>
+
+                    <NutrientDisplayButtons
+                        displayState={displayState}
+                        setDisplayState={setDisplayState}
+                    />
 
                 </Row>
+                <div className="foodDisplaySaveBackBtnsDiv">
+                    <Button
+                        id="backBtn"
+                        className="customDisplayFoodButton"
+                        onClick={() => navigate(-1)}>
+                        Go Back
+                    </Button>
+                    <Button
+                        id="saveBtn"
+                        className="customDisplayFoodButton"
+                        onClick={handleSave}>
+                        Save Food
+                    </Button>
+                </div>
 
             </div>
         )

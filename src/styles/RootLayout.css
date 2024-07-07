@@ -1,8 +1,7 @@
 #root {
     padding: none;
     height: 100vh;
-    width: 100vw;
-    margin: none;
+    width: 95vw;
 }
 
 .headerRow {
@@ -27,7 +26,7 @@
 .parentRow {
     width: 100vw;
     height: 100vh;
-    background-color: #EDE9D0;
+   
 }
 
 .navBtnsCol {
@@ -57,9 +56,9 @@ h1 {
 }
 
 .headerCol {
-    border: 5px solid red;
+
     width: 100%;
-    background-color: #DD5826;
+    
 
 }
 
@@ -70,7 +69,6 @@ h1 {
 .foodCompareListDisplay {
     width: 100%;
     justify-content: flex-start;
-    border: 5px solid pink;
     box-sizing: border-box;
     
 }
@@ -85,7 +83,6 @@ h1 {
 
 .comparisonListItemsDiv {
     width: 85%;
-    border: 2px solid blue;
     display: inline-flex;
     justify-content: flex-start;
 }

@@ -1,9 +1,13 @@
 
 * {
-  background-color: #EDE9D0;
+  background-color: #fff1e4;
   font-family: "Rethink Sans", sans-serif;
+  box-sizing: border-box;
 }
 
-div {
+body {
+  overflow-x: hidden;
 
 }
+
+

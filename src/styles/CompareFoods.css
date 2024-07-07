@@ -15,12 +15,10 @@
 .compareFoodIndDiv{
     width: 50%;
     height: 50%;
-    border: 5px solid red;
     display: flex;
 }
 
 .compareListItem{
-    border: 2px solid red;
     margin: 5px;
     padding: 10px;
     width: 20%;

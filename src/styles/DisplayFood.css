@@ -1,10 +1,13 @@
 .foodDisplayParentDiv{
-    height: 80vh;
+    height: 100%;
+    width: 100%;
+    display: flex;
 }
 
 .displayFoodLayoutMain{
-    
+    height: 100%;
     padding: 10px;
+
 }
 
 .chartDiv{
@@ -25,6 +28,19 @@
 
 .chartDiv{
     height: 90%;
+    z-index: 1;
+    padding-bottom: 2%;
+}
+
+.foodDisplaySaveBackBtnsDiv{
+    display: inline-flex;
+    position: absolute;
+    bottom: 0;
+    left: 17vw;
+    justify-content: space-between;
+    width: 28vw;
+    padding-bottom: 2%;
+    align-items: end;
 }
 
 .nutritionInfoDisplayCol{
@@ -48,10 +64,10 @@
 }
 
 #saveBtn{
-    
+  
 }
 #backBtn{
-
+   
 }
 
 .displayFoodDescription{
