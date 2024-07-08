@@ -8,7 +8,7 @@ import '../styles/CompareFoods.css';
 
 
 const CompareFoodsLayout = () => {
-    const { foodsToCompare, removeFoodFromComparison } = useContext(CompareFoodsContext);
+    const { foodsToCompare } = useContext(CompareFoodsContext);
     const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
     const [isLoading, setIsLoading] = useState(true);
 
@@ -36,10 +36,10 @@ const CompareFoodsLayout = () => {
         return (
 
             <div className="compareFoodsParentDiv">
-              <h1>Food Comparison</h1>
-                
-                <Row>
-                    
+                <h2>Food Comparison</h2>
+
+                <Row className="compareFoodsRow">
+                <NutrientDisplayButtons setDisplayState={setDisplayState} />
                     {foodData.map(i => {
 
                         return (
@@ -54,13 +54,9 @@ const CompareFoodsLayout = () => {
                             </div>
                         )
                     })}
-                    
-                </Row>
-              
 
-                <Col>
-                    
-                </Col>
+                </Row>
+
             </div>
 
         )
@@ -68,8 +64,8 @@ const CompareFoodsLayout = () => {
         return (
             <div className="compareFoodsParentDiv">
                 <Row><h1>Compare Foods</h1>
-
                 </Row>
+                
                 <Row>
                     <p> You haven't added any foods to compare yet.</p>
                 </Row>

@@ -1,10 +1,13 @@
-import { useState } from "react";
+
 import { Col, Button } from "reactstrap";
+import '../../styles/DisplayFood.css'
+
 
 const NutrientDisplayButtons = ({ setDisplayState }) => {
+
     return (
         <Col className='toggleDataBtnsDiv col-2 flex-column'>
-            <Button
+            <Button outline
                 id="macrosNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
                 onClick={() => {
@@ -13,7 +16,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
                 Macros
             </Button>
 
-            <Button
+            <Button outline
                 id="vitaminsNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
                 onClick={() => {
@@ -22,7 +25,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
                 Vitamins
             </Button>
 
-            <Button
+            <Button outline
                 id="sugarsNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
                 onClick={() => {
@@ -31,7 +34,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
                 Fibers and Sugars
             </Button>
 
-            <Button
+            <Button outline
                 id="aminosNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
                 onClick={() => {
@@ -39,7 +42,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
                 }}>
                 Aminos
             </Button>
-            <Button
+            <Button outline
                 id="lipidsNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
                 onClick={() => {
@@ -47,7 +50,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
                 }}>
                 Lipids
             </Button>
-            <Button
+            <Button outline
                 id="mineralsNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
                 onClick={() => {
@@ -55,7 +58,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
                 }}>
                 Minerals
             </Button>
-            <Button
+            <Button outline
                 id="otherNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
                 onClick={() => {

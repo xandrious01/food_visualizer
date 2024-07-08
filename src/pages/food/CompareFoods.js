@@ -132,17 +132,18 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         return (
             <Col className="chartDiv"
                 id={`indCompareChartDiv-${foodData.fdcId}`}>
-                <div className="viewRemoveBtnsDiv">
-
-                    <Link to={'/food/' + `${foodData.fdcId}`}
-                        className="chartItem">
-                        <i class="fa-solid fa-eye"></i>
-                    </Link>
-
+                <div className="viewRemoveBtnsDiv  d-flex flex-column">
                     <Button
                         className='customCompareListRemoveBtn chartItem'
                         id={'comparePageRemBtn' + `${foodData.fdcId}`}
-                        onClick={handleRemove}>X</Button>
+                        onClick={handleRemove}>
+                        X</Button>
+                    <Link to={'/food/' + `${foodData.fdcId}`}
+                        className="chartItem">
+                        <i className="fa-solid fa-eye"></i>
+                    </Link>
+
+
                 </div>
                 <HighchartsReact
                     highcharts={Highcharts}

@@ -1,5 +1,5 @@
 .searchParentDiv {
-    margin: none;
+    margin: 5% 0 0 0 ;
     padding: none;
     box-sizing: border-box;
 }
@@ -56,7 +56,6 @@
 
 .paginationBtn {
     display: inline-block;
-    width: 8%;
 }
 
 .searchInfo {

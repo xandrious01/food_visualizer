@@ -43,6 +43,10 @@
     align-items: end;
 }
 
+.toggleDataBtnsDiv{
+    margin-top: 5vh;
+}
+
 .nutritionInfoDisplayCol{
     
 }

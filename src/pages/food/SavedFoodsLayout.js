@@ -24,7 +24,6 @@ const SavedFoods = () => {
         if (savedFoodsFdcIds.length > 0) {
             getSavedFoodsInfo();
             setIsLoading(false);
-            console.log(foodsInfo)
         }
 
     }, [update])
@@ -58,14 +57,14 @@ const SavedFoods = () => {
         return (
             <div>
                 <Row>
-                        <h1>My Foods
+                        <h2>My Foods
 
-                        </h1>
+                        </h2>
                     </Row>
 
                 <div className='savedFoodsContainer'>
                     
-                    {console.log(foodsInfo)}
+                   
                     {foodsInfo.map(i => {
                         const { description, dataType, fdcId } = i;
 

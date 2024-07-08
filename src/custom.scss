@@ -20,14 +20,21 @@
 }
 
 .customNutrientButton {
-
-  &:hover {}
+  color: #162935;
+  border-color: #162935;
+  font-size: 1.2rem;
+  margin: 10px 0 10px 0;
+  &:hover {
+    background-color: rgba(22, 41, 53, .7);
+  }
 }
 
 .customPageBtn {
   background-color: #cf3633;
   font-size: 1.1rem;
   border: 2px solid #cf3633;
+  height: 2.5rem;
+  width: auto;
 
   &:hover {
     background-color: #ff4818;
@@ -121,10 +128,10 @@
 
 .customCompareListRemoveBtn {
   display: flex;
-  font-size: 1.2rem;
-  padding: none;
+  font-size: 1.8rem;
+  padding: 2px;
   margin: none;
-  height: 2rem;
+  height: 1.9rem;
   width: 2rem;
   align-items: center;
   justify-content: center;

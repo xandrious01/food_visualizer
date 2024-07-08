@@ -23,7 +23,7 @@
 }
 
 .headerText {
-    font-size: 4.5rem;
+    font-size: 4rem;
     color: #ff4818;
 }
 
@@ -56,15 +56,9 @@
 
 
 .headerCol {
-
     width: 100%;
-    
-
 }
 
-.foodCompareDisplay {}
-
-.colMain {}
 
 .foodCompareListDisplay {
     width: 100%;
@@ -75,15 +69,14 @@
 }
 
 .comparisonListText{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     width: 15%;
 }
 
 .compareListItem{
-    padding: 10px;
+    padding: 8px;
     width: 7vw;
     background-color: #00B4C8;
- 
 }
 
 .compareFoodsLink{
