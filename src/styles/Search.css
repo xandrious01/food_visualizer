@@ -25,28 +25,29 @@
     padding: none;
 }
 
-.pageInfoCol{
-    margin-left: auto;
-    margin-right: auto;
+.searchPaginationRow{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
 
-.pageInfo {
-    display: inline-block;
+.pageFormInfoDiv{
+  
 }
 
 .pageFormDiv{
     width: 18vw;
     padding: 2px;
-    margin-left: auto;
-    margin-right: auto;
-    display: inline-flex;
+    display: inline-block;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
-.pageForm{
+.pageForm {
     display: inline-flex;
-    width: 40vw;
+    width: auto;
     align-items: center;
+    font-size: 1.2rem;
    
 }
 .pageFormItem{
@@ -55,7 +56,7 @@
 
 .paginationBtn {
     display: inline-block;
-
+    width: 8%;
 }
 
 .searchInfo {
@@ -64,21 +65,16 @@
 
 }
 
-.pageInfo {}
+.pageInfo {
+    font-size: 1.2rem;
+}
 
 .pageInput {
-    width: 150px;
+    width: 80px;
 }
 
 .pageInputSubmit {}
 
-.nextPage {
-    align-self: end;
-}
-
-.prevPage {
-    align-self: start;
-}
 
 .resultsContainer {
     width: auto;

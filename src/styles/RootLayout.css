@@ -10,7 +10,8 @@
     align-items: center;
     padding: 10px;
     flex-wrap: nowrap;
-    width: 100%;
+    width: 80vw;
+    border: 5px solid #ff713d;
 }
 
 .headerTextDiv {
@@ -21,7 +22,10 @@
     width: 40%;
 }
 
-.headerText {}
+.headerText {
+    font-size: 4.5rem;
+    color: #ff4818;
+}
 
 .parentRow {
     width: 100vw;
@@ -35,8 +39,8 @@
 }
 
 .navBtnsDiv {
-    margin-top: 10vh;
-    padding: none;
+    margin-top: 18vh;
+    padding: 20px;
     border: none;
     width: 100%;
     background-color: none;
@@ -51,10 +55,6 @@
 }
 
 
-h1 {
-    color: #DD5826;
-}
-
 .headerCol {
 
     width: 100%;
@@ -68,21 +68,27 @@ h1 {
 
 .foodCompareListDisplay {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: flex-end;
     box-sizing: border-box;
-    
-}
-
-.comparisonList {
     display: inline-flex;
+    align-items: end;
 }
 
-.comparisonListTextDiv {
+.comparisonListText{
+    font-size: 1.3rem;
     width: 15%;
 }
 
-.comparisonListItemsDiv {
-    width: 85%;
-    display: inline-flex;
-    justify-content: flex-start;
+.compareListItem{
+    padding: 10px;
+    width: 7vw;
+    background-color: #00B4C8;
+ 
+}
+
+.compareFoodsLink{
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: white;
+    background-color: #00B4C8;
 }

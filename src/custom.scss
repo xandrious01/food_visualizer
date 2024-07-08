@@ -4,11 +4,11 @@
   border-radius: 10px;
   border: 2px solid #FF713D;
   text-decoration: none;
-  width: 100%;
+  width: 90%;
   color: white;
   background-color: #FF713D;
-  height: 80px;
-  font-size: 1.2rem;
+  height: 75px;
+  font-size: 1.4rem;
   line-height: .9rem;
 
 
@@ -19,10 +19,30 @@
   }
 }
 
-.customNutrientButton{
-  
-  &:hover{
+.customNutrientButton {
 
+  &:hover {}
+}
+
+.customPageBtn {
+  background-color: #cf3633;
+  font-size: 1.1rem;
+  border: 2px solid #cf3633;
+
+  &:hover {
+    background-color: #ff4818;
+    border: 2px solid #ff4818;
+  }
+}
+
+.customSearchBtn {
+  background-color: #DD5826;
+  font-size: 1.1rem;
+  border: 2px solid #FF713D;
+
+  &:hover {
+    background-color: #FF7F4F;
+    border: 2px solid #FF713D;
   }
 }
 
@@ -42,19 +62,18 @@
   padding: 5px;
 
   &:hover {
-    color: white;
-    border: 2px solid #FF713D;
+    color: #657886;
 
   }
 }
 
 .customHeading {
-  font-size: 1rem;
+  font-size: 1.3rem;
   padding-left: 5px;
 }
 
 .customText {
-  font-size: .8rem;
+  font-size: 1rem;
   padding-left: 15px;
   padding-bottom: 5px;
 }
@@ -79,7 +98,7 @@
   width: 150px;
 }
 
-.customDisplayFoodButton{
+.customDisplayFoodButton {
   background-color: #DD5826;
   color: white;
   border-radius: 10px;
@@ -100,7 +119,7 @@
   }
 }
 
-.customCompareListRemoveBtn{
+.customCompareListRemoveBtn {
   display: flex;
   font-size: 1.2rem;
   padding: none;
@@ -109,5 +128,13 @@
   width: 2rem;
   align-items: center;
   justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0.1, 0.1, 0.1, 0.1);
+  border: 2px solid rgba(0.1, 0.1, 0.1, 0.1);
 
+  &:hover {
+    color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(0.1, 0.1, 0.1, 0.2);
+    border: 2px solid rgba(0.1, 0.1, 0.1, 0.3);
+  }
 }

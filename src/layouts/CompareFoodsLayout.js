@@ -36,10 +36,10 @@ const CompareFoodsLayout = () => {
         return (
 
             <div className="compareFoodsParentDiv">
-                <Row><h1>Compare Foods</h1>
-
-                </Row>
-                <Row className="compareFoodsRow">
+              <h1>Food Comparison</h1>
+                
+                <Row>
+                    
                     {foodData.map(i => {
 
                         return (
@@ -54,11 +54,13 @@ const CompareFoodsLayout = () => {
                             </div>
                         )
                     })}
+                    
                 </Row>
-                <NutrientDisplayButtons
-                    displayState={displayState}
-                    setDisplayState={setDisplayState}
-                />
+              
+
+                <Col>
+                    
+                </Col>
             </div>
 
         )

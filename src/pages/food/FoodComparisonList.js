@@ -2,7 +2,9 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { CompareFoodsContext } from "../../contexts";
-import '../../styles/CompareFoods.css'
+import '../../styles/RootLayout.css';
+import '../../styles/CompareFoods.css';
+
 
 const FoodComparisonList = ({ removeFoodFromComparison }) => {
     const { foodsToCompare } = useContext(CompareFoodsContext);
@@ -23,7 +25,10 @@ const FoodComparisonList = ({ removeFoodFromComparison }) => {
                 id={`compareList-${i.fdcId}`}
                 key={`compareListBtn-${fdcId}`}
                 >
-                    <Link to={'/food/'+`${fdcId}`}>{description}</Link>
+                    <Link to={'/food/'+`${fdcId}`}
+                    className="compareFoodsLink"
+                    >{description}
+                    </Link>
                     <Button 
                     className='customCompareListRemoveBtn'
                     onClick={handleRemove}>X</Button>

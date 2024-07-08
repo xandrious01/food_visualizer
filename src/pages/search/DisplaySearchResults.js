@@ -18,7 +18,7 @@ import '../../styles/Search.css'
 
 const DisplaySearchResults = () => {
     const { query, pageNum } = useParams();
-    const {reloadOnSearch, setReloadOnSearch} = useContext(TriggerReloadContext);
+    const { reloadOnSearch, setReloadOnSearch } = useContext(TriggerReloadContext);
 
     const [searchResults, setSearchResults] = useState([]);
     const [resultsInfo, setResultsInfo] = useState({});
@@ -27,7 +27,7 @@ const DisplaySearchResults = () => {
     const [error, setError] = useState(false);
 
     const navigate = useNavigate();
-   
+
 
 
     useEffect(() => {
@@ -110,67 +110,54 @@ const DisplaySearchResults = () => {
 
                 <div
                     className="searchInfo">
-                    <p>
+                    <p className="pageInfo">
                         Total Hits: {resultsInfo.totalHits}
                     </p>
                 </div>
 
-                <Row>
+                <div className="searchPaginationRow">
 
-                    <Col className="d-flex flex-row align-items-start">
-                        <Button
-                            className={pageNum === 1 ? 'disabled paginationBtn' : 'paginationBtn'}
-                            onClick={handlePrev}
-                        >Previous Page</Button>
-                    </Col>
 
-                    <Col className="pageInfoCol">
+                    <Button
+                        className={pageNum === 1 || resultsInfo.totalPages === 1 ? 'disabled paginationBtn customPageBtn' : 'paginationBtn customPageBtn'}
+                        onClick={handlePrev}
+                    >Previous Page</Button>
+
+                    <div className='pageFormInfoDiv'>
                         <p className='pageInfo'>
                             Displaying Page {resultsInfo.currentPage} of {availablePagesToDisplay}
                         </p>
+                        <Form
+                            onSubmit={handlePageSubmit}
+                            className={resultsInfo.totalPages > 3 ? 'pageForm' : 'hidden'} >
 
-                        <Row className={resultsInfo.totalPages > 3 ? "pageFormDiv" : "hidden"}>
-                            <Form
-                                onSubmit={handlePageSubmit}
-                                className='pageForm'
-                            >
-                                <Col className='pageFormItem'>
-                                    <Label htmlFor="pageNumInput" >
-                                        Jump to page:
-                                    </Label>
-                                </Col>
+                            <Label htmlFor="pageNumInput" >
+                                Jump to page:
+                            </Label>
 
-                                <Col className='pageFormItem'>
-                                    <Input
-                                        id="pageNum"
-                                        name="pageNum"
-                                        placeholder=""
-                                        type="number"
-                                        value={pageInput.pageNum}
-                                        onChange={handlePageInputChange}
-                                        className="pageInput"
-                                    />
-                                </Col>
-                                <Col className='pageFormItem'>
-                                    <Button
-                                        className="pageInputSubmit"
-                                        type="submit">Go</Button>
-                                </Col>
-                            </Form>
-                        </Row>
+                            <Input
+                                id="pageNum"
+                                name="pageNum"
+                                placeholder=""
+                                type="number"
+                                value={pageInput.pageNum}
+                                onChange={handlePageInputChange}
+                                className="pageInput"
+                            />
 
+                            <Button
+                                className="pageInputSubmit"
+                                type="submit">Go</Button>
+                        </Form>
+                    </div>
 
-                    </Col>
+                    <Button
+                        onClick={handleNext}
+                        className={pageNum === resultsInfo.totalPages || resultsInfo.totalPages === 1 ? 'paginationBtn disabled customPageBtn' : 'paginationBtn customPageBtn'}
+                    >Next Page
+                    </Button>
 
-                    <Col className="d-flex flex-row-reverse align-items-start">
-                        <Button
-                            onClick={handleNext}
-
-                            className={pageNum === resultsInfo.totalPages ? 'paginationBtn disabled' : 'paginationBtn'}
-                        >Next Page</Button>
-                    </Col>
-
-                </Row>
+                </div>
 
                 <div className='resultsContainer'>
                     {searchResults.map(i => {

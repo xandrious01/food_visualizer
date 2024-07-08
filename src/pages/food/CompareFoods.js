@@ -108,10 +108,6 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         return options;
     }
 
-    const handleNavigateViewFood = () => {
-        // const fdcId = e.target.parentNode.id;
-        // return navigate
-    }
 
     const handleRemove = (e) => {
         const fdcId = e.target.id.slice(-7);
@@ -134,7 +130,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         )
     } else if (isReady && !noData) {
         return (
-            <div className="chartDiv"
+            <Col className="chartDiv"
                 id={`indCompareChartDiv-${foodData.fdcId}`}>
                 <div className="viewRemoveBtnsDiv">
 
@@ -153,7 +149,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                     options={chartOptions}
                     containerProps={{ style: { height: "100%" } }}
                 />
-            </div>
+            </Col>
         )
     }
 };

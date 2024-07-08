@@ -19,8 +19,8 @@ export async function requestFoodByQuery(query, pageNum){
             query: `+${query}`,
             requireAllWords: true,
             pageSize: 50,
-            pageNumber : pageNum,
-            dataType: 'Survey (FNDDS)'
+            pageNumber : pageNum
+           
         }
 
     const response = await axios({

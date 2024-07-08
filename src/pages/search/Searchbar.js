@@ -51,7 +51,7 @@ const Searchbar = () => {
                 <Col>
 
                     <Button
-                        className="searchSubmit customSearchButton"
+                        className="searchSubmit customSearchBtn"
                         type="submit">
                         Search</Button>
 
