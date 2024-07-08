@@ -5,7 +5,7 @@
    
 }
 
-.compareFoodsRow {
+.compareFoodsDiv {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -32,6 +32,10 @@
     box-sizing: border-box;
     padding: none;
     margin: none;
+    display: inline-flex;
+    max-height: 45%;
+    min-height: 400px;
+
 }
 
 .viewRemoveBtnsDiv {

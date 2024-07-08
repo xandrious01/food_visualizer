@@ -71,7 +71,7 @@
     box-sizing: border-box;
     display: inline-flex;
     align-items: end;
-    height: 5vh;
+    height: 4vh;
 }
 
 .comparisonListText{
@@ -81,13 +81,16 @@
 
 .compareListItem{
     padding: 8px;
-    width: 7vw;
+    width: 5vw;
     background-color: #00B4C8;
 }
 
 .compareFoodsLink{
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: white;
     background-color: #00B4C8;
+    width: auto;
+  
 }

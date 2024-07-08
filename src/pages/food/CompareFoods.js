@@ -31,6 +31,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
     function readDisplayStateAndSetOptions() {
         if (displayState === 'DISPLAY_MACROS') {
             let macrosData = formatMacroNutrients(foodData);
+            checkData(macrosData);
             tableName = `Macronutrients per 100g of ${description}`;
             options = createChartOptionsPieChart(tableName, "Amount(g)", macrosData);
             setChartOptions(options)
@@ -38,39 +39,49 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
 
         if (displayState === 'DISPLAY_VITAMINS') {
             let vitaminsData = formatOtherNutrients(foodData, vitamins);
+            checkData(vitaminsData);
             tableName = `Vitamin Content per 100g of ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", vitaminsData));
         }
 
         if (displayState === 'DISPLAY_AMINOS') {
             let aminosData = formatAminos(foodData, aminos);
+            checkData(aminosData);
             tableName = `Amino Acids Content per 100g of ${description}`;
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(mg)", aminosData));
         }
 
         if (displayState === 'DISPLAY_SUGARS') {
             let sugarsData = formatCarbsOrLipids(foodData, fibersAndSugars);
+            checkData(sugarsData);
             tableName = `Carbohydrate Content per 100g of ${description}`
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", sugarsData));
         }
 
         if (displayState === 'DISPLAY_LIPIDS') {
             let lipidsData = formatCarbsOrLipids(foodData, lipids);
+            checkData(lipidsData);
             tableName = `Lipids and Fat Content per 100g of ${description}`;
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", lipidsData));
         }
 
         if (displayState === 'DISPLAY_MINERALS') {
             let mineralsData = formatOtherNutrients(foodData, minerals);
+            checkData(mineralsData);
             tableName = `Minerals and Metalloids Content per 100g of ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", mineralsData));
         }
 
         if (displayState === 'DISPLAY_OTHER') {
             let otherNutrientsData = formatOtherNutrients(foodData, otherNutrients);
+            checkData(otherNutrientsData);
             tableName = `Other Nutrient Content per 100g of ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", otherNutrientsData));
         }
+    }
+
+    function checkData(data){
+        return data.length === 0 ? setNoData(true) : setNoData(false);
     }
 
     function createChartOptionsPieChart(tableName, dataName, data) {
@@ -131,7 +142,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         )
     } else if (isReady && !noData) {
         return (
-            <Col className="chartDiv"
+            <div className="chartDiv"
                 id={`indCompareChartDiv-${foodData.fdcId}`}>
                 <div className="viewRemoveBtnsDiv  d-flex flex-column">
                     <Button
@@ -151,7 +162,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                     options={chartOptions}
                     containerProps={{ style: { height: "100%" } }}
                 />
-            </Col>
+            </div>
         )
     }
 };
