@@ -1,13 +1,11 @@
 .foodDisplayParentDiv{
-    height: 100%;
+   
     width: 100%;
     display: flex;
 }
 
 .displayFoodLayoutMain{
-    height: 100%;
     padding: 10px;
-
 }
 
 .chartDiv{
@@ -20,6 +18,10 @@
 }
 .setDisplayBtn{
     display: block;
+}
+
+.displayFoodRow{
+    margin-top: 3vh;
 }
 
 .chartDisplayCol{
@@ -90,9 +92,10 @@
 
 .nutritionFactsDisplayText{
     margin: .5rem 3rem 0 0;
+    font-size: 1rem;
 }
 
-.energy{
+p .energy{
 
 }
 .carbs{

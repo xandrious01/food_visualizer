@@ -88,7 +88,7 @@ const SavedFoods = () => {
                                     </div>
                                 </Link>
                                 <div>
-                                    <Button
+                                    <Button outline
                                         id={`remove${fdcId}`}
                                         onClick={handleRemove}>
                                         Remove

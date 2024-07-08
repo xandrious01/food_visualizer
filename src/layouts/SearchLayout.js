@@ -9,7 +9,8 @@ const SearchLayout = () => {
     const {reloadOnSearch, setReloadOnSearch} = useContext(TriggerReloadContext);
 
     return (
-        <div className="searchParentDiv">
+        <div className="searchParentDiv"
+        >
             <Searchbar />
             <Outlet />
         </div>

@@ -2,16 +2,19 @@
     overflow-x: hidden;
     overflow-y: hidden; 
     height: 80vh;
+   
 }
 
 .compareFoodsRow {
     box-sizing: border-box;
-    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .compareFoodIndDiv {
-    height: 35vh;
-    width: 600px;
+    max-width: 50%;
+    flex: 1;
 }
 
 .compareListItem {
@@ -55,4 +58,12 @@
 .chartItem:hover {
     color: rgba(.4, .4, .4, .4);
 
+}
+
+.compareFoodNutrientBtns {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: space-around;
+    align-items: start;
 }

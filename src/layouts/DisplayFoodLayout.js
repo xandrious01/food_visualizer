@@ -68,9 +68,10 @@ const DisplayFoodLayout = () => {
 
         return (
 
-            <div className="displayFoodLayoutMain">
+            <div className="displayFoodLayoutMain"
+            id='displayFoodMain'>
                 <Row>
-                    <Row>
+                    <Row className='displayFoodRow'>
                         <div className="compareBtnDiv d-flex">
                             <p className="displayFoodDescription" >
                                 {description}

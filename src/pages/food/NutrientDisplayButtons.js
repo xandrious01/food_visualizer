@@ -1,12 +1,22 @@
 
 import { Col, Button } from "reactstrap";
+import { useLocation } from "react-router-dom";
 import '../../styles/DisplayFood.css'
+import '../../styles/CompareFoods.css'
+
 
 
 const NutrientDisplayButtons = ({ setDisplayState }) => {
+    const {pathname} = useLocation();
+
+    const classes = () => {
+        const displayFoodClasses = 'toggleDataBtnsDiv col-2 flex-column'
+        const compareFoodClasses = 'd-flex compareFoodNutrientBtns'
+        return ;
+    }
 
     return (
-        <Col className='toggleDataBtnsDiv col-2 flex-column'>
+        <div className={pathname === '/compare' ? 'd-flex compareFoodNutrientBtns' : 'toggleDataBtnsDiv col-2 flex-column'}>
             <Button outline
                 id="macrosNutrientBtn"
                 className='setDisplayBtn customNutrientButton'
@@ -66,7 +76,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
                 }}>
                 Other Nutrients
             </Button>
-        </Col>
+        </div>
     )
 }
 

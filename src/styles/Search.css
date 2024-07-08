@@ -1,5 +1,5 @@
 .searchParentDiv {
-    margin: 5% 0 0 0 ;
+    margin: 2% 0 0 0 ;
     padding: none;
     box-sizing: border-box;
 }
@@ -7,13 +7,9 @@
 .searchbar {
     height: 50px;
     margin: 10px;
-    width: 100%;
-    
+    width: 100%; 
 }
 
-.searchbarInput {
-
-}
 
 .searchSubmit {
     display: inline-block;
@@ -21,7 +17,7 @@
 
 .displaySearchResultsParent {
     margin: 3%;
-    height: 80%;
+    height: 70%;
     padding: none;
 }
 
@@ -30,17 +26,16 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    padding: 5px;
 }
+
 
 .pageFormInfoDiv{
-  
-}
-
-.pageFormDiv{
     width: 18vw;
     padding: 2px;
-    display: inline-block;
-    align-items: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: start;
     justify-content: center;
 }
 .pageForm {
@@ -48,10 +43,11 @@
     width: auto;
     align-items: center;
     font-size: 1.2rem;
+    padding: 5px;
    
 }
 .pageFormItem{
-    margin: 5px;
+    margin: 2px;
 }
 
 .paginationBtn {
@@ -60,7 +56,8 @@
 
 .searchInfo {
     margin-left: none;
-    padding: 10px;
+    padding: none;
+    height: 40px;
 
 }
 
@@ -70,26 +67,17 @@
 
 .pageInput {
     width: 80px;
+    margin: 0 5px 0 5px;
 }
-
-.pageInputSubmit {}
 
 
 .resultsContainer {
     width: auto;
-    height: 65vh;
+    height: 50vh;
     border: 1px solid #ccc;
     overflow-y: auto;
-
-}
-
-.searchResultsListGroupItem {}
-
-.searchResultsListHeading {}
-
-.searchResultsListText {}
-
-.searchNoResultsText{
+    box-shadow: 1px 2px 4px 1px #ccc;
+    background-color: rgba(255, 238, 223, .2);
 
 }
 

@@ -146,7 +146,7 @@ const DisplaySearchResults = () => {
                             />
 
                             <Button
-                                className="pageInputSubmit"
+                                className="pageInputSubmit customPageBtn"
                                 type="submit">Go</Button>
                         </Form>
                     </div>

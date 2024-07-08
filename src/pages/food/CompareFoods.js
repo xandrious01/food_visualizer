@@ -104,6 +104,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                 text: 'amount in mg'
             }
         }
+        options.spacing=[0, 0, 0, 0];
         options.series = [{ name: `${dataName}`, data: [...data] }];
         return options;
     }
