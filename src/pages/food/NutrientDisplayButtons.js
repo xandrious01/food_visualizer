@@ -9,11 +9,6 @@ import '../../styles/CompareFoods.css'
 const NutrientDisplayButtons = ({ setDisplayState }) => {
     const {pathname} = useLocation();
 
-    const classes = () => {
-        const displayFoodClasses = 'toggleDataBtnsDiv col-2 flex-column'
-        const compareFoodClasses = 'd-flex compareFoodNutrientBtns'
-        return ;
-    }
 
     return (
         <div className={pathname === '/compare' ? 'd-flex compareFoodNutrientBtns' : 'toggleDataBtnsDiv col-2 flex-column'}>

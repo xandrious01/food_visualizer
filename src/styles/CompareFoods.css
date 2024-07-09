@@ -1,8 +1,12 @@
 .compareFoodsParentDiv {
     overflow-x: hidden;
-    overflow-y: hidden; 
+    overflow-y: hidden;
     height: 80vh;
-   
+
+}
+
+h3 {
+    color: #ba2e2c;
 }
 
 .compareFoodsDiv {
@@ -14,7 +18,11 @@
 
 .compareFoodIndDiv {
     max-width: 50%;
-    flex: 1;
+    flex: 2 2 auto;
+    width: min-content;
+    inline-size: min-content;
+    height: min-content;
+    block-size: min-content;
 }
 
 .compareListItem {
@@ -35,7 +43,11 @@
     display: inline-flex;
     max-height: 45%;
     min-height: 400px;
-
+    flex: 1 1 auto;
+    width: min-content;
+    inline-size: min-content;
+    height: min-content;
+    block-size: min-content;
 }
 
 .viewRemoveBtnsDiv {
@@ -46,6 +58,8 @@
     width: 30px;
     height: 100px;
 }
+
+
 
 .chartItem {
     display: inline-block;
@@ -65,9 +79,13 @@
 }
 
 .compareFoodNutrientBtns {
+    position: absolute;
+    top: 30%;
+    left: 80%;
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: no-wrap;
     justify-content: space-around;
     align-items: start;
+    flex: 0 0 auto;
 }

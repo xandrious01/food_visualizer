@@ -34,9 +34,7 @@ const Searchbar = () => {
             className="customSearchForm"
             role="search"
             onSubmit={handleSubmit}>
-            <Row className="searchbar">
-                <Col>
-
+            <div className="searchbar" id="searchbarMain">
                     <Input
                         id="query"
                         aria-label="Search for a food"
@@ -47,17 +45,11 @@ const Searchbar = () => {
                         onChange={handleChange}
                         className="searchbarInput customInput"
                     />
-                </Col>
-                <Col>
-
-                    <Button
-                        className="searchSubmit customSearchBtn"
-                        type="submit">
-                        Search</Button>
-
-                </Col>
-
-            </Row>
+                <Button
+                    className="searchSubmit customSearchBtn"
+                    type="submit">
+                    Search</Button>
+            </div>
         </Form>
 
     )

@@ -42,26 +42,15 @@ const SavedFoods = () => {
 
     if (savedFoodsFdcIds.length === 0) {
         return (
-            <div>
-                <Row>
-                    <h1>My Foods
-
-                    </h1>
-                </Row>
-                <div>
+            <div className="savedFoodsParent">
+                    <h3 className="myFoodsHeader">My Foods</h3>
                     <p>You haven't saved any foods yet.</p>
-                </div>
             </div>
         )
     } else if (foodsInfo && !isLoading) {
         return (
-            <div>
-                <Row>
-                        <h2>My Foods
-
-                        </h2>
-                    </Row>
-
+            <div className="savedFoodsParent">
+                        <h3 className="myFoodsHeader">My Foods</h3>
                 <div className='savedFoodsContainer'>
                     
                    

@@ -1,54 +1,52 @@
 #root {
-    padding: none;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-rows: 1fr 3fr 5fr;
+    grid-template-areas:
+        'sidebar header'
+        'sidebar main'
+        'compare main';
+    width: 100vw;
     height: 100vh;
-    max-height: 100vh;
-    width: 95vw;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
 }
 
-.headerRow {
-    margin: 2% 1% 2% 1%;
+.main {
+    grid-area: main;
     display: flex;
-    align-items: center;
-    padding: 10px;
-    flex-wrap: nowrap;
-    width: 80vw;
+    flex-direction: row;
+    margin: 2% 3%;
+}
+
+
+.header {
+    grid-area: header;
     border: 5px solid #ff713d;
     box-shadow: -1px 1px 3px 2px rgba(207, 54, 51, .8);
-}
-
-.headerTextDiv {
-    width: 60%;
-}
-
-.headerSearchbarDiv {
-    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 1%;
 }
 
 .headerText {
     font-size: 4rem;
     color: #ff4818;
+    
 }
 
-.parentRow {
-    width: 100vw;
-    height: 100vh;
+.headerSearchbarDiv{
    
-}
-
-.navBtnsCol {
-    padding: none;
-    margin: none;
+    
 }
 
 .navBtnsDiv {
-    margin-top: 18vh;
-    padding: 20px;
-    border: none;
-    width: 100%;
     background-color: none;
+    grid-area: sidebar;
+    grid-row-start: 2;
+    padding: 20px;
+
 }
 
 .navBtn {
@@ -60,37 +58,29 @@
 }
 
 
-.headerCol {
-    width: 100%;
-}
-
-
 .foodCompareListDisplay {
-    width: 100%;
-    justify-content: flex-end;
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: end;
-    height: 4vh;
+    grid-area: compare;
+    border: 5px solid blue;
+    display: flex;
+    flex-direction: column;
+    
 }
 
-.comparisonListText{
+.comparisonListText {
     font-size: 1.2rem;
-    width: 15%;
+
 }
 
-.compareListItem{
+.compareListItem {
     padding: 8px;
-    width: 5vw;
     background-color: #00B4C8;
 }
 
-.compareFoodsLink{
+.compareFoodsLink {
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
     color: white;
     background-color: #00B4C8;
-    width: auto;
-  
+
 }

@@ -1,83 +1,96 @@
-.searchParentDiv {
-    margin: 2% 0 0 0 ;
+.searchParentDiv { 
+    margin-top: 1%;
     padding: none;
     box-sizing: border-box;
-}
-
-.searchbar {
-    height: 50px;
-    margin: 10px;
-    width: 100%; 
-}
-
-
-.searchSubmit {
-    display: inline-block;
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 6fr;
 }
 
 .displaySearchResultsParent {
-    margin: 3%;
-    height: 70%;
-    padding: none;
-}
-
-.searchPaginationRow{
-    display: inline-flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    padding: 5px;
-}
-
-
-.pageFormInfoDiv{
-    width: 18vw;
-    padding: 2px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-}
-.pageForm {
-    display: inline-flex;
-    width: auto;
-    align-items: center;
-    font-size: 1.2rem;
-    padding: 5px;
-   
-}
-.pageFormItem{
-    margin: 2px;
-}
-
-.paginationBtn {
-    display: inline-block;
-}
-
-.searchInfo {
-    margin-left: none;
-    padding: none;
-    height: 40px;
-
+    grid-row: 3;
+    
 }
 
 .pageInfo {
     font-size: 1.2rem;
+    grid-row: 1;
+    grid-column: 1;
 }
 
-.pageInput {
-    width: 80px;
-    margin: 0 5px 0 5px;
+.searchPaginationRow {
+    padding: 5px;
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: end;
 }
-
 
 .resultsContainer {
-    width: auto;
+
     height: 50vh;
     border: 1px solid #ccc;
     overflow-y: auto;
     box-shadow: 1px 2px 4px 1px #ccc;
     background-color: rgba(255, 238, 223, .2);
+    grid-row: 4;
+}
+
+.pageFormDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+.searchbar {
+    grid-row: 1;
+    height: 50px;
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.searchbarMainDiv {
+    grid-row: 1;
+    grid-column: 1;
+    width: 40vw;
+}
+
+.searchSubmit {
+    margin: 0 10px 0 10px;
+    box-shadow: -1px 1px 3px 2px rgba(207, 54, 51, .5);
+}
+
+
+.pageFormInfoDiv {
+    padding: 2px
+}
+
+.pageForm {
+    font-size: 1.2rem;
+    padding: 5px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+
+
+.pageFormItem {
+    margin: 2px;
+    display: inline-block;
+}
+
+.paginationBtn {}
+
+
+
+.pageInput {
+    width: 80px;
+    margin: 0 5px 0 5px;
+    box-shadow: -1px 1px 3px 2px #ccc;
 
 }
 

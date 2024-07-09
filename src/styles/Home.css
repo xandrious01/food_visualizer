@@ -1,9 +1,17 @@
 p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin: 1% 0 1% 0;
     padding: 10px;
 }
 
 ul li {
     font-size: 1.2rem;
+}
+
+h1{
+    color: #ba2e2c;
+}
+
+
+.home-div{
 }

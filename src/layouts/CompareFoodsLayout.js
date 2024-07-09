@@ -36,9 +36,9 @@ const CompareFoodsLayout = () => {
         return (
 
             <div className="compareFoodsParentDiv">
-                <h2>Food Comparison</h2>
-                <NutrientDisplayButtons setDisplayState={setDisplayState} />
+                <h3 className="compareFoodsHeader">Food Comparison</h3>
                 <div className="container compareFoodsDiv">
+                
 
                     {foodData.map(i => {
 
@@ -54,17 +54,17 @@ const CompareFoodsLayout = () => {
                             </div>
                         )
                     })}
-
+            <NutrientDisplayButtons setDisplayState={setDisplayState} />
                 </div>
-
+                
             </div>
 
         )
     } else if (foodsToCompare.length === 0) {
         return (
             <div className="compareFoodsParentDiv">
-                <Row><h1>Compare Foods</h1>
-                </Row>
+                <h3 className="compareFoodsHeader">Compare Foods</h3>
+               
 
                 <Row>
                     <p> You haven't added any foods to compare yet.</p>

@@ -7,10 +7,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgba(0.0,0.0,0.0,0.2);
   overflow-y: hidden;
+  
+}
+
+html {
+ width: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 

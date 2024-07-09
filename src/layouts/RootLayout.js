@@ -1,6 +1,6 @@
-import { NavLink, Button, Row, Col, Container, Nav, NavItem } from "reactstrap";
-import React, { useState, useContext, useEffect } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Button} from "reactstrap";
+import React, { useState, useEffect } from "react";
+import { Link, Outlet } from "react-router-dom";
 import Searchbar from '../pages/search/Searchbar';
 import '../styles/RootLayout.css'
 import '../App.css';
@@ -47,70 +47,53 @@ const RootLayout = () => {
     return (
         <CompareFoodsContext.Provider value={{ foodsToCompare, addFoodToCompare, removeFoodFromComparison }}>
             <TriggerReloadContext.Provider value={{ reloadOnSearch, setReloadOnSearch }}>
-                <Container fluid className="root" id='root'>
+                <div className="root customRoot" id='root'>
 
-                    <Row className='parentRow'>
+                    <div className="navBtnsDiv">
+                        <Link to="/"
+                            className='customLink'>
+                            <Button className="navBtn custom-button" >
+                                Home
+                            </Button>
+                        </Link>
 
-                        <Col className="col-xs-1 col-2 navBtnsCol">
+                        <Link to="search">
+                            <Button className="navBtn custom-button" >
+                                Search
+                            </Button>
+                        </Link>
 
-                            <div className="nav-div d-flex flex-column navBtnsDiv">
-                                <Link to="/"
-                                    className='customLink'>
-                                    <Button className="navBtn custom-button" >
-                                        Home
-                                    </Button>
-                                </Link>
+                        <Link to="/myFoods">
+                            <Button className="navBtn custom-button" >
+                                My Foods
+                            </Button>
+                        </Link>
 
-                                <Link to="search">
-                                    <Button className="navBtn custom-button" >
-                                        Search
-                                    </Button>
-                                </Link>
-
-                                <Link to="/myFoods">
-                                    <Button className="navBtn custom-button" >
-                                        My Foods
-                                    </Button>
-                                </Link>
-
-                                <Link to="compare">
-                                    <Button className="navBtn custom-button" >
-                                        Food Comparison
-                                    </Button>
-                                </Link>
-                            </div>
-                        </Col>
-
-                        <Col className='headerCol'>
-                            <Row className="headerRow">
-                                <div className="headerTextDiv">
-                                    <h1 className="headerText">
-                                        Nutrient Visualizer
-                                    </h1>
-                                </div>
-                                <div className="headerSearchbarDiv">
-                                    <Searchbar />
-                                </div>
-                            </Row>
-                            
-                            <Row className='foodCompareListDisplay'>
-
-                                    <p className="comparisonListText">Comparison List:</p>
-                               
-                                    <FoodComparisonList removeFoodFromComparison={removeFoodFromComparison} />
-                            </Row>
-
-                            <Col className='w-full colMain'>
-                                <main>
-                                    <Outlet />
-                                </main>
-                            </Col>
-                        </Col>
+                        <Link to="compare">
+                            <Button className="navBtn custom-button" >
+                                Food Comparison
+                            </Button>
+                        </Link>
+                    </div>
 
 
-                    </Row>
+                    <div className='header'>
+                        <h1 className="headerText">Nutrient Visualizer</h1>
+                        <div className="headerSearchbarDiv"><Searchbar /></div>
+                    </div>
 
-                </Container>
+                    <div className='foodCompareListDisplay'>
+
+                        <p className="comparisonListText">Compare:</p>
+
+                        <FoodComparisonList removeFoodFromComparison={removeFoodFromComparison} />
+                    </div>
+
+                    <main className="main">
+                        <Outlet />
+                    </main>
+
+                </div>
             </TriggerReloadContext.Provider>
         </CompareFoodsContext.Provider >
 

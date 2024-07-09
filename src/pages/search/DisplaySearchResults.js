@@ -82,13 +82,13 @@ const DisplaySearchResults = () => {
         const { pageNum } = pageInput;
         navigate(`/search/${query}/page/${parseInt(pageNum)}`);
         console.log("submitting")
-        // setReloadOnSearch(true);
+        setReloadOnSearch(true);
         setPageInput({ pageNum: '' })
     }
 
     if (isLoading) {
         return (
-            <div>
+            <div className="displaySearchResultsParent">
                 <h1>Loading</h1>
             </div>
         )
@@ -107,31 +107,32 @@ const DisplaySearchResults = () => {
         return (
             <div className="displaySearchResultsParent">
 
-
-                <div
-                    className="searchInfo">
+    
                     <p className="pageInfo">
                         Total Hits: {resultsInfo.totalHits}
                     </p>
-                </div>
+           
 
                 <div className="searchPaginationRow">
 
 
                     <Button
+                        id="prevPageBtn"
                         className={pageNum === 1 || resultsInfo.totalPages === 1 ? 'disabled paginationBtn customPageBtn' : 'paginationBtn customPageBtn'}
                         onClick={handlePrev}
                     >Previous Page</Button>
 
-                    <div className='pageFormInfoDiv'>
+                   
+                    <div className='pageFormDiv'>
                         <p className='pageInfo'>
                             Displaying Page {resultsInfo.currentPage} of {availablePagesToDisplay}
                         </p>
+
                         <Form
                             onSubmit={handlePageSubmit}
                             className={resultsInfo.totalPages > 3 ? 'pageForm' : 'hidden'} >
 
-                            <Label htmlFor="pageNumInput" >
+                            <Label className="pageFormItem" htmlFor="pageNumInput" >
                                 Jump to page:
                             </Label>
 
@@ -142,17 +143,19 @@ const DisplaySearchResults = () => {
                                 type="number"
                                 value={pageInput.pageNum}
                                 onChange={handlePageInputChange}
-                                className="pageInput"
+                                className="pageInput pageFormItem"
                             />
 
                             <Button
-                                className="pageInputSubmit customPageBtn"
+                                className="pageInputSubmit pageFormItem customPageBtn"
                                 type="submit">Go</Button>
                         </Form>
-                    </div>
+                        </div>
+                  
 
                     <Button
                         onClick={handleNext}
+                        id="nextPageBtn"
                         className={pageNum === resultsInfo.totalPages || resultsInfo.totalPages === 1 ? 'paginationBtn disabled customPageBtn' : 'paginationBtn customPageBtn'}
                     >Next Page
                     </Button>
