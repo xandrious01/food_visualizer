@@ -33,7 +33,6 @@ export async function requestFoodByQuery(query, pageNum){
 
 
 export async function requestFoodsByIds(joinedFdcIds){
-    console.log('requestingFoodsByIds')
     const params = {
         api_key: process.env.REACT_APP_API_KEY,
         fdcIds : joinedFdcIds 

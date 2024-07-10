@@ -41,18 +41,15 @@ const DisplayFoodLayout = () => {
     const handleSave = () => {
         if (!localStorage.getItem("savedFoods")) {
             const saved = [fdcId];
-            console.log(saved)
             localStorage.setItem("savedFoods", JSON.stringify(saved))
         } else {
             const saved = JSON.parse(localStorage.getItem("savedFoods"));
             !(saved.includes(fdcId)) ? saved.push(fdcId) : console.log("food already saved");
             localStorage.setItem("savedFoods", JSON.stringify(saved))
         }
-        return console.log(JSON.parse(localStorage.getItem("savedFoods")))
     }
 
     const handleAddComparison = () => {
-        console.log("added to comparison")
         return addFoodToCompare(fdcId, description)
     }
 
@@ -70,52 +67,36 @@ const DisplayFoodLayout = () => {
 
             <div className="displayFoodLayoutMain"
             id='displayFoodMain'>
-                <Row>
-                    <Row className='displayFoodRow'>
-                        <div className="compareBtnDiv d-flex">
-                            <p className="displayFoodDescription" >
+                
+                            <h4 className="displayFoodDescription" >
                                 {description}
-                            </p>
+                            </h4>
                             <Button
                                 id="addCompareBtn"
-                                className="custom-button"
+                                className="custom-button foodDisplayCompareBtn"
                                 onClick={handleAddComparison}
                             >
                                 +Add to Comparison
                             </Button>
-                        </div>
-
-                    </Row>
-
-                    <Col
-                        className="col-2 flex-column foodInfoDisplayCol">
+    
 
                         <DisplayFoodInfo foodData={foodData} />
 
-                    </Col>
-
-                    <Col
-                        className='col-2 flex-column nutritionInfoDisplayCol'>
 
                         <DisplayFoodNutritionFacts
                             foodData={foodData}
                             displayState={displayState} />
 
 
-                    </Col>
-                    <Col className='col-6 p-1 chartDisplayCol'>
-
                         <Outlet context={{ foodData, displayState }} />
 
-
-                    </Col>
 
                     <NutrientDisplayButtons
                         displayState={displayState}
                         setDisplayState={setDisplayState}
                     />
 
-                </Row>
+             
                 <div className="foodDisplaySaveBackBtnsDiv">
                     <Button
                         id="backBtn"

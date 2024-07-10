@@ -1,37 +1,38 @@
-.foodDisplayParentDiv{
-   
-    width: 100%;
-    display: flex;
-}
 
 .displayFoodLayoutMain{
-    padding: 10px;
+   display: grid;
+   display: grid;
+    grid-template-columns: 1fr 1fr 60% 1fr;
+    grid-template-rows:  8% 70% 1fr;
+  
 }
 
+
 .chartDiv{
-    width: 100%;
-    height: 100%;
+    grid-row: 2/3;
+    grid-column: 3;
+    min-height: 800px;
+    min-width: 100%;
+    z-index: 2;
 }
 
 .toggleDataBtnsDiv{
    align-items: flex-start;
 }
+
 .setDisplayBtn{
-    display: block;
+    grid-column: 4;
+    grid-row: 2;
 }
 
-.displayFoodRow{
-    margin-top: 3vh;
+.foodInfoDiv{
+    grid-row: 2/3;
+    grid-column: 1;
 }
 
-.chartDisplayCol{
-    height: 80vh;
-}
-
-.chartDiv{
-    height: 90%;
-    z-index: 1;
-    padding-bottom: 2%;
+.nutritionFactsDiv{
+    grid-row: 2/3;
+    grid-column: 2;
 }
 
 .foodDisplaySaveBackBtnsDiv{
@@ -47,44 +48,30 @@
 
 .toggleDataBtnsDiv{
     margin-top: 5vh;
+    grid-column: 4;
+    grid-row: 2/3;
 }
 
-.nutritionInfoDisplayCol{
-    
-}
 
-.foodInfoDisplayCol{
-
-}
-
-.nutritionFactsDiv{
-
-}
-
-.compareBtnDiv{
-    justify-content: space-between;
-}
 
 #addCompareBtn{
     width: 10vw;
 }
 
-#saveBtn{
-  
-}
-#backBtn{
-   
-}
 
 .displayFoodDescription{
     font-weight: bold;
     font-size: 1.5rem;
-}
-
-
-.displayFoodInfo{
+    grid-row: 1;
+    grid-column-start: 1;
 
 }
+
+.foodDisplayCompareBtn{
+    grid-row: 1;
+    grid-column: 4;
+}
+
 
 
 

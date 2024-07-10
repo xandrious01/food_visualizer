@@ -10,8 +10,7 @@ const FoodComparisonList = ({ removeFoodFromComparison }) => {
     const { foodsToCompare } = useContext(CompareFoodsContext);
     
     const handleRemove = (e) => {
-        const fdcId = e.target.parentNode.id.slice(-7);
-        console.log(fdcId)
+        const fdcId = e.target.parentNode.id.slice(12);
         return removeFoodFromComparison(fdcId)
     }
 

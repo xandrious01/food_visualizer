@@ -22,7 +22,7 @@ const DisplayFood = () => {
             readDisplayStateAndSetOptions();
             setIsReady(true);
         }
-        
+
     }, [displayState, foodData])
 
     function readDisplayStateAndSetOptions() {
@@ -50,7 +50,6 @@ const DisplayFood = () => {
 
         if (displayState === 'DISPLAY_SUGARS') {
             let sugarsData = formatCarbsOrLipids(foodData, fibersAndSugars);
-            console.log(sugarsData)
             checkData(sugarsData);
             tableName = `Carbohydrate Content per 100g of ${description}`
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", sugarsData));
@@ -78,7 +77,7 @@ const DisplayFood = () => {
         }
     }
 
-    function checkData(data){
+    function checkData(data) {
         return data.length === 0 ? setNoData(true) : setNoData(false);
     }
 
@@ -86,7 +85,9 @@ const DisplayFood = () => {
         const options = {
             chart: {
                 type: 'pie',
-                backgroundColor: '#FFF2E6'
+                backgroundColor: '#FFF2E6',
+                margin: [50, 10, 0, 10],
+                height: '80%'
             },
             yAxis: {
                 title: {
@@ -103,29 +104,41 @@ const DisplayFood = () => {
         const options = {
             chart: {
                 type: 'column',
-                backgroundColor: '#FFF2E6'
-            }
+                backgroundColor: '#FFF2E6',
+                margin: [10, 100, 100, 10],
+                height: '80%'
+            } 
         };
         options.title = { text: `${tableName}`, align: 'center' };
-        options.xAxis = { categories: [...categories], crosshair: true };
+        options.xAxis = { categories: [...categories], labels: {
+            y: 20
+        }};
         options.yAxis = {
             min: 0, title: {
-                text: 'amount in mg'
+                text: 'amount in mg',
             }
         }
         options.series = [{ name: `${dataName}`, data: [...data] }];
+        checkDisplayStateAndModifyOptions(options)
         return options;
     }
-    
-    if(!isReady){
+
+    function checkDisplayStateAndModifyOptions(options){
+        if (displayState==='DISPLAY_VITAMINS'){
+            options.chart.margin=[20,10,200,10]
+        }
+        return options;
+    }
+
+    if (!isReady) {
         return (
             <div>
                 Loading, please wait
             </div>
         )
-    } else if (isReady && noData){
+    } else if (isReady && noData) {
         return (
-            <div>
+            <div className="chartDiv">
                 <p>
                     No data available for this dataset.
                 </p>
@@ -137,11 +150,11 @@ const DisplayFood = () => {
                 <HighchartsReact
                     highcharts={Highcharts}
                     options={chartOptions}
-                    containerProps={{ style: { height: "100%" } }}
+                    containerProps={{ style: { minHeight: "40vh", minWidth: "40vw", margin: 'auto' } }}
                 />
             </div>
         )
-    } 
+    }
 
 
 

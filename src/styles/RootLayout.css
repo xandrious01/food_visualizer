@@ -60,10 +60,8 @@
 
 .foodCompareListDisplay {
     grid-area: compare;
-    border: 5px solid blue;
-    display: flex;
-    flex-direction: column;
     
+    border: 5px solid blue;
 }
 
 .comparisonListText {
@@ -72,15 +70,19 @@
 }
 
 .compareListItem {
-    padding: 8px;
     background-color: #00B4C8;
+    width: 100%;
+    border: 2px solid red;
+   display: block;
+ 
 }
 
 .compareFoodsLink {
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
-    color: white;
+    color: white;;
     background-color: #00B4C8;
+
 
 }

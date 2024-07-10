@@ -34,7 +34,6 @@ const DisplaySearchResults = () => {
         async function requestSearchResults(query, pageNum) {
             try {
                 const response = await requestFoodByQuery(query, pageNum);
-                console.log(response)
                 if (response) {
                     const { totalHits, totalPages, currentPage } = response.data;
                     setResultsInfo({ totalHits, totalPages, currentPage });
@@ -81,7 +80,6 @@ const DisplaySearchResults = () => {
         e.preventDefault();
         const { pageNum } = pageInput;
         navigate(`/search/${query}/page/${parseInt(pageNum)}`);
-        console.log("submitting")
         setReloadOnSearch(true);
         setPageInput({ pageNum: '' })
     }
