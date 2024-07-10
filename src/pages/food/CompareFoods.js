@@ -88,7 +88,9 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         const options = {
             chart: {
                 type: 'pie',
-                backgroundColor: '#FFF2E6'
+                backgroundColor: '#FFF2E6',
+                margin: [50, 10, 0, 10],
+                height: '80%'
             },
             yAxis: {
                 title: {
@@ -96,7 +98,9 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                 }
             }
         };
-        options.title = { text: `${tableName}` };
+        options.title = { text: `${tableName}`, align: 'center', style: {
+            fontSize: '18px'
+        }};
         options.series = [{ name: `${dataName}`, data: [...data] }];
         return options;
     }
@@ -108,8 +112,12 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                 backgroundColor: '#FFF2E6'
             }
         };
-        options.title = { text: `${tableName}`, align: 'center' };
-        options.xAxis = { categories: [...categories], crosshair: true };
+        options.title = { text: `${tableName}`, align: 'center', style: {
+            fontSize: '18px'
+        } };
+        options.xAxis = { categories: [...categories], labels: {
+            y: 20
+        }};
         options.yAxis = {
             min: 0, title: {
                 text: 'amount in mg'
@@ -117,6 +125,14 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         }
         options.spacing=[0, 0, 0, 0];
         options.series = [{ name: `${dataName}`, data: [...data] }];
+        checkDisplayStateAndModifyOptions(options)
+        return options;
+    }
+
+    function checkDisplayStateAndModifyOptions(options){
+        if (displayState==='DISPLAY_VITAMINS'){
+            options.chart.margin=[20,10,200,10]
+        }
         return options;
     }
 

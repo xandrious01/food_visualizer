@@ -11,8 +11,6 @@ const CompareFoodsLayout = () => {
     const { foodsToCompare } = useContext(CompareFoodsContext);
     const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
     const [isLoading, setIsLoading] = useState(true);
-
-
     const [foodData, setFoodData] = useState([]);
 
     useEffect(() => {
@@ -37,11 +35,9 @@ const CompareFoodsLayout = () => {
 
             <div className="compareFoodsParentDiv">
                 <h3 className="compareFoodsHeader">Food Comparison</h3>
-                <div className="container compareFoodsDiv">
-                
-
+                    <div className="compareFoodsChartsDiv">
                     {foodData.map(i => {
-
+                        
                         return (
                             <div
                                 className="compareFoodIndDiv"
@@ -54,9 +50,10 @@ const CompareFoodsLayout = () => {
                             </div>
                         )
                     })}
+                    </div>
+
             <NutrientDisplayButtons setDisplayState={setDisplayState} />
-                </div>
-                
+               
             </div>
 
         )
@@ -66,9 +63,8 @@ const CompareFoodsLayout = () => {
                 <h3 className="compareFoodsHeader">Compare Foods</h3>
                
 
-                <Row>
-                    <p> You haven't added any foods to compare yet.</p>
-                </Row>
+                    <p className="noFoodsMsg"> You haven't added any foods to compare yet.</p>
+            
             </div>
         )
     }

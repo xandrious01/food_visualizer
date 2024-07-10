@@ -14,7 +14,7 @@
     grid-area: main;
     display: flex;
     flex-direction: row;
-    margin: 2% 3%;
+    margin: 1% 2%;
 }
 
 
@@ -24,7 +24,7 @@
     box-shadow: -1px 1px 3px 2px rgba(207, 54, 51, .8);
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: nowrap;
     align-items: center;
     margin: 1%;
@@ -33,12 +33,12 @@
 .headerText {
     font-size: 4rem;
     color: #ff4818;
-    
+    margin-left: 1%;
 }
 
-.headerSearchbarDiv{
-   
-    
+.headerSearchbarDiv {
+    margin-right: 5%;
+    margin-bottom: 2%;
 }
 
 .navBtnsDiv {
@@ -60,8 +60,7 @@
 
 .foodCompareListDisplay {
     grid-area: compare;
-    
-    border: 5px solid blue;
+
 }
 
 .comparisonListText {
@@ -72,17 +71,26 @@
 .compareListItem {
     background-color: #00B4C8;
     width: 100%;
-    border: 2px solid red;
-   display: block;
- 
+    margin: 10px;
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 3px solid #00a2b4;
+}
+
+.compareListItem:hover{
+    border: 3px solid white;
+    box-sizing: border-box;
 }
 
 .compareFoodsLink {
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
-    color: white;;
+    color: white;
     background-color: #00B4C8;
-
-
 }

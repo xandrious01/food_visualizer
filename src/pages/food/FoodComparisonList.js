@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 import { CompareFoodsContext } from "../../contexts";
 import '../../styles/RootLayout.css';
-import '../../styles/CompareFoods.css';
+
 
 
 const FoodComparisonList = ({ removeFoodFromComparison }) => {

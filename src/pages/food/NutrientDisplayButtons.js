@@ -11,7 +11,7 @@ const NutrientDisplayButtons = ({ setDisplayState }) => {
 
 
     return (
-        <div className={pathname === '/compare' ? 'compareFoodNutrientBtns' : 'toggleDataBtnsDiv'}>
+        <div className={pathname === '/compare' ? 'compareFoodsNutrientBtns' : 'toggleDataBtnsDiv'}>
             <Button outline
                 id="macrosNutrientBtn"
                 className='setDisplayBtn customNutrientButton'

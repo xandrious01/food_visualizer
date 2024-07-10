@@ -25,6 +25,7 @@
 .setDisplayBtn{
     grid-column: 4;
     grid-row: 2;
+    display: block;
 }
 
 .foodInfoDiv{
@@ -69,6 +70,10 @@
 
 }
 
+.displayFoodInfo{
+    font-size: 1.1rem;
+}
+
 .foodDisplayCompareBtn{
     grid-row: 1;
     grid-column: 4;
@@ -77,7 +82,8 @@
 
 .nutritionFactsDisplayText{
     margin: .5rem 3rem 0 0;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    line-height: 1rem;
 }
 
 p .energy{
