@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { FormGroup, Input, Button, Row, Col } from "reactstrap";
+import { Input, Button } from "reactstrap";
 import { Form, useNavigate } from "react-router-dom";
 import { TriggerReloadContext } from "../../contexts";
 import '../../styles/Search.css'

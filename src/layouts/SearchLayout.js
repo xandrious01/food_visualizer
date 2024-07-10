@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
-import { Container } from "reactstrap";
+import {  useContext } from "react";
+
 import Searchbar from "../pages/search/Searchbar";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import '../styles/Search.css';
 import { TriggerReloadContext } from "../contexts";
 

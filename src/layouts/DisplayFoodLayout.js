@@ -1,4 +1,4 @@
-import { Col, Row, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, Outlet } from "react-router-dom";
 import { requestFoodById } from "../ApiCalls";

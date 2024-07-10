@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import Highcharts, { chart } from 'highcharts';
-import { Button, Row, Col } from "reactstrap";
+import Highcharts from 'highcharts';
+import { Button } from "reactstrap";
 import HighchartsReact from 'highcharts-react-official';
 import { vitamins, fibersAndSugars, minerals, macros, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos } from "../../formattingFunctions";
 import { CompareFoodsContext } from "../../contexts";

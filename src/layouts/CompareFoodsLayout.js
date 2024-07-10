@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { CompareFoodsContext } from "../contexts";
 import { requestFoodsByIds } from "../ApiCalls";
-import { Row, Col, Button } from "reactstrap";
 import CompareFoodDisplay from "../pages/food/CompareFoods";
 import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
 import '../styles/CompareFoods.css';

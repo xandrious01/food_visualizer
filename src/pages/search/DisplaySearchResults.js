@@ -2,10 +2,9 @@ import {
     Button,
     ListGroupItem,
     ListGroupItemHeading,
-    ListGroupItemText,
     Label,
     Form,
-    Input, Col, Row,
+    Input
 } from "reactstrap";
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams, useOutletContext } from "react-router-dom";
