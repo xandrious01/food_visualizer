@@ -86,7 +86,7 @@ const DisplayFood = () => {
                 type: 'pie',
                 backgroundColor: '#FFF2E6',
                 margin: [50, 10, 0, 10],
-                height: '80%'
+                height: '70%'
             },
             yAxis: {
                 title: {
@@ -106,12 +106,14 @@ const DisplayFood = () => {
                 backgroundColor: '#FFF2E6',
                 margin: [10, 100, 100, 10],
                 height: '80%'
-            } 
+            }
         };
         options.title = { text: `${tableName}`, align: 'center' };
-        options.xAxis = { categories: [...categories], labels: {
-            y: 20
-        }};
+        options.xAxis = {
+            categories: [...categories], labels: {
+                y: 20
+            }
+        };
         options.yAxis = {
             min: 0, title: {
                 text: 'amount in mg',
@@ -122,9 +124,9 @@ const DisplayFood = () => {
         return options;
     }
 
-    function checkDisplayStateAndModifyOptions(options){
-        if (displayState==='DISPLAY_VITAMINS'){
-            options.chart.margin=[20,10,200,10]
+    function checkDisplayStateAndModifyOptions(options) {
+        if (displayState === 'DISPLAY_VITAMINS') {
+            options.chart.margin = [20, 10, 200, 10]
         }
         return options;
     }
@@ -149,7 +151,7 @@ const DisplayFood = () => {
                 <HighchartsReact
                     highcharts={Highcharts}
                     options={chartOptions}
-                    containerProps={{ style: { minHeight: "40vh", minWidth: "40vw", margin: 'auto' } }}
+                    containerProps={{ style: { height: "min-content", margin: 'auto' } }}
                 />
             </div>
         )

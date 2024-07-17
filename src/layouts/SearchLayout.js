@@ -11,9 +11,9 @@ const SearchLayout = () => {
     return (
         <div className="searchParentDiv"
         >
-            <div className="searchbarMainDiv">
+            {/* <div className="searchbarMainDiv">
                 <Searchbar />
-                </div>
+                </div> */}
             
             <Outlet />
         </div>

@@ -13,5 +13,10 @@ h1{
 }
 
 
-.home-div{
+.homeParentDiv { 
+    margin-top: none;
+    padding: none;
+    box-sizing: border-box;
+    width: 70vw;
+    
 }

@@ -1,11 +1,12 @@
-import { Button} from "reactstrap";
+import { Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import Searchbar from '../pages/search/Searchbar';
 import '../styles/RootLayout.css'
 import '../App.css';
 
 import { CompareFoodsContext, TriggerReloadContext } from "../contexts";
+import { NetworkErrorContext } from "../contexts";
 import FoodComparisonList from "../pages/food/FoodComparisonList";
 
 
@@ -20,6 +21,8 @@ const RootLayout = () => {
     const [foodsToCompare, setFoodsToCompare] = useState(checkLocalCompareFoods);
 
     const [reloadOnSearch, setReloadOnSearch] = useState(false);
+
+    const [errorExists, setErrorExists] = useState(false);
 
     useEffect(() => {
         updateCompareFoodsInLocal();
@@ -49,31 +52,22 @@ const RootLayout = () => {
             <TriggerReloadContext.Provider value={{ reloadOnSearch, setReloadOnSearch }}>
                 <div className="root customRoot" id='root'>
 
-                    <div className="navBtnsDiv">
-                        <Link to="/"
+                    <div className="nav">
+                        <NavLink to="/"
                             className='customLink'>
-                            <Button className="navBtn custom-button" >
-                                Home
-                            </Button>
-                        </Link>
+                            Home
+                        </NavLink>
 
-                        <Link to="search">
-                            <Button className="navBtn custom-button" >
-                                Search
-                            </Button>
-                        </Link>
+                        <NavLink to="search">
+                            Search
+                        </NavLink>
 
-                        <Link to="/myFoods">
-                            <Button className="navBtn custom-button" >
-                                My Foods
-                            </Button>
-                        </Link>
-
-                        <Link to="compare">
-                            <Button className="navBtn custom-button" >
-                                Food Comparison
-                            </Button>
-                        </Link>
+                        <NavLink to="/myFoods">
+                            My Foods
+                        </NavLink>
+                        <NavLink to="compare">
+                           Food Comparison
+                        </NavLink>
                     </div>
 
 

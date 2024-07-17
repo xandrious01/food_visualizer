@@ -66,50 +66,51 @@ const DisplayFoodLayout = () => {
         return (
 
             <div className="displayFoodLayoutMain"
-            id='displayFoodMain'>
-                
-                            <h4 className="displayFoodDescription" >
-                                {description}
-                            </h4>
-                            <Button
-                                id="addCompareBtn"
-                                className="custom-button foodDisplayCompareBtn"
-                                onClick={handleAddComparison}
-                            >
-                                +Add to Comparison
-                            </Button>
-    
+                id='displayFoodMain'>
 
-                        <DisplayFoodInfo foodData={foodData} />
+                <h4 className="displayFoodDescription" >
+                    {description}
+                </h4>
+                <Button
+                    id="addCompareBtn"
+                    className="custom-button foodDisplayCompareBtn"
+                    onClick={handleAddComparison}
+                >
+                    +Add to Comparison
+                </Button>
 
 
-                        <DisplayFoodNutritionFacts
-                            foodData={foodData}
-                            displayState={displayState} />
+                <DisplayFoodInfo foodData={foodData} />
 
 
-                        <Outlet context={{ foodData, displayState }} />
+                <DisplayFoodNutritionFacts
+                    foodData={foodData}
+                    displayState={displayState} />
 
 
-                    <NutrientDisplayButtons
-                        displayState={displayState}
-                        setDisplayState={setDisplayState}
-                    />
+                <Outlet context={{ foodData, displayState }} />
 
-             
+
+                <NutrientDisplayButtons
+                    displayState={displayState}
+                    setDisplayState={setDisplayState}
+                />
+
+
                 <div className="foodDisplaySaveBackBtnsDiv">
-                    <Button
-                        id="backBtn"
-                        className="customDisplayFoodButton"
-                        onClick={() => navigate(-1)}>
-                        Go Back
-                    </Button>
                     <Button
                         id="saveBtn"
                         className="customDisplayFoodButton"
                         onClick={handleSave}>
                         Save Food
                     </Button>
+                    <Button
+                        id="backBtn"
+                        className="customDisplayFoodButton"
+                        onClick={() => navigate(-1)}>
+                        Go Back
+                    </Button>
+
                 </div>
 
             </div>

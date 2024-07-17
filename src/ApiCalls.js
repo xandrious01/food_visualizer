@@ -1,4 +1,5 @@
 import axios from "axios";
+import { NetworkErrorContext } from "./contexts";
 
 export async function requestFoodById(fdcId){
     const response = await axios({

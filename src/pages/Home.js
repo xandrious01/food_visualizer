@@ -1,11 +1,63 @@
 import '../styles/Home.css'
+import { PaginationLink, PaginationItem, Pagination } from 'reactstrap';
 
 
 
 const Home = () => {
     return (
 
-      <div className="home-div">
+      <div className="homeParentDiv">
+        <Pagination>
+  <PaginationItem>
+    <PaginationLink
+      first
+      href="#"
+    />
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink
+      href="#"
+      previous
+    />
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink href="#">
+      1
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink href="#">
+      2
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink href="#">
+      3
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink href="#">
+      4
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink href="#">
+      5
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink
+      href="#"
+      next
+    />
+  </PaginationItem>
+  <PaginationItem>
+    <PaginationLink
+      href="#"
+      last
+    />
+  </PaginationItem>
+</Pagination>
       
         <h1>Welcome!</h1>
         <p>This Nutrient Visualizer is intended to be an entertaining and informative way to view the nutritional content of different foods.</p>

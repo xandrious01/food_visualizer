@@ -1,20 +1,23 @@
 #root {
     display: grid;
     grid-template-columns: 1fr 7fr;
-    grid-template-rows: 1fr 3fr 5fr;
+    grid-template-rows: 1fr 1fr 5fr;
     grid-template-areas:
         'sidebar header'
-        'sidebar main'
-        'compare main';
+        'sidebar compare'
+        'sidebar main';
     width: 100vw;
     height: 100vh;
+    overflow-y: auto;
 }
 
 .main {
     grid-area: main;
     display: flex;
     flex-direction: row;
-    margin: 1% 2%;
+    margin: 20px 40px;
+    padding: 20px;
+    
 }
 
 
@@ -22,12 +25,14 @@
     grid-area: header;
     border: 5px solid #ff713d;
     box-shadow: -1px 1px 3px 2px rgba(207, 54, 51, .8);
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
+    height: min-content;
     justify-content: space-between;
     flex-wrap: nowrap;
     align-items: center;
     margin: 1%;
+    position: static;
 }
 
 .headerText {
@@ -41,48 +46,60 @@
     margin-bottom: 2%;
 }
 
-.navBtnsDiv {
-    background-color: none;
+.nav {
+    background-color: #FF713D;
     grid-area: sidebar;
-    grid-row-start: 2;
-    padding: 20px;
-
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-right: none;
+    position: sticky;
 }
 
-.navBtn {
+.nav a {
     text-decoration: none;
+    border: 2px solid #FF713D;
     width: 100%;
+    height: 5rem;
     color: white;
     background-color: #FF713D;
-    margin: 5px;
+    padding: 10px;
+    font-size: 1.4rem;
+    margin: none;
 }
 
 
 .foodCompareListDisplay {
     grid-area: compare;
-
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 20px;
+    padding: 10px;
 }
 
 .comparisonListText {
     font-size: 1.2rem;
-
+    justify-self: left;
 }
 
 .compareListItem {
     background-color: #00B4C8;
-    width: 100%;
     margin: 10px;
-    padding: 8px;
-    width: 100%;
+    padding: 10px;
+    width: auto;
+    max-width: 15%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
     box-sizing: border-box;
     border: 3px solid #00a2b4;
+    height: 100px;
 }
 
-.compareListItem:hover{
+.compareListItem:hover {
     border: 3px solid white;
     box-sizing: border-box;
 }
@@ -93,4 +110,5 @@
     font-weight: 500;
     color: white;
     background-color: #00B4C8;
+    margin-right: 10px;
 }
