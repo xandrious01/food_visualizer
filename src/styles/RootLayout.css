@@ -1,11 +1,11 @@
 #root {
     display: grid;
-    grid-template-columns: 1fr 7fr;
+    grid-template-columns: 1.2fr 7fr 1.5fr;
     grid-template-rows: 1fr 1fr 5fr;
     grid-template-areas:
-        'sidebar header'
-        'sidebar compare'
-        'sidebar main';
+        'sidebar header header'
+        'sidebar main compare'
+        'sidebar main compare';
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
@@ -72,9 +72,6 @@
 
 .foodCompareListDisplay {
     grid-area: compare;
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
     margin: 10px 20px;
     padding: 10px;
 }
@@ -89,13 +86,11 @@
     margin: 10px;
     padding: 10px;
     width: auto;
-    max-width: 15%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
     box-sizing: border-box;
-    border: 3px solid #00a2b4;
     height: 100px;
 }
 
@@ -106,9 +101,6 @@
 
 .compareFoodsLink {
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
     color: white;
     background-color: #00B4C8;
-    margin-right: 10px;
 }

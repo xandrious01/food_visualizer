@@ -11,6 +11,7 @@ import { Link, useNavigate, useParams, useOutletContext } from "react-router-dom
 import { requestFoodByQuery } from "../../ApiCalls";
 import { TriggerReloadContext } from "../../contexts";
 import '../../styles/Search.css'
+import PaginationBar from "./PaginationBar";
 
 
 
@@ -22,21 +23,22 @@ const DisplaySearchResults = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [resultsInfo, setResultsInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [pageInput, setPageInput] = useState({ pageNum: '' });
     const [error, setError] = useState(false);
-
+    const currPageNum = pageNum;
     const navigate = useNavigate();
 
-
-
     useEffect(() => {
-        async function requestSearchResults(query, pageNum) {
+        async function requestSearchResults(query, currPageNum) {
             try {
-                const response = await requestFoodByQuery(query, pageNum);
+                console.log(query, currPageNum)
+                const response = await requestFoodByQuery(query, currPageNum);
+                console.log(query, currPageNum)
                 if (response) {
                     const { totalHits, totalPages, currentPage } = response.data;
                     setResultsInfo({ totalHits, totalPages, currentPage });
                     setError(false);
+                    console.log(response.data.food)
+
                     return setSearchResults(response.data.foods);
                 }
             } catch (err) {
@@ -44,44 +46,14 @@ const DisplaySearchResults = () => {
             }
         }
 
-        requestSearchResults(query, parseInt(pageNum));
+        requestSearchResults(query, parseInt(currPageNum));
         setReloadOnSearch(false);
         setIsLoading(false);
+       
 
     }, [reloadOnSearch])
 
-    const maxPages = 200;
-    const availablePagesToDisplay = resultsInfo.totalPages <= 200 ? resultsInfo.totalPages : 200;
-
-    const handlePrev = () => {
-        navigate(`/search/${query}/page/${parseInt(pageNum) - 1}`)
-        return setReloadOnSearch(true)
-    }
-
-
-    const handleNext = () => {
-        navigate(`/search/${query}/page/${parseInt(pageNum) + 1}`)
-        return setReloadOnSearch(true)
-    }
-
-
-    const handlePageInputChange = e => {
-        const { value } = e.target;
-        const maxPages = resultsInfo.totalPages <= 200 ? resultsInfo.totalPages : 200;
-        setPageInput(pageNum => {
-            return (value <= 0 && value !== '') ? { pageNum: 1 } : (value > maxPages) ? { pageNum: maxPages } : { pageNum: value }
-
-        })
-    }
-
-
-    const handlePageSubmit = e => {
-        e.preventDefault();
-        const { pageNum } = pageInput;
-        navigate(`/search/${query}/page/${parseInt(pageNum)}`);
-        setReloadOnSearch(true);
-        setPageInput({ pageNum: '' })
-    }
+    const maxPage = resultsInfo.totalPages < 200 ? resultsInfo.totalPages : 200;
 
     if (isLoading) {
         return (
@@ -95,7 +67,7 @@ const DisplaySearchResults = () => {
         return (
             <div className="displaySearchResultsParent">
                 <p className="searchNoResultsText">
-                    No results found. Please check your spelling, or try another term.
+                    No results found. Please check your spelling, or try a different search.
                 </p>
             </div>
         )
@@ -104,60 +76,14 @@ const DisplaySearchResults = () => {
         return (
             <div className="displaySearchResultsParent">
 
-    
-                    <p className="pageInfo">
-                        Total Hits: {resultsInfo.totalHits}
-                    </p>
-           
 
-                <div className="searchPaginationRow">
-
-
-                    <Button
-                        id="prevPageBtn"
-                        className={pageNum === 1 || resultsInfo.totalPages === 1 ? 'disabled paginationBtn customPageBtn' : 'paginationBtn customPageBtn'}
-                        onClick={handlePrev}
-                    >Previous Page</Button>
-
-                   
-                    <div className='pageFormDiv'>
-                        <p className='pageInfo'>
-                            Displaying Page {resultsInfo.currentPage} of {availablePagesToDisplay}
-                        </p>
-
-                        <Form
-                            onSubmit={handlePageSubmit}
-                            className={resultsInfo.totalPages > 3 ? 'pageForm' : 'hidden'} >
-
-                            <Label className="pageFormItem" htmlFor="pageNumInput" >
-                                Jump to page:
-                            </Label>
-
-                            <Input
-                                id="pageNum"
-                                name="pageNum"
-                                placeholder=""
-                                type="number"
-                                value={pageInput.pageNum}
-                                onChange={handlePageInputChange}
-                                className="pageInput pageFormItem"
-                            />
-
-                            <Button
-                                className="pageInputSubmit pageFormItem customPageBtn"
-                                type="submit">Go</Button>
-                        </Form>
-                        </div>
-                  
-
-                    <Button
-                        onClick={handleNext}
-                        id="nextPageBtn"
-                        className={pageNum === resultsInfo.totalPages || resultsInfo.totalPages === 1 ? 'paginationBtn disabled customPageBtn' : 'paginationBtn customPageBtn'}
-                    >Next Page
-                    </Button>
-
-                </div>
+                <p className="pageInfo">
+                    Total Hits: {resultsInfo.totalHits}
+                </p>
+                <PaginationBar 
+                query={query}
+                maxPage={maxPage} 
+                currPageNum={currPageNum} />
 
                 <div className='resultsContainer'>
                     {searchResults.map(i => {

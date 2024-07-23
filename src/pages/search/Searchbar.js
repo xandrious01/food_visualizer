@@ -12,7 +12,7 @@ const Searchbar = () => {
     const INITIAL_STATE = { query: '' };
     const [formData, setFormData] = useState(INITIAL_STATE);
     const navigate = useNavigate();
-    let pageNum = 1;
+    let currPageNum = 1;
 
     const handleChange = e => {
         const { value } = e.target;
@@ -22,7 +22,7 @@ const Searchbar = () => {
     const handleSubmit = e => {
         e.preventDefault();
         if (formData.query !== '') {
-            navigate(`/search/${formData.query}/page/${pageNum}`);
+            navigate(`/search/${formData.query}/page/${currPageNum}`);
             setFormData(INITIAL_STATE);
             setReloadOnSearch(true);
         }

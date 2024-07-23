@@ -119,12 +119,12 @@
 }
 
 .customCompareListRemoveBtn {
-  display: flex;
+  display: inline-flex;
   font-size: 1.8rem;
   padding: 2px;
   margin: none;
-  height: 1.9rem;
-  width: 2rem;
+  height: auto;
+  width: 25px;
   align-items: center;
   justify-content: center;
   color: rgba(255, 255, 255, 0.3);

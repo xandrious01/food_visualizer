@@ -13,14 +13,13 @@ export async function requestFoodById(fdcId){
 }
 
 
-export async function requestFoodByQuery(query, pageNum){
-    
+export async function requestFoodByQuery(query, currPageNum){
     const params = {
             api_key: process.env.REACT_APP_API_KEY,
             query: `+${query}`,
             requireAllWords: true,
             pageSize: 50,
-            pageNumber : pageNum
+            pageNumber : currPageNum
            
         }
 
@@ -29,6 +28,7 @@ export async function requestFoodByQuery(query, pageNum){
         url: `${process.env.REACT_APP_BASE_URL}/fdc/v1/foods/search`,
         params : params
     });
+
     return response;
 }
 

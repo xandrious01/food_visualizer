@@ -57,11 +57,6 @@ const RootLayout = () => {
                             className='customLink'>
                             Home
                         </NavLink>
-
-                        <NavLink to="search">
-                            Search
-                        </NavLink>
-
                         <NavLink to="/myFoods">
                             My Foods
                         </NavLink>
