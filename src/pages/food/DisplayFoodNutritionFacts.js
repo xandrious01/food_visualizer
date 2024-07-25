@@ -6,7 +6,7 @@ const DisplayFoodNutritionFacts = ({ foodData }) => {
     if (foodData.foodNutrients) {
         const { foodNutrients } = foodData;
         let nutritionFactsObj = {};
-        const nutritionFactsItemsIds = [ 1008, 1005, 1079, 2000, 1003, 1004, 1258, 1292, 1293, 1018, 1057, 1235]
+        const nutritionFactsItemsIds = [ 2047, 1008, 1005, 1079, 2000, 1003, 1004, 1258, 1292, 1293, 1018, 1057, 1235]
         const nutritionFacts = foodNutrients.filter(i => {
             if(nutritionFactsItemsIds.includes(i.nutrient.id)){
                 const {name, unitName} = i.nutrient;
@@ -14,17 +14,20 @@ const DisplayFoodNutritionFacts = ({ foodData }) => {
                 return nutritionFactsObj[name] = amount+unitName;
             }
         })
+        console.log(nutritionFacts)
 
         
         const foundSugarKey = (Object.keys(nutritionFactsObj)).filter(i => i.toLowerCase().includes('sugar'));
         const foundCarbKey = (Object.keys(nutritionFactsObj)).filter(i => i.toLowerCase().includes('carbohydrate'));
         const foundFiberKey = (Object.keys(nutritionFactsObj)).filter(i => i.toLowerCase().includes('fiber'));
+        const foundEnergyKey = (Object.keys(nutritionFactsObj)).filter(i => i.toLowerCase().includes('energy'));
         
         
-        
+        const calsValue = nutritionFactsObj.Energy !== undefined ? nutritionFactsObj.Energy : nutritionFactsObj[foundEnergyKey];
+
         return (
             < div className="nutritionFactsDiv" >
-                <p className="nutritionFactsDisplayText energy">Energy: {nutritionFactsObj.Energy} </p>
+                <p className="nutritionFactsDisplayText energy">Energy: {calsValue} </p>
 
                 <p className="nutritionFactsDisplayText carbs">Total Carbohydrates: {nutritionFactsObj[foundCarbKey]} </p>
 

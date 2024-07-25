@@ -13,8 +13,9 @@ const FoodComparisonList = ({ removeFoodFromComparison }) => {
         const fdcId = e.target.parentNode.id.slice(12);
         return removeFoodFromComparison(fdcId)
     }
-
-    return (
+    if(foodsToCompare.length > 0){
+        return (
+        
         foodsToCompare.map(i => {
             const { fdcId, description } = i;
             
@@ -34,7 +35,17 @@ const FoodComparisonList = ({ removeFoodFromComparison }) => {
                 </div>
             )
         })
-    )
+    )    
+    } else {
+        return (
+            <div>
+                <p className="userMsg">
+                    You haven't added any foods to compare.
+                </p>
+            </div>
+        )
+    }
+    
 }
 
 export default FoodComparisonList;

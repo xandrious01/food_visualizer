@@ -65,8 +65,8 @@ const DisplaySearchResults = () => {
             <div className="displaySearchResultsParent">
                 <div className="pageInfo">
                 <p className="pageInfoText numHits"> Total Hits: {resultsInfo.totalHits} </p> 
-                <p className="pageInfoText numHits">{'\u2022'}</p>  
-                <p className="pageInfoText numHits">Displaying Page {currPageNum} of {maxPage}</p> 
+                <p className="pageInfoText bulletpoint">{'\u2022'}</p>  
+                <p className="pageInfoText pageDisplay">Displaying Page {currPageNum} of {maxPage}</p> 
                 </div>
                 
                 <PaginationBar 

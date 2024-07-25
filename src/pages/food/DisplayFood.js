@@ -101,7 +101,7 @@ const DisplayFood = () => {
                 type: 'column',
                 backgroundColor: '#FFF2E6',
                 margin: [10, 100, 100, 10],
-                height: '80%',
+                height: '60%',
                 padding: '50px'
             },
             yAxis: {
@@ -153,7 +153,7 @@ const DisplayFood = () => {
                 <HighchartsReact
                     highcharts={Highcharts}
                     options={chartOptions}
-                    containerProps={{ style: { height: "min-content", margin: 'auto' } }}
+                    containerProps={{ style: {  margin: 'auto' } }}
                 />
             </div>
         )

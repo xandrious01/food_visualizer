@@ -114,3 +114,7 @@
 .compareFoodsLink:hover {
   text-decoration: underline;
 }
+
+.userMsg{
+  font-size: 1.1rem;
+}
