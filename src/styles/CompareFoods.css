@@ -32,16 +32,15 @@
 
 .viewRemoveBtnsDiv {
     position: relative;
-    left: 90%;
-    top: 30%;
     z-index: 1;
-    width: 30px;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 40px;
 }
 
 .chartItem {
     display: inline-block;
-    width: 70px;
+    width: 40px;
     height: 40px;
     font-size: 1.8rem;
     color: rgba(.2, .2, .2, .2);

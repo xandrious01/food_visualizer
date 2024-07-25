@@ -1,10 +1,6 @@
 import {
-    Button,
     ListGroupItem,
     ListGroupItemHeading,
-    Label,
-    Form,
-    Input
 } from "reactstrap";
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams, useOutletContext } from "react-router-dom";
@@ -30,15 +26,11 @@ const DisplaySearchResults = () => {
     useEffect(() => {
         async function requestSearchResults(query, currPageNum) {
             try {
-                console.log(query, currPageNum)
                 const response = await requestFoodByQuery(query, currPageNum);
-                console.log(query, currPageNum)
                 if (response) {
                     const { totalHits, totalPages, currentPage } = response.data;
                     setResultsInfo({ totalHits, totalPages, currentPage });
                     setError(false);
-                    console.log(response.data.food)
-
                     return setSearchResults(response.data.foods);
                 }
             } catch (err) {
@@ -49,8 +41,6 @@ const DisplaySearchResults = () => {
         requestSearchResults(query, parseInt(currPageNum));
         setReloadOnSearch(false);
         setIsLoading(false);
-       
-
     }, [reloadOnSearch])
 
     const maxPage = resultsInfo.totalPages < 200 ? resultsInfo.totalPages : 200;

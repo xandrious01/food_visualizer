@@ -1,64 +1,72 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
-import { Link } from "react-router-dom";
-import '../../styles/Search.css'
+import { useNavigate } from "react-router-dom";
+import { TriggerReloadContext } from "../../contexts";
+import "../../styles/Search.css";
 
-const PaginationBar = ({query, maxPage, currPageNum}) => {
+const PaginationBar = ({ query, maxPage, currPageNum }) => {
+  const numPerPage = 50;
+  const numPagesToDisplay = maxPage < 9 ? maxPage : 9;
+  let pages = Array.from(
+    { length: numPagesToDisplay },
+    (_, index) => index + 1
+  );
+  const navigate = useNavigate();
+  const {reloadOnSearch, setReloadOnSearch} = useContext(TriggerReloadContext)
 
-    const [activePage, setActivePage] = useState(1);
-    const numPerPage = 50;
-    const numPagesToDisplay = maxPage < 9 ? maxPage : 9;
-    const pages = Array.from({ length: numPagesToDisplay }, (_, index) => index + 1);
-    console.log(pages)
+  function updatePageNumbers() {
+    if (currPageNum*1 > 5 && currPageNum*1 < maxPage * 1 - 4) {
+      pages = pages.map((x) => x + currPageNum*1 - 5);
+      return pages;
+    } else if (currPageNum*1 >= 1 && currPageNum*1 < 5) {
+      return pages;
+    } else if (currPageNum*1 >= maxPage * 1 - 4 || currPageNum*1 === maxPage) {
+      let difference = maxPage - 9;
+      pages = pages.map((x) => x + difference);
+      return pages;
+    }
+  }
 
-  
+  updatePageNumbers();
 
-    return (
-        <Pagination className="searchPaginationBar">
-            <PaginationItem>
-                <PaginationLink
-                    disabled={activePage === 0 ? true : false}
-                    first
-                    href={`/search/${query}/page/1`}
-                />
-            </PaginationItem>
-            <PaginationItem>
-                <PaginationLink
-                    href={`/search/${query}/page/${currPageNum-1}`}
-                    previous
-                    disabled={activePage === 0 ? true : false}
+  const handlePageClick = (targetPath) => {
+    navigate(targetPath)
+    setReloadOnSearch(true)
+  }
 
-                />
-            </PaginationItem>
-            {pages.map(i => {
+  return (
+    <Pagination className="searchPaginationBar">
+      <PaginationItem disabled={currPageNum*1 === 1 ? 'disabled' : ''}>
+        <PaginationLink first onClick={() => handlePageClick(`/search/${query}/page/1`)} />
+      </PaginationItem>
+      <PaginationItem disabled={currPageNum*1 === 1 ? 'disabled' : ''}>
+        <PaginationLink
+          onClick={() => handlePageClick(`/search/${query}/page/${currPageNum*1 -1}`)}
+          previous
+        />
+      </PaginationItem>
 
-                return (
-                    <PaginationItem
-                        key={i}>
-                        <PaginationLink
-                            href={`/search/${query}/page/${i}`}>
-                            {i}
-                        </PaginationLink>
-                    </PaginationItem>
-                )
-            })}
+      {pages.map((i) => {
+        return (
+          <PaginationItem key={i} active={currPageNum*1===i ? 'active' : ''}>
+            <PaginationLink onClick={() => handlePageClick(`/search/${query}/page/${i}`)}>
+              {i}
+            </PaginationLink>
+          </PaginationItem>
+        );
+      })}
 
-            <PaginationItem>
-                <PaginationLink
-                    href={`/search/${query}/page/${currPageNum+1}`}
-                    next
-                    disabled={activePage === pages.length ? true : false}
-                />
-            </PaginationItem>
-            <PaginationItem>
-                <PaginationLink
-                    href={`/search/${query}/page/${maxPage}`}
-                    disabled={activePage === pages.length ? true : false}
-                    last
-                />
-            </PaginationItem>
-        </Pagination>
-    )
-}
+      <PaginationItem disabled={currPageNum*1 === maxPage ? 'disabled' : ''}>
+        <PaginationLink
+          onClick={() => handlePageClick(`/search/${query}/page/${currPageNum*1 +1}`)}
+          next
+        />
+      </PaginationItem>
+      <PaginationItem disabled={currPageNum*1 === maxPage ? 'disabled' : ''}>
+        <PaginationLink last onClick={() => handlePageClick(`/search/${query}/page/${maxPage}`)}  />
+      </PaginationItem>
+    </Pagination>
+  );
+};
 
 export default PaginationBar;

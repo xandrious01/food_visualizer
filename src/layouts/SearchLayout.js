@@ -4,7 +4,6 @@ import '../styles/Search.css';
 import { TriggerReloadContext } from "../contexts";
 
 const SearchLayout = () => {
-    const {reloadOnSearch, setReloadOnSearch} = useContext(TriggerReloadContext);
 
     return (
             <Outlet />

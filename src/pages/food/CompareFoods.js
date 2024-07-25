@@ -32,7 +32,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         if (displayState === 'DISPLAY_MACROS') {
             let macrosData = formatMacroNutrients(foodData);
             checkData(macrosData);
-            tableName = `Macronutrients per 100g of ${description}`;
+            tableName = `Macros, 100g ${description}`;
             options = createChartOptionsPieChart(tableName, "Amount(g)", macrosData);
             setChartOptions(options)
         }
@@ -40,42 +40,42 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         if (displayState === 'DISPLAY_VITAMINS') {
             let vitaminsData = formatOtherNutrients(foodData, vitamins);
             checkData(vitaminsData);
-            tableName = `Vitamin Content per 100g of ${description}`;
+            tableName = `Vitamins, 100g ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", vitaminsData));
         }
 
         if (displayState === 'DISPLAY_AMINOS') {
             let aminosData = formatAminos(foodData, aminos);
             checkData(aminosData);
-            tableName = `Amino Acids Content per 100g of ${description}`;
+            tableName = `Aminos, 100g ${description}`;
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(mg)", aminosData));
         }
 
         if (displayState === 'DISPLAY_SUGARS') {
             let sugarsData = formatCarbsOrLipids(foodData, fibersAndSugars);
             checkData(sugarsData);
-            tableName = `Carbohydrate Content per 100g of ${description}`
+            tableName = `Carbohydrates, 100g ${description}`
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", sugarsData));
         }
 
         if (displayState === 'DISPLAY_LIPIDS') {
             let lipidsData = formatCarbsOrLipids(foodData, lipids);
             checkData(lipidsData);
-            tableName = `Lipids and Fat Content per 100g of ${description}`;
+            tableName = `Lipids, 100g ${description}`;
             setChartOptions(createChartOptionsPieChart(tableName, "Amount(g)", lipidsData));
         }
 
         if (displayState === 'DISPLAY_MINERALS') {
             let mineralsData = formatOtherNutrients(foodData, minerals);
             checkData(mineralsData);
-            tableName = `Minerals and Metalloids Content per 100g of ${description}`;
+            tableName = `Minerals, 100g ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", mineralsData));
         }
 
         if (displayState === 'DISPLAY_OTHER') {
             let otherNutrientsData = formatOtherNutrients(foodData, otherNutrients);
             checkData(otherNutrientsData);
-            tableName = `Other Nutrient Content per 100g of ${description}`;
+            tableName = `Other Nutrients, 100g ${description}`;
             setChartOptions(createChartOptionsColumnChart(tableName, "Amount(mg)", otherNutrientsData));
         }
     }
@@ -90,7 +90,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                 type: 'pie',
                 backgroundColor: '#FFF2E6',
                 margin: [50, 10, 0, 10],
-                height: '80%'
+                height: '500px'
             },
             yAxis: {
                 title: {
@@ -99,7 +99,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
             }
         };
         options.title = { text: `${tableName}`, align: 'center', style: {
-            fontSize: '18px'
+            fontSize: '16px'
         }};
         options.series = [{ name: `${dataName}`, data: [...data] }];
         return options;
@@ -160,7 +160,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         return (
             <div className="chartDiv"
                 id={`indCompareChartDiv-${foodData.fdcId}`}>
-                <div className="viewRemoveBtnsDiv  d-flex flex-column">
+                <div className="viewRemoveBtnsDiv">
                     <Button
                         className='customCompareListRemoveBtn chartItem'
                         id={'comparePageRemBtn' + `${foodData.fdcId}`}

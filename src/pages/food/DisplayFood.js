@@ -86,13 +86,9 @@ const DisplayFood = () => {
                 type: 'pie',
                 backgroundColor: '#FFF2E6',
                 margin: [50, 10, 0, 10],
-                height: '70%'
+                height: '600px'
             },
-            yAxis: {
-                title: {
-                    text: ''
-                }
-            }
+            
         };
         options.title = { text: `${tableName}` };
         options.series = [{ name: `${dataName}`, data: [...data] }];
@@ -105,10 +101,16 @@ const DisplayFood = () => {
                 type: 'column',
                 backgroundColor: '#FFF2E6',
                 margin: [10, 100, 100, 10],
-                height: '80%'
+                height: '80%',
+                padding: '50px'
+            },
+            yAxis: {
+                title: {
+                    text: 'Amount (mg)'
+                }
             }
         };
-        options.title = { text: `${tableName}`, align: 'center' };
+        options.title = { text: `${tableName}`, align: 'center', fontSize: '12px'};
         options.xAxis = {
             categories: [...categories], labels: {
                 y: 20
