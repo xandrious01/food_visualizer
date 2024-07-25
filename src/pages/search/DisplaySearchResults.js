@@ -3,7 +3,7 @@ import {
     ListGroupItemHeading,
 } from "reactstrap";
 import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate, useParams, useOutletContext } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { requestFoodByQuery } from "../../ApiCalls";
 import { TriggerReloadContext } from "../../contexts";
 import '../../styles/Search.css'
@@ -15,13 +15,11 @@ import PaginationBar from "./PaginationBar";
 const DisplaySearchResults = () => {
     const { query, pageNum } = useParams();
     const { reloadOnSearch, setReloadOnSearch } = useContext(TriggerReloadContext);
-
     const [searchResults, setSearchResults] = useState([]);
     const [resultsInfo, setResultsInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(false);
     const currPageNum = pageNum;
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function requestSearchResults(query, currPageNum) {
@@ -65,11 +63,12 @@ const DisplaySearchResults = () => {
 
         return (
             <div className="displaySearchResultsParent">
-
-
-                <p className="pageInfo">
-                    Total Hits: {resultsInfo.totalHits}
-                </p>
+                <div className="pageInfo">
+                <p className="pageInfoText numHits"> Total Hits: {resultsInfo.totalHits} </p> 
+                <p className="pageInfoText numHits">{'\u2022'}</p>  
+                <p className="pageInfoText numHits">Displaying Page {currPageNum} of {maxPage}</p> 
+                </div>
+                
                 <PaginationBar 
                 query={query}
                 maxPage={maxPage} 

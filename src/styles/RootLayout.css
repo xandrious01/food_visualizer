@@ -1,117 +1,116 @@
 #root {
-    display: grid;
-    grid-template-columns: 10vw 80vw 10vw;
-    grid-template-rows: 1fr 1fr 5fr;
-    grid-template-areas:
-        'sidebar header header'
-        'sidebar main compare'
-        'sidebar main compare';
-    width: 100vw;
-    height: 100vh;
-    overflow-y: auto;
+  display: grid;
+  grid-template-columns: 90vw 10vw;
+  grid-template-rows: 13vh 7vh 80vh;
+  grid-template-areas:
+    "header header"
+    "nav nav"
+    "main compare";
+  width: 100vw;
+  height: 100vh;
+  margin-top: 5px;
 }
 
 .main {
-    grid-area: main;
-    display: flex;
-    flex-direction: row;
-    margin: 20px 40px;
-    padding: 20px;
-    
+  grid-area: main;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  margin: 20px;
 }
 
-
 .header {
-    grid-area: header;
-    border: 5px solid #ff713d;
-    box-shadow: -1px 1px 3px 2px rgba(207, 54, 51, .8);
-    display: inline-flex;
-    flex-direction: row;
-    height: min-content;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    align-items: center;
-    margin: 1%;
-    position: static;
+  grid-area: header;
+  display: inline-flex;
+  flex-direction: row;
+  height: min-content;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+  position: static;
 }
 
 .headerText {
-    font-size: 4rem;
-    color: #ff4818;
-    margin-left: 1%;
+  font-size: 4rem;
+  color: #ff4818;
+  margin-left: 1%;
 }
 
 .headerSearchbarDiv {
-    margin-right: 5%;
-    margin-bottom: 2%;
+  margin-right: 5%;
+  margin-bottom: 2%;
 }
 
 .nav {
-    background-color: #FF713D;
-    grid-area: sidebar;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    margin-right: none;
-    position: sticky;
+  background-color: #ff713d;
+  grid-area: nav;
+  display: block;
+  position: fixed;
+  flex-direction: row;
+  justify-content: left;
+  align-content: center;
+  margin-right: none;
+  position: sticky;
+  height: 9vh;
+  width: 100%;
 }
 
 .nav a {
-    text-decoration: none;
-    border: 2px solid #FF713D;
-    width: 100%;
-    height: 5rem;
-    color: white;
-    background-color: #FF713D;
-    padding: 10px;
-    font-size: 1.4rem;
-    margin: none;
+  text-decoration: none;
+  border: 2px solid #ff713d;
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+  color: white;
+  background-color: #ff713d;
+  font-size: 1.4rem;
+  font-weight: 400;
+  align-self: center;
+  padding: 20px;
+  width: 20%;
 }
 
 .nav a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 .foodCompareListDisplay {
-    grid-area: compare;
-    margin: 0;
-    padding: 5px;
+  grid-area: compare;
+  margin: 20px 10px;
 }
 
 .comparisonListText {
-    font-size: 1.2rem;
-    justify-self: left;
+  font-size: 1.2rem;
+  justify-self: left;
 }
 
 .compareListItem {
-    background-color: #00B4C8;
-    margin: 10px;
-    padding: 10px;
-    width: min-content;
-    height: min-content;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 10px;
-    box-sizing: border-box;
-    border: 3px solid rgba(0, 180, 200, 1);
-
+  background-color: #00b4c8;
+  margin: 10px;
+  padding: 10px;
+  width: min-content;
+  height: min-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 3px solid rgba(0, 180, 200, 1);
 }
 
 .compareListItem:hover {
-    border: 3px solid white;
-    box-sizing: border-box;
+  border: 3px solid white;
+  box-sizing: border-box;
 }
 
 .compareFoodsLink {
-    text-decoration: none;
-    color: white;
-    font-weight: 300;
-    background-color: #00B4C8;
+  text-decoration: none;
+  color: white;
+  font-weight: 300;
+  background-color: #00b4c8;
 }
 
 .compareFoodsLink:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

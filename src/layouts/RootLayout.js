@@ -53,8 +53,7 @@ const RootLayout = () => {
                 <div className="root customRoot" id='root'>
 
                     <div className="nav">
-                        <NavLink to="/"
-                            className='customLink'>
+                        <NavLink to="/">
                             Home
                         </NavLink>
                         <NavLink to="/myFoods">

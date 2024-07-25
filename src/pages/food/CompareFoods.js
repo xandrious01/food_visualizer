@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Highcharts from 'highcharts';
 import { Button } from "reactstrap";
 import HighchartsReact from 'highcharts-react-official';
-import { vitamins, fibersAndSugars, minerals, macros, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos } from "../../formattingFunctions";
+import { vitamins, fibersAndSugars, minerals, aminos, lipids, otherNutrients, formatMacroNutrients, formatCarbsOrLipids, formatOtherNutrients, formatAminos } from "../../formattingFunctions";
 import { CompareFoodsContext } from "../../contexts";
 import '../../styles/CompareFoods.css';
 
@@ -163,10 +163,10 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
                 <div className="viewRemoveBtnsDiv">
                     <Button
                         className='customCompareListRemoveBtn chartItem'
-                        id={'comparePageRemBtn' + `${foodData.fdcId}`}
+                        id={`comparePageRemBtn+${foodData.fdcId}`}
                         onClick={handleRemove}>
                         X</Button>
-                    <Link to={'/food/' + `${foodData.fdcId}`}
+                    <Link to={`/food/+${foodData.fdcId}`}
                         className="chartItem">
                         <i className="fa-solid fa-eye"></i>
                     </Link>

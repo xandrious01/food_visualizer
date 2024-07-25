@@ -12,7 +12,7 @@ const PaginationBar = ({ query, maxPage, currPageNum }) => {
     (_, index) => index + 1
   );
   const navigate = useNavigate();
-  const {reloadOnSearch, setReloadOnSearch} = useContext(TriggerReloadContext)
+  const {setReloadOnSearch} = useContext(TriggerReloadContext)
 
   function updatePageNumbers() {
     if (currPageNum*1 > 5 && currPageNum*1 < maxPage * 1 - 4) {
