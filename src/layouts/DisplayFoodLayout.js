@@ -4,10 +4,11 @@ import { useParams, useNavigate, Outlet } from "react-router-dom";
 import { requestFoodById } from "../ApiCalls";
 import '../styles/DisplayFood.css'
 import { CompareFoodsContext } from "../contexts";
+import { NetworkErrorContext } from "../contexts";
 import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
 import DisplayFoodNutritionFacts from "../pages/food/DisplayFoodNutritionFacts";
 import DisplayFoodInfo from "../pages/food/DisplayFoodInfo";
-
+import ErrorLoadingMsg from "../pages/ErrorLoadingMsg";
 
 
 const DisplayFoodLayout = () => {
@@ -19,19 +20,21 @@ const DisplayFoodLayout = () => {
     const navigate = useNavigate();
 
     const { addFoodToCompare } = useContext(CompareFoodsContext);
-
+    const {errorLoading, setErrorLoading} = useContext(NetworkErrorContext);
     const { description } = foodData;
 
     useEffect(() => {
         async function requestFoodData(fdcId) {
-
+            setErrorLoading(false);
             try {
                 const response = await requestFoodById(fdcId);
                 if (response) {
                     setFoodData(response.data);
+                } else if (!response){
+                    setErrorLoading("Please check your network connection to continue.")
                 }
             } catch (err) {
-                console.log(err)
+                setErrorLoading(err.message);
             }
         }
         requestFoodData(fdcId);
@@ -53,6 +56,13 @@ const DisplayFoodLayout = () => {
         return addFoodToCompare(fdcId, description)
     }
 
+    if(errorLoading){
+        return (
+            <div>
+                <ErrorLoadingMsg />
+            </div>
+        )
+    }
 
     if (isLoading) {
         return (

@@ -45,7 +45,6 @@ export function formatCarbsOrLipids(foodData, nutrientList) {
             return { name, y: i.amount * 0.000001 }
         }
     });
-    console.log(data)
     return data;
 }
 
@@ -129,40 +128,38 @@ export function formatOtherNutrients(foodData, nutrientList) {
             return { name: 'Retinal Activity Equivalent Vitamin A', y: amount * 0.0003 }
         }
     }
-
-    console.log(data)
     return { data, categories };
 }
 
 
-export function formatNutrientsForColumnChart(foodData, nutrientList) {
+// export function formatNutrientsForColumnChart(foodData, nutrientList) {
 
-    let alteredList = [...nutrientList];
-    alteredList.splice(6, 2);
-    alteredList.push('sugar')
+//     let alteredList = [...nutrientList];
+//     alteredList.splice(6, 2);
+//     alteredList.push('sugar')
   
-    if (foodData) {
-        const categories = foodData.map(i => i.description);
+//     if (foodData) {
+//         const categories = foodData.map(i => i.description);
 
-        const series = alteredList.map(targetNutrient => {
-            let data = foodData.map(singleFoodData => {
-                const {foodNutrients} = singleFoodData;
-                let singleFoodAmount = foodNutrients.filter(i => {
-                    const {nutrient} = i;
-                   const {amount} = i;
-                  if(nutrient.name === targetNutrient){
-                    console.log(i);
-                    return i;
-                  } 
-                })
-                console.log(singleFoodAmount)
-            })
-            // console.log(data)
-            // return {name, data}
-        })
+//         const series = alteredList.map(targetNutrient => {
+//             let data = foodData.map(singleFoodData => {
+//                 const {foodNutrients} = singleFoodData;
+//                 let singleFoodAmount = foodNutrients.filter(i => {
+//                     const {nutrient} = i;
+//                    const {amount} = i;
+//                   if(nutrient.name === targetNutrient){
+                   
+//                     return i;
+//                   } 
+//                 })
+                
+//             })
+//             // console.log(data)
+//             // return {name, data}
+//         })
         
-    }
-}
+//     }
+// }
 
 
 export const macros = ['Water', 'Ash', 'Protein', 'Total lipid (fat)', 'Carbohydrate, by difference', 'Fiber, total dietary', 'Sugars, Total', 'Total Sugars', 'Sugars, added']

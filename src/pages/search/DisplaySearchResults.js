@@ -5,21 +5,22 @@ import {
 import { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { requestFoodByQuery } from "../../ApiCalls";
-import { TriggerReloadContext } from "../../contexts";
+import { TriggerReloadContext, NetworkErrorContext } from "../../contexts";
 import '../../styles/Search.css'
 import PaginationBar from "./PaginationBar";
-
+import ErrorLoadingMsg from "../ErrorLoadingMsg";
 
 
 
 const DisplaySearchResults = () => {
     const { query, pageNum } = useParams();
     const { reloadOnSearch, setReloadOnSearch } = useContext(TriggerReloadContext);
+    const {errorLoading, setErrorLoading} = useContext(NetworkErrorContext)
     const [searchResults, setSearchResults] = useState([]);
     const [resultsInfo, setResultsInfo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
     const currPageNum = pageNum;
+
 
     useEffect(() => {
         async function requestSearchResults(query, currPageNum) {
@@ -28,17 +29,19 @@ const DisplaySearchResults = () => {
                 if (response) {
                     const { totalHits, totalPages, currentPage } = response.data;
                     setResultsInfo({ totalHits, totalPages, currentPage });
-                    setError(false);
                     return setSearchResults(response.data.foods);
+                } else if(!response){
+                    setErrorLoading("Please check your network connection and try again.")
                 }
             } catch (err) {
-                setError(true);
+                setErrorLoading(err.message);
             }
         }
-
+        setErrorLoading(false);
         requestSearchResults(query, parseInt(currPageNum));
         setReloadOnSearch(false);
         setIsLoading(false);
+     
     }, [reloadOnSearch])
 
     const maxPage = resultsInfo.totalPages < 200 ? resultsInfo.totalPages : 200;
@@ -50,6 +53,15 @@ const DisplaySearchResults = () => {
             </div>
         )
     }
+
+    if(errorLoading){
+        return (
+            <div className="displaySearchResultsParent">
+                <ErrorLoadingMsg />
+            </div>
+        )
+    }
+
 
     if (!isLoading && resultsInfo.totalHits === 0) {
         return (

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { NetworkErrorContext } from "./contexts";
 
 export async function requestFoodById(fdcId){
     const response = await axios({
@@ -14,6 +13,7 @@ export async function requestFoodById(fdcId){
 
 
 export async function requestFoodByQuery(query, currPageNum){
+    console.log("requesting")
     const params = {
             api_key: process.env.REACT_APP_API_KEY,
             query: `+${query}`,
@@ -28,7 +28,7 @@ export async function requestFoodByQuery(query, currPageNum){
         url: `${process.env.REACT_APP_BASE_URL}/fdc/v1/foods/search`,
         params : params
     });
-
+    
     return response;
 }
 

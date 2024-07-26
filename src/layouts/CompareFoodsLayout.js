@@ -3,7 +3,9 @@ import { CompareFoodsContext } from "../contexts";
 import { requestFoodsByIds } from "../ApiCalls";
 import CompareFoodDisplay from "../pages/food/CompareFoods";
 import NutrientDisplayButtons from "../pages/food/NutrientDisplayButtons";
+import { NetworkErrorContext } from "../contexts";
 import '../styles/CompareFoods.css';
+import ErrorLoadingMsg from "../pages/ErrorLoadingMsg";
 
 
 const CompareFoodsLayout = () => {
@@ -11,6 +13,7 @@ const CompareFoodsLayout = () => {
     const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
     const [isLoading, setIsLoading] = useState(true);
     const [foodData, setFoodData] = useState([]);
+    const {errorLoading, setErrorLoading} = useContext(NetworkErrorContext);
 
     useEffect(() => {
         async function requestFoodData() {
@@ -19,15 +22,26 @@ const CompareFoodsLayout = () => {
                 const response = await requestFoodsByIds(joinedfdcIds);
                 if (response) {
                     setFoodData(response.data);
+                } else if (!response){
+                    setErrorLoading("Please check your network connection to continue.")
                 }
             } catch (err) {
-                console.log(err)
+                setErrorLoading(err.message)
             }
         }
+        setErrorLoading(false);
         requestFoodData();
         setIsLoading(false);
     }, [foodsToCompare])
 
+    if(errorLoading){
+        return (
+            <div>
+                <h3 className="compareFoodsHeader">Compare Foods</h3>
+                <ErrorLoadingMsg />
+            </div>
+        )
+    }
 
     if (foodsToCompare.length > 0 && foodData.length > 0) {
         return (
