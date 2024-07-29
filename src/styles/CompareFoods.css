@@ -11,23 +11,21 @@
 }
 
 .compareFoodsChartsDiv {
-    margin-right: 2%;
+    margin-right: 1%;
     grid-row: 2;
     grid-column: 1;
     flex-wrap: wrap;
     overflow-y: scroll;
-    padding: 20px;
+    padding: 5px;
     justify-content: space-evenly;
 }
 
-.compareFoodIndDiv {
+.chartDiv{
     display: inline-block;
-    min-width: 46%;
-    width: auto;
-    max-height: 25vh;
-    margin: 1%;
-
+    height: 25%;
+    width: 46%;
 }
+
 
 
 .viewRemoveBtnsDiv {

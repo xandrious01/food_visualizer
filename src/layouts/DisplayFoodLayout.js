@@ -67,7 +67,6 @@ const DisplayFoodLayout = () => {
         setSaveBtnText("Save");
     }
     localStorage.setItem("savedFoods", JSON.stringify(saved))
-
   };
 
   const handleAddComparison = () => {

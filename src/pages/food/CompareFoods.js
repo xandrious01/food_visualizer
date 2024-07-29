@@ -89,7 +89,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
             chart: {
                 type: 'pie',
                 backgroundColor: '#FFF2E6',
-                margin: [50, 10, 0, 10],
+                margin: [50, 10, 50, 10],
                 height: '500px'
             },
             yAxis: {
@@ -158,7 +158,7 @@ const CompareFoodDisplay = ({ foodData, displayState }) => {
         )
     } else if (isReady && !noData) {
         return (
-            <div className="chartDiv"
+            <div
                 id={`indCompareChartDiv-${foodData.fdcId}`}>
                 <div className="viewRemoveBtnsDiv">
                     <Button

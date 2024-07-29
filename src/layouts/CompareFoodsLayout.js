@@ -53,7 +53,7 @@ const CompareFoodsLayout = () => {
                         
                         return (
                             <div
-                                className="compareFoodIndDiv"
+                                className="chartDiv"
                                 id={`compareDiv-${i.fdcId}`}
                                 key={`compareDiv-${i.fdcId}`}>
                                 <CompareFoodDisplay
