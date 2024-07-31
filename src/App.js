@@ -12,7 +12,7 @@ import DisplaySearchResults from './pages/search/DisplaySearchResults';
 import DisplayFoodLayout from './layouts/DisplayFoodLayout';
 import DisplayFood from './pages/food/DisplayFood';
 import CompareFoodsLayout from './layouts/CompareFoodsLayout';
-import SavedFoods from './pages/food/SavedFoodsLayout';
+import SavedFoodsLayout from './layouts/SavedFoodsLayout';
 import PageNotFound from './pages/PageNotFound';
 
 import './styles/RootLayout.css'
@@ -34,7 +34,7 @@ const router = createBrowserRouter(
 
         </Route>
 
-        <Route path="myfoods" element={<SavedFoods />}>
+        <Route path="myfoods" element={<SavedFoodsLayout />}>
 
         </Route>
 
