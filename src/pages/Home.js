@@ -11,7 +11,7 @@ const Home = () => {
     <div className="homeParentDiv">
       
 
-      <h1>Welcome!</h1>
+      <h1 >Welcome!</h1>
       <p>This Nutrient Visualizer is intended to be an entertaining and informative way to view the nutritional content of different foods.</p>
 
       <p>

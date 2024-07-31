@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -15,6 +15,7 @@ import {
   formatAminos,
 } from "../../formattingFunctions";
 import "../../styles/DisplayFood.css";
+import { height } from "@fortawesome/free-solid-svg-icons/fa0";
 
 const DisplayFood = () => {
   let tableName = "";
@@ -111,6 +112,9 @@ const DisplayFood = () => {
       ? setNoData(true)
       : setNoData(false);
   }
+  const windowHeight = window.innerHeight;
+  const windowWidth = window.innerWidth;
+
 
   function createChartOptionsPieChart(tableName, dataName, data) {
     const options = {
@@ -118,7 +122,8 @@ const DisplayFood = () => {
         type: "pie",
         backgroundColor: "#FFF2E6",
         margin: [50, 10, 0, 10],
-        height: "600px",
+        width : `${.5*windowWidth}`,
+        height: `${.6*windowHeight}`
       },
     };
     options.title = { text: `${tableName}` };
@@ -147,8 +152,8 @@ const DisplayFood = () => {
         type: "column",
         backgroundColor: "#FFF2E6",
         margin: margins,
-        height: "60%",
-        padding: "100px",
+        minWidth: '500px',
+        padding: "100px"
       },
       yAxis: {
         title: {
@@ -187,7 +192,7 @@ const DisplayFood = () => {
         <HighchartsReact
           highcharts={Highcharts}
           options={chartOptions}
-          containerProps={{ style: { margin: "auto" } }}
+          containerProps={{ style: { minHeight: "min-content", minWidth: "min-content", margin: 'auto' } }}
         />
       </div>
     );

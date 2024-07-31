@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ListGroupItemHeading, ListGroupItem, ListGroupItemText, Row, Col, Button } from "reactstrap";
+import { ListGroupItemHeading, ListGroupItem, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { requestFoodsByIds } from "../../ApiCalls";
 import '../../styles/SavedFoods.css'

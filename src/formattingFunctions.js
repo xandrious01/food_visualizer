@@ -36,14 +36,18 @@ export function formatCarbsOrLipids(foodData, nutrientList) {
     }
 
     const data = nutrientsInfo.map(i => {
+        let dataObj = {};
         const { name, amount, unitName } = i;
-        if (unitName === 'g') return { name, y: amount };
+        if (unitName === 'g'){
+            dataObj = { name, y: amount }; 
+        }
         if (unitName === 'mg') {
-            return { name, y: i.amount * 0.001 }
+            dataObj = { name, y: i.amount * 0.001 }
         };
         if (unitName === 'µg') {
-            return { name, y: i.amount * 0.000001 }
+            dataObj = { name, y: i.amount * 0.000001 }
         }
+        return dataObj;
     });
     return data;
 }
@@ -65,14 +69,19 @@ export function formatAminos(foodData, nutrientList) {
     }
 
     const data = nutrientsInfo.map(i => {
+        let dataObj = {};
         const { name, amount, unitName } = i;
-        if (unitName === 'mg') return { name, y: amount };
+        if (unitName === 'mg') {
+            dataObj = { name, y: amount };
+        }
+            
         if (unitName === 'g') {
-            return { name, y: i.amount * 1000 }
+            dataObj = { name, y: i.amount * 1000 }
         };
         if (unitName === 'µg') {
-            return { name, y: i.amount * 0.001 }
+            dataObj = { name, y: i.amount * 0.001 }
         }
+        return dataObj;
     });
 
     return data;
@@ -97,19 +106,22 @@ export function formatOtherNutrients(foodData, nutrientList) {
 
     
     const data = nutrientsInfo.map(i => {
+        let dataObj = {};
         const { name, amount, unitName } = i;
-        
-        if (unitName === 'mg') return { name, y: amount };
+        if (unitName === 'mg'){
+            dataObj = { name, y: amount };
+        } 
         if (unitName === 'g') {
-            return { name, y: i.amount * 1000 }
+            dataObj = { name, y: i.amount * 1000 }
         };
         if (unitName === 'µg') {
-            return { name, y: i.amount * 0.001 }
+            dataObj = { name, y: i.amount * 0.001 }
         }
         if (unitName === 'IU') {
             let converted = convertIntUnitsMg(i.name, i.amount);
-            return converted;
+            dataObj = converted;
         }
+        return dataObj;
 
     });
    

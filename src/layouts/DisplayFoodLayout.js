@@ -16,7 +16,7 @@ const DisplayFoodLayout = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [foodData, setFoodData] = useState([]);
   const [displayState, setDisplayState] = useState("DISPLAY_MACROS");
-  const [saveBtnText, setSaveBtnText] = useState(null);
+  const [saveBtnText, setSaveBtnText] = useState("Save");
   const navigate = useNavigate();
 
   const { addFoodToCompare } = useContext(CompareFoodsContext);
