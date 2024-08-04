@@ -37,7 +37,7 @@ const CompareFoodsLayout = () => {
     if(errorLoading){
         return (
             <div>
-                <h3 className="compareFoodsHeader">Compare Foods</h3>
+                <h3 className="compareFoodsHeader">Food Comparison</h3>
                 <ErrorLoadingMsg />
             </div>
         )
